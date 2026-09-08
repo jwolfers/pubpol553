@@ -214,11 +214,9 @@
       createSvg("line", { x1: bounds.left, y1: bounds.bottom, x2: bounds.left, y2: bounds.top, class: "axis-line" })
     );
 
-    let path = `M ${x(0)} ${y(schedule[0].price)}`;
-    schedule.forEach(({ price, quantity }, scheduleIndex) => {
-      path += ` H ${x(quantity)}`;
-      if (scheduleIndex < schedule.length - 1) path += ` V ${y(schedule[scheduleIndex + 1].price)}`;
-    });
+    const path = schedule
+      .map(({ price, quantity }, scheduleIndex) => `${scheduleIndex === 0 ? "M" : "L"} ${x(quantity)} ${y(price)}`)
+      .join(" ");
 
     chartData.append(createSvg("path", { d: path, class: "curve-line" }));
     schedule.forEach(({ price, quantity }) => {
@@ -226,8 +224,8 @@
     });
 
     chartCover.classList.add("hidden");
-    chartDescription.textContent = `A staircase market demand curve based on six observations. At ${schedule.map(({ price, quantity }) => `$${price}, ${quantity} hats`).join("; at ")}.`;
-    setMessage(`Curve drawn from ${schedule.length} price-and-quantity plans.`, "success");
+    chartDescription.textContent = `A market demand curve using straight-line interpolation between six observations. At ${schedule.map(({ price, quantity }) => `$${price}, ${quantity} hats`).join("; at ")}.`;
+    setMessage(`Curve drawn by connecting ${schedule.length} price-and-quantity plans with straight lines.`, "success");
   };
 
   plotButton.addEventListener("click", () => {
