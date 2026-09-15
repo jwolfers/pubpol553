@@ -100,7 +100,7 @@
   const chartData = document.getElementById("chart-data");
   const chartDescription = document.getElementById("chart-desc");
   const svgNamespace = "http://www.w3.org/2000/svg";
-  const defaultPayments = [0, 25, 50, 100, 200, 400];
+  const defaultPayments = [0, 25, 50, 75, 100, 150];
 
   const createSvg = (name, attributes = {}, content = "") => {
     const element = document.createElementNS(svgNamespace, name);
@@ -228,7 +228,7 @@
     });
 
     chartCover.classList.add("hidden");
-    chartDescription.textContent = `A market supply curve using straight-line interpolation between six observations. At ${schedule.map(({ price, quantity }) => `$${price}, ${quantity} assignments`).join("; at ")}.`;
+    chartDescription.textContent = `A market supply curve using straight-line interpolation between six observations. At ${schedule.map(({ price, quantity }) => `$${price}, ${quantity} outreach blocks`).join("; at ")}.`;
     setMessage(`Curve drawn by connecting ${schedule.length} payment-and-quantity plans with straight lines.`, "success");
   };
 
