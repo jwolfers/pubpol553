@@ -186,7 +186,7 @@ h3 { margin: 0 0 .55rem; color: var(--blue); font-size: clamp(1.45rem, 2.2vw, 2r
 .scenario-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; width: min(1150px, 100%); }
 .scenario-list span { border-left: .4rem solid var(--maize); padding: .65rem .85rem; background: white; color: var(--blue); text-align: left; font-size: clamp(1.05rem, 1.55vw, 1.35rem); font-weight: 700; }
 
-.rule-equation { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
+.rule-equation { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-top: 1rem; }
 .rule-equation span, .rule-equation strong { border: 2px solid var(--blue); border-radius: .9rem; padding: 1rem 1.2rem; font-size: clamp(1.45rem, 2.5vw, 2.4rem); }
 .rule-equation span { background: white; color: var(--blue); }
 .rule-equation strong { background: var(--blue); color: white; }
