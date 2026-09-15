@@ -6,6 +6,7 @@ Screen-sharing webpages for PUBPOL 553.
 
 - [Class 1 — Four Questions for Better Policy Decisions](https://jwolfers.github.io/pubpol553/class1.html)
 - [Class 2 — Demand Is a Set of Plans](https://jwolfers.github.io/pubpol553/class2.html)
+- [Class 3 — Supply Is a Set of Plans](https://jwolfers.github.io/pubpol553/class3.html)
 
 ## Controls
 
@@ -15,3 +16,5 @@ Screen-sharing webpages for PUBPOL 553.
 - Home/End: jump to the first or last screen
 
 On the Class 2 live-demand screen, enter the headcount at each price and choose **Draw curve**. The page checks that quantity does not fall as price falls, then connects the observations with straight lines.
+
+On the Class 3 live-supply screen, enter the headcount at each payment and choose **Draw curve**. The page checks that quantity does not fall as payment rises, then connects the observations with straight lines.
