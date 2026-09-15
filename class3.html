@@ -66,13 +66,14 @@
         <p class="takeaway">Same structure. Different side of the transaction.</p>
       </article>
 
-      <article class="screen prompt-screen assignment-screen" data-time="0:13–0:16" data-label="A one-hour assignment">
+      <article class="screen prompt-screen assignment-screen" data-time="0:13–0:16" data-label="A one-hour outreach block">
         <p class="eyebrow">A market containing exactly this Zoom room</p>
-        <h2>A nonprofit needs people to review one policy memo this Saturday.</h2>
+        <h2>A nonprofit must contact 200 households before the heating-assistance enrollment deadline.</h2>
+        <p class="large-copy">It can use every one-hour block of scripted outreach calls that people are willing to provide this Saturday.</p>
         <div class="rules-row">
-          <span>Exactly one hour</span><span>One assignment or none</span><span>Same task for everyone</span><span>Hypothetical—but answer honestly</span>
+          <span>One block or none</span><span>Script and brief training provided</span><span>Same task for everyone</span><span>Hypothetical—but answer honestly</span>
         </div>
-        <p class="instruction">At each payment, raise your virtual hand if you would accept. Once your hand goes up, keep it up.</p>
+        <p class="instruction">At each payment, raise your virtual hand if you would supply one block. Once your hand goes up, keep it up.</p>
       </article>
 
       <article class="screen supply-builder" data-time="0:16–0:26" data-label="Build market supply">
@@ -92,9 +93,9 @@
                 <tr data-supply-row><td><label>$<input class="price-input" type="number" value="0" min="0" step="1" aria-label="First payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at zero dollars" /></td></tr>
                 <tr data-supply-row><td><label>$<input class="price-input" type="number" value="25" min="0" step="1" aria-label="Second payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at 25 dollars" /></td></tr>
                 <tr data-supply-row><td><label>$<input class="price-input" type="number" value="50" min="0" step="1" aria-label="Third payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at 50 dollars" /></td></tr>
-                <tr data-supply-row><td><label>$<input class="price-input" type="number" value="100" min="0" step="1" aria-label="Fourth payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at 100 dollars" /></td></tr>
-                <tr data-supply-row><td><label>$<input class="price-input" type="number" value="200" min="0" step="1" aria-label="Fifth payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at 200 dollars" /></td></tr>
-                <tr data-supply-row><td><label>$<input class="price-input" type="number" value="400" min="0" step="1" aria-label="Sixth payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at 400 dollars" /></td></tr>
+                <tr data-supply-row><td><label>$<input class="price-input" type="number" value="75" min="0" step="1" aria-label="Fourth payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at 75 dollars" /></td></tr>
+                <tr data-supply-row><td><label>$<input class="price-input" type="number" value="100" min="0" step="1" aria-label="Fifth payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at 100 dollars" /></td></tr>
+                <tr data-supply-row><td><label>$<input class="price-input" type="number" value="150" min="0" step="1" aria-label="Sixth payment" /></label></td><td><input class="quantity-input" type="number" min="0" step="1" inputmode="numeric" placeholder="Count" aria-label="Quantity supplied at 150 dollars" /></td></tr>
               </tbody>
             </table>
             <div class="builder-actions">
@@ -107,11 +108,11 @@
 
           <section class="chart-panel" aria-label="Market supply graph">
             <svg id="supply-chart" viewBox="0 0 720 470" role="img" aria-labelledby="chart-title chart-desc">
-              <title id="chart-title">Market supply of one-hour policy-memo reviews</title>
+              <title id="chart-title">Market supply of one-hour outreach blocks</title>
               <desc id="chart-desc">An empty chart until quantities are entered and the Draw curve button is pressed.</desc>
               <g id="chart-grid"></g>
               <g id="chart-data"></g>
-              <text class="axis-label" x="360" y="458" text-anchor="middle">Number of one-hour assignments</text>
+              <text class="axis-label" x="360" y="458" text-anchor="middle">Number of one-hour outreach blocks</text>
               <text class="axis-label" x="20" y="225" text-anchor="middle" transform="rotate(-90 20 225)">Payment per assignment</text>
             </svg>
             <div class="chart-cover" id="chart-cover">
@@ -126,19 +127,27 @@
         <p class="eyebrow">From individual to market supply</p>
         <h2>At each payment, add up everyone’s choice.</h2>
         <div class="sum-line"><span>0 or 1</span><b>+</b><span>0 or 1</span><b>+</b><span>0 or 1</span><b>+ … =</b><strong>market quantity supplied</strong></div>
-        <p class="takeaway">Each individual has a selling plan. Market supply is the sum of those plans at every price.</p>
+        <p class="takeaway">Each person supplies zero or one block. Market supply tells the nonprofit how many blocks the whole room would provide at every payment.</p>
       </article>
 
       <article class="screen definition-screen" data-time="0:16–0:26" data-label="A set of plans">
         <p class="eyebrow">Read the curve correctly</p>
         <h2>A supply curve is a set of plans.</h2>
-        <p class="large-copy">It says how many assignments people <strong>would</strong> accept at each possible payment—not that all those payments occur.</p>
+        <p class="large-copy">It says how many outreach blocks people <strong>would</strong> supply at each possible payment—not that all those payments occur.</p>
         <p class="takeaway">Only one plan becomes today’s observed quantity supplied.</p>
       </article>
 
-      <article class="screen prompt-screen" data-time="0:26–0:30" data-label="Why did your hand go up?">
+      <article class="screen prompt-screen" data-time="0:24–0:27" data-label="Use the supply curve">
+        <p class="eyebrow">Now make the curve earn its keep</p>
+        <h2>Suppose the nonprofit needs at least 12 outreach blocks.</h2>
+        <p class="huge-copy">What is the lowest payment that will recruit 12 people?</p>
+        <p class="instruction">Then identify the marginal supplier: whose choice determines that payment?</p>
+        <p class="takeaway">The curve turns a collection of private choices into a practical staffing plan.</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:27–0:30" data-label="Why did your hand go up?">
         <p class="eyebrow">Cold call</p>
-        <h2>What determined your minimum acceptable payment?</h2>
+        <h2>What determined your minimum acceptable payment for one outreach block?</h2>
         <div class="cost-cloud">
           <span>Your Saturday plans</span><span>The pleasure of helping</span><span>Fatigue</span><span>Childcare</span><span>Professional interest</span><span>Other paid work</span>
         </div>
