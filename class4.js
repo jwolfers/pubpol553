@@ -26,6 +26,7 @@
   const clamp = (value, minimum, maximum) => Math.max(minimum, Math.min(maximum, value));
   const formatTime = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
   const money = (value) => `$${Number(value).toFixed(2)}`;
+  const wholeMoney = (value) => `$${Math.round(Number(value)).toLocaleString("en-US")}`;
 
   const stopTimer = () => {
     if (interval) window.clearInterval(interval);
@@ -571,7 +572,7 @@
     const revenueChange = ((newRevenue - oldRevenue) / oldRevenue) * 100;
     const type = elasticity < 1 ? "inelastic" : elasticity > 1 ? "elastic" : "unit elastic";
     const movement = revenueChange > .05 ? "rises" : revenueChange < -.05 ? "falls" : "hardly changes";
-    fareAnswer.textContent = `Demand is ${type}: elasticity ≈ ${elasticity.toFixed(2)}. Daily fare revenue ${movement} from ${money(oldRevenue)} to ${money(newRevenue)}, a ${Math.abs(revenueChange).toFixed(1)}% ${revenueChange >= 0 ? "increase" : "decrease"}.`;
+    fareAnswer.textContent = `Demand is ${type}: elasticity ≈ ${elasticity.toFixed(2)}. Daily fare revenue ${movement} from ${wholeMoney(oldRevenue)} to ${wholeMoney(newRevenue)}, a ${Math.abs(revenueChange).toFixed(1)}% ${revenueChange >= 0 ? "increase" : "decrease"}.`;
     fareAnswer.hidden = false;
   };
 
