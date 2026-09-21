@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#00274c" />
+    <title>PUBPOL 553 — Equilibrium and Elasticity</title>
+    <meta
+      name="description"
+      content="Class prompts, a live market experiment, and an equilibrium workbench for PUBPOL 553, Class 4."
+    />
+    <link rel="stylesheet" href="./class4.css" />
+  </head>
+  <body>
+    <main id="deck" aria-live="polite">
+      <article class="screen cover" data-time="0:00–0:02" data-label="Welcome">
+        <p class="eyebrow">PUBPOL 553 · Class 4</p>
+        <h1>Where markets land<br />and how hard they move</h1>
+        <p class="subtitle">Equilibrium brings buyers and sellers together. Elasticity tells us how they respond.</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:02–0:05" data-label="A market from your work">
+        <p class="eyebrow">Start with your work</p>
+        <h2>Name one market that affected your work this week.</h2>
+        <p class="huge-copy">Labor · Housing · Child care · Health care · Credit · Energy · Contractors · Attention</p>
+        <p class="instruction">Put it in chat. What was bought, what was sold, and what counted as the price?</p>
+      </article>
+
+      <article class="screen" data-time="0:05–0:07" data-label="Three weeks, one diagram">
+        <p class="eyebrow">Three weeks, one diagram</p>
+        <div class="meeting-grid">
+          <section><small>Demand</small><h2>Buyers’ plans</h2><p>How much buyers would choose at every possible price</p></section>
+          <b class="plus">+</b>
+          <section><small>Supply</small><h2>Sellers’ plans</h2><p>How much sellers would offer at every possible price</p></section>
+          <b class="equals">=</b>
+          <section class="equilibrium-card"><small>Equilibrium</small><h2>Plans fit together</h2><p>The price and quantity where supply equals demand</p></section>
+        </div>
+        <p class="takeaway">This framework becomes the foundation for nearly everything that follows.</p>
+      </article>
+
+      <article class="screen experiment-intro" data-time="0:07–0:09" data-label="The hat market">
+        <p class="eyebrow">An experiment</p>
+        <h2>The market for a used Michigan Economics hat</h2>
+        <p class="large-copy">Can a room full of people, each knowing only their own number, discover a market price?</p>
+        <p class="instruction">Before anyone trades, put two forecasts in chat: the average transaction price and the number of hats sold.</p>
+      </article>
+
+      <article class="screen role-screen" data-time="0:09–0:12" data-label="Your role">
+        <p class="eyebrow">Your role comes from your surname</p>
+        <div class="role-grid">
+          <section class="buyer-role">
+            <small>Surname A–K</small>
+            <h2>Buyer</h2>
+            <p>Your maximum willingness to pay equals the <strong>day</strong> of your birthday.</p>
+            <div class="example">Born December 25 <strong>Value = $25</strong></div>
+          </section>
+          <section class="seller-role">
+            <small>Surname L–Z</small>
+            <h2>Seller</h2>
+            <p>Your minimum acceptable price equals the <strong>month</strong> of your birthday.</p>
+            <div class="example">Born December 25 <strong>Cost = $12</strong></div>
+          </section>
+        </div>
+        <p class="takeaway">Write your number privately. Buyers do not pay above value. Sellers do not accept below cost.</p>
+      </article>
+
+      <article class="screen market-open" data-time="0:12–0:19" data-label="Market open" data-timer="420">
+        <p class="eyebrow">Seven minutes</p>
+        <h2>The market is open</h2>
+        <div class="market-rules">
+          <section><strong>Make offers in chat</strong><p><code>BUY $8</code> or <code>SELL $11</code></p></section>
+          <section><strong>Agree publicly</strong><p><code>DEAL $9 with Alex</code></p></section>
+          <section><strong>Trade once</strong><p>One buyer, one seller, one hat</p></section>
+          <section><strong>Keep chatting</strong><p>Revise offers as you learn about the market</p></section>
+        </div>
+        <p class="huge-copy market-call">Buy low. Sell high. Try not to become emotionally attached to an imaginary hat.</p>
+      </article>
+
+      <article class="screen results-screen" data-time="0:19–0:23" data-label="Market results">
+        <div class="results-heading">
+          <div><p class="eyebrow">What happened?</p><h2>Market results</h2></div>
+          <button class="secondary-button" id="clear-market" type="button">Clear</button>
+        </div>
+        <div class="results-grid">
+          <section class="entry-panel">
+            <label for="forecast-price">Class forecast: average price</label>
+            <div class="money-input"><span>$</span><input id="forecast-price" type="number" min="0" step="0.01" placeholder="Forecast" /></div>
+            <label for="forecast-trades">Class forecast: number of trades</label>
+            <input id="forecast-trades" type="number" min="0" step="1" placeholder="Forecast" />
+            <label for="deal-prices">Actual transaction prices</label>
+            <textarea id="deal-prices" rows="3" placeholder="Example: 8, 9, 10, 9, 11"></textarea>
+            <button class="primary-button" id="show-market-results" type="button">Calculate results</button>
+            <p class="form-message" id="market-message" role="status" aria-live="polite">Enter each deal price, separated by commas or spaces.</p>
+          </section>
+          <section class="market-scoreboard" aria-live="polite">
+            <div><small>Trades</small><strong id="actual-trades">?</strong></div>
+            <div><small>Average price</small><strong id="average-price">?</strong></div>
+            <div><small>Median price</small><strong id="median-price">?</strong></div>
+            <div><small>Price range</small><strong id="price-range">?</strong></div>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen forecast-screen" data-time="0:23–0:28" data-label="The economic forecast">
+        <div class="forecast-heading">
+          <div><p class="eyebrow">A forecast from birthdays</p><h2>Where should this market settle?</h2></div>
+          <div class="participant-inputs">
+            <label>Buyers <input id="buyer-count" type="number" min="1" step="1" value="12" /></label>
+            <label>Sellers <input id="seller-count" type="number" min="1" step="1" value="12" /></label>
+          </div>
+        </div>
+        <div class="forecast-grid">
+          <section class="chart-panel">
+            <svg id="hat-chart" viewBox="0 0 720 470" role="img" aria-labelledby="hat-chart-title hat-chart-desc">
+              <title id="hat-chart-title">Expected supply and demand in the hat market</title>
+              <desc id="hat-chart-desc">The graph is hidden until the economic forecast is revealed.</desc>
+              <g id="hat-grid"></g>
+              <g id="hat-curves"></g>
+            </svg>
+            <div class="chart-cover" id="hat-cover"><strong>Forecast hidden</strong><span>Ask for their reasoning first.</span></div>
+          </section>
+          <section class="forecast-answer">
+            <p>Assume birthdays are spread evenly through the year.</p>
+            <div><small>Predicted price</small><strong id="predicted-hat-price">?</strong></div>
+            <div><small>Predicted trades</small><strong id="predicted-hat-quantity">?</strong></div>
+            <button class="primary-button" id="reveal-hat-forecast" type="button">Reveal forecast</button>
+            <button class="secondary-button" id="hide-hat-forecast" type="button">Hide forecast</button>
+          </section>
+        </div>
+        <p class="quiet">This is a smooth forecast from the distribution of birthdays, not a promise about any particular class.</p>
+      </article>
+
+      <article class="screen" data-time="0:28–0:31" data-label="What coordinated the market?">
+        <p class="eyebrow">Debrief</p>
+        <h2>No one knew the demand curve or the supply curve.</h2>
+        <div class="debrief-grid">
+          <section><small>Each buyer knew</small><strong>one value</strong></section>
+          <section><small>Each seller knew</small><strong>one cost</strong></section>
+          <section><small>The chat revealed</small><strong>prices and opportunities</strong></section>
+          <section><small>The market produced</small><strong>trades and a price range</strong></section>
+        </div>
+        <p class="takeaway">A market coordinates information that no single participant possesses.</p>
+      </article>
+
+      <article class="screen definition-screen" data-time="0:31–0:34" data-label="Equilibrium">
+        <p class="eyebrow">Equilibrium</p>
+        <h2>The point where there is no tendency for change</h2>
+        <div class="equilibrium-definition">
+          <span>Quantity demanded</span><b>=</b><span>Quantity supplied</span>
+        </div>
+        <p class="large-copy">Every buyer willing to pay the market price can find a seller, and every seller willing to accept it can find a buyer.</p>
+        <p class="takeaway">Equilibrium describes where the market comes to rest. It does not certify that the outcome is fair, efficient, or wise.</p>
+      </article>
+
+      <article class="screen balance-screen" data-time="0:34–0:39" data-label="Shortage or surplus?">
+        <div class="balance-heading">
+          <div><p class="eyebrow">Move the price</p><h2>Shortage, surplus, or equilibrium?</h2></div>
+          <label class="price-control">Price <span>$</span><input id="trial-price" type="number" min="0" max="32" step="0.25" value="5" /></label>
+        </div>
+        <input class="price-slider" id="trial-price-slider" type="range" min="0" max="32" step="0.25" value="5" aria-label="Trial market price" />
+        <div class="balance-grid">
+          <section><small>Quantity demanded</small><strong id="trial-qd">?</strong></section>
+          <section><small>Quantity supplied</small><strong id="trial-qs">?</strong></section>
+          <section class="market-state"><small>Market state</small><strong id="trial-state">?</strong><span id="trial-pressure"></span></section>
+        </div>
+        <div class="diagnostic-row">
+          <span>Shortage: buyers queue and bid against one another</span>
+          <span>Surplus: sellers discount and compete for buyers</span>
+        </div>
+        <p class="takeaway">A shortage does not mean “expensive.” It means quantity demanded exceeds quantity supplied at the current price.</p>
+      </article>
+
+      <article class="screen recipe-screen" data-time="0:39–0:42" data-label="Forecasting a changed market">
+        <p class="eyebrow">When market conditions change</p>
+        <h2>Three questions</h2>
+        <ol class="three-questions">
+          <li><b>1</b><span>Which curve shifts?</span><small>Demand, supply, or both?</small></li>
+          <li><b>2</b><span>Which direction?</span><small>Increase or decrease?</small></li>
+          <li><b>3</b><span>What happens next?</span><small>New equilibrium price and quantity</small></li>
+        </ol>
+        <p class="takeaway">The curve that does not shift still matters because the new equilibrium moves along it.</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:42–0:48" data-label="Read the clues">
+        <p class="eyebrow">Rapid fire · Thumbs first, cold call second</p>
+        <h2>Which curve shifted, and in which direction?</h2>
+        <div class="scenario-list">
+          <span>A new employer brings 2,000 workers to town.</span>
+          <span>New software cuts the time needed to process a benefits claim.</span>
+          <span>A safety rule raises the staffing cost of each child-care place.</span>
+          <span>A subsidy attracts buyers while easier permitting attracts sellers.</span>
+        </div>
+        <p class="instruction">For each case: name the market, define price and quantity, then forecast their directions.</p>
+      </article>
+
+      <article class="screen transition-screen" data-time="0:48–0:51" data-label="Direction is not enough">
+        <p class="eyebrow">Equilibrium gives us direction</p>
+        <h2>But will prices move a little or a lot?</h2>
+        <p class="huge-copy">Will the adjustment show up mainly in <strong>price</strong>, or mainly in <strong>quantity</strong>?</p>
+        <p class="takeaway">For that, we need elasticity.</p>
+      </article>
+
+      <article class="screen definition-screen" data-time="0:51–0:54" data-label="Elasticity">
+        <p class="eyebrow">Elasticity</p>
+        <h2>A measure of responsiveness</h2>
+        <div class="responsive-grid">
+          <section><small>Inelastic</small><strong>Quantity changes little</strong><p>Few good alternatives or little flexibility</p></section>
+          <section><small>Elastic</small><strong>Quantity changes a lot</strong><p>Good alternatives or plenty of flexibility</p></section>
+        </div>
+        <p class="takeaway">The arithmetic gives the idea a number. The economic question comes first: how easily can people change their plans?</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:54–0:58" data-label="Demand responsiveness">
+        <p class="eyebrow">Demand elasticity</p>
+        <h2>How easy is it for buyers to say “or what?”</h2>
+        <div class="comparison-strip">
+          <section><small>More inelastic</small><p>Urgent need, few substitutes, broad market, little time to adjust</p></section>
+          <section><small>More elastic</small><p>Good substitutes, easy search, narrow market, more time to adjust</p></section>
+        </div>
+        <p class="instruction">Choose a market from chat. What could buyers do instead, and how quickly?</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:58–1:02" data-label="Supply responsiveness">
+        <p class="eyebrow">Supply elasticity</p>
+        <h2>How easily can providers do one more?</h2>
+        <div class="supply-flexibility">
+          <span>Spare capacity</span><span>Available workers and inputs</span><span>Inventories</span><span>Easy entry</span><span>Time to adjust</span>
+        </div>
+        <p class="instruction">Choose a government or nonprofit service. What prevents supply from expanding this month? What could change in five years?</p>
+      </article>
+
+      <article class="screen workbench-screen" data-time="1:02–1:12" data-label="Equilibrium workbench">
+        <div class="workbench-heading">
+          <div><p class="eyebrow">Virtual whiteboard</p><h2>Equilibrium workbench</h2></div>
+          <div class="preset-buttons" aria-label="Scenario presets">
+            <button type="button" data-preset="housing-short">Housing: 6 months</button>
+            <button type="button" data-preset="housing-long">Housing: 5 years</button>
+            <button type="button" data-preset="blank">Blank</button>
+          </div>
+        </div>
+
+        <div class="workbench-layout">
+          <section class="workbench-controls">
+            <div class="market-fields">
+              <label>Market <input id="wb-market" type="text" value="Rental housing after 2,000 workers arrive" /></label>
+              <label>Price <input id="wb-price-label" type="text" value="Monthly rent" /></label>
+              <label>Quantity <input id="wb-quantity-label" type="text" value="Occupied rental units" /></label>
+            </div>
+
+            <div class="control-block">
+              <h3>1. How responsive are buyers and sellers?</h3>
+              <div class="control-row"><span>Demand</span><div class="segmented" data-control="demandElasticity"><button data-value="inelastic">Inelastic</button><button data-value="unit" class="selected">Middle</button><button data-value="elastic">Elastic</button></div></div>
+              <div class="control-row"><span>Supply</span><div class="segmented" data-control="supplyElasticity"><button data-value="inelastic" class="selected">Inelastic</button><button data-value="unit">Middle</button><button data-value="elastic">Elastic</button></div></div>
+            </div>
+
+            <div class="control-block">
+              <h3>2. Which curves shift?</h3>
+              <div class="control-row"><span>Demand</span><div class="segmented" data-control="demandShift"><button data-value="decrease">Decrease</button><button data-value="none">No shift</button><button data-value="increase" class="selected">Increase</button></div><div class="segmented compact" data-control="demandSize"><button data-value="small">Small</button><button data-value="large" class="selected">Large</button></div></div>
+              <div class="control-row"><span>Supply</span><div class="segmented" data-control="supplyShift"><button data-value="decrease">Decrease</button><button data-value="none" class="selected">No shift</button><button data-value="increase">Increase</button></div><div class="segmented compact" data-control="supplySize"><button data-value="small" class="selected">Small</button><button data-value="large">Large</button></div></div>
+            </div>
+
+            <div class="prediction-board">
+              <h3>3. Commit to a forecast</h3>
+              <div class="prediction-row"><span>Price</span><div class="segmented prediction" data-prediction="priceDirection"><button data-value="fall">Fall</button><button data-value="same">Same</button><button data-value="rise">Rise</button></div><div class="segmented prediction compact" data-prediction="priceSize"><button data-value="small">Small</button><button data-value="large">Large</button></div></div>
+              <div class="prediction-row"><span>Quantity</span><div class="segmented prediction" data-prediction="quantityDirection"><button data-value="fall">Fall</button><button data-value="same">Same</button><button data-value="rise">Rise</button></div><div class="segmented prediction compact" data-prediction="quantitySize"><button data-value="small">Small</button><button data-value="large">Large</button></div></div>
+            </div>
+
+            <div class="workbench-actions">
+              <button class="primary-button" id="reveal-workbench" type="button">Draw new equilibrium</button>
+              <button class="secondary-button" id="hide-workbench" type="button">Hide result</button>
+              <button class="secondary-button" id="reset-workbench" type="button">Reset</button>
+            </div>
+          </section>
+
+          <section class="workbench-chart-panel">
+            <div class="workbench-title" id="wb-chart-title">Rental housing after 2,000 workers arrive</div>
+            <svg id="workbench-chart" viewBox="0 0 720 520" role="img" aria-labelledby="wb-chart-title wb-chart-desc">
+              <desc id="wb-chart-desc">An interactive supply and demand diagram. The new equilibrium remains hidden until the reveal button is pressed.</desc>
+              <defs><clipPath id="wb-plot-clip"><rect x="78" y="24" width="610" height="420"></rect></clipPath></defs>
+              <g id="wb-grid"></g>
+              <g id="wb-old-curves" clip-path="url(#wb-plot-clip)"></g>
+              <g id="wb-new-curves" clip-path="url(#wb-plot-clip)"></g>
+              <g id="wb-annotations"></g>
+            </svg>
+            <div class="workbench-cover" id="workbench-cover"><strong>New equilibrium hidden</strong><span>Ask for a forecast before revealing it.</span></div>
+            <div class="workbench-result" id="workbench-result" hidden></div>
+            <p class="chart-note">Around the starting equilibrium, a flatter curve represents a more responsive quantity.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen fare-screen" data-time="1:12–1:16" data-label="Elasticity and revenue">
+        <p class="eyebrow">One small calculation</p>
+        <h2>A transit agency raises its fare</h2>
+        <div class="fare-grid">
+          <section><label>Old fare <span>$</span><input id="old-fare" type="number" min="0.01" step="0.01" value="2.50" /></label><label>Old daily riders <input id="old-riders" type="number" min="1" step="100" value="100000" /></label></section>
+          <section><label>New fare <span>$</span><input id="new-fare" type="number" min="0.01" step="0.01" value="2.75" /></label><label>New daily riders <input id="new-riders" type="number" min="1" step="100" value="96000" /></label></section>
+          <section class="fare-question"><strong>Will fare revenue rise or fall?</strong><p>Thumbs first. Then tell me whether demand looks elastic or inelastic.</p><button class="primary-button" id="reveal-fare" type="button">Reveal</button></section>
+        </div>
+        <div class="fare-answer" id="fare-answer" hidden></div>
+        <p class="takeaway">Revenue is one outcome. It does not tell us whether the fare increase is good policy.</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="1:16–1:18" data-label="Both curves can move">
+        <p class="eyebrow">If time</p>
+        <h2>The city subsidizes EV purchases and streamlines permits for charging stations.</h2>
+        <div class="two-shift-grid">
+          <section><small>EV charging demand</small><strong>Increases</strong></section>
+          <section><small>EV charging supply</small><strong>Increases</strong></section>
+        </div>
+        <p class="huge-copy">Quantity clearly rises. What happens to price?</p>
+        <p class="instruction">Use the workbench. The answer depends on the relative size of the two shifts.</p>
+      </article>
+
+      <article class="screen close-screen" data-time="1:18–1:20" data-label="At work this week">
+        <p class="eyebrow">At work this week</p>
+        <h2>Make one professional forecast</h2>
+        <blockquote>“If ______ changes, the ______ curve shifts ______. Price will ______ and quantity will ______. Most adjustment will occur through ______ because ______ is relatively inelastic.”</blockquote>
+        <p class="instruction">Put your forecast in chat. Borrow a colleague’s market if it is more interesting than yours.</p>
+        <div class="closing-pair"><span><strong>Equilibrium</strong>Where will the market land?</span><span><strong>Elasticity</strong>How much will prices and quantities move?</span></div>
+      </article>
+    </main>
+
+    <header class="chrome topbar"><span>PUBPOL 553</span><span id="screen-time"></span></header>
+    <footer class="chrome bottombar">
+      <button id="prev" type="button" aria-label="Previous screen">←</button>
+      <div class="progress"><span id="screen-label"></span><small id="screen-count"></small></div>
+      <div class="timer" id="timer" hidden><strong id="timer-value">0:00</strong><button id="timer-toggle" type="button">Start</button><button id="timer-reset" type="button">Reset</button></div>
+      <button id="fullscreen" type="button" aria-label="Enter full screen">Full screen</button>
+      <button id="next" type="button" aria-label="Next screen">→</button>
+    </footer>
+    <script src="./class4.js"></script>
+  </body>
+</html>
