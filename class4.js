@@ -102,6 +102,32 @@
     if (event.key === "End") showScreen(screens.length - 1);
   });
 
+  document.querySelectorAll("[data-build]").forEach((buildScreen) => {
+    const next = buildScreen.querySelector("[data-build-next]");
+    const reset = buildScreen.querySelector("[data-build-reset]");
+    const count = buildScreen.querySelector("[data-build-count]");
+    const reveals = [...buildScreen.querySelectorAll("[data-build-step]")];
+    const maximum = Math.max(...reveals.map((element) => Number(element.dataset.buildStep)), 0);
+    let step = 0;
+
+    const renderBuild = () => {
+      reveals.forEach((element) => element.classList.toggle("shown", Number(element.dataset.buildStep) <= step));
+      count.textContent = String(step);
+      next.disabled = step >= maximum;
+      next.textContent = step >= maximum ? "Curve complete" : "Next step";
+    };
+
+    next.addEventListener("click", () => {
+      step = Math.min(maximum, step + 1);
+      renderBuild();
+    });
+    reset.addEventListener("click", () => {
+      step = 0;
+      renderBuild();
+    });
+    renderBuild();
+  });
+
   const forecastPriceInput = document.getElementById("forecast-price");
   const forecastTradesInput = document.getElementById("forecast-trades");
   const dealPricesInput = document.getElementById("deal-prices");
@@ -360,6 +386,18 @@
     [...group.querySelectorAll("button")].forEach((button) => button.classList.toggle("selected", button.dataset.value === value));
   };
 
+  const syncShiftSizeControls = () => {
+    ["demand", "supply"].forEach((curve) => {
+      const noShift = selectedValue("data-control", `${curve}Shift`) === "none";
+      const sizeGroup = document.querySelector(`[data-control="${curve}Size"]`);
+      if (!sizeGroup) return;
+      [...sizeGroup.querySelectorAll("button")].forEach((button) => {
+        button.disabled = noShift;
+        button.setAttribute("aria-disabled", String(noShift));
+      });
+    });
+  };
+
   const workbenchState = () => {
     const demandElasticity = elasticityValues[selectedValue("data-control", "demandElasticity")] || 1;
     const supplyElasticity = elasticityValues[selectedValue("data-control", "supplyElasticity")] || 1;
@@ -495,7 +533,10 @@
     button.addEventListener("click", () => {
       const group = button.parentElement;
       [...group.querySelectorAll("button")].forEach((peer) => peer.classList.toggle("selected", peer === button));
-      if (group.dataset.control) drawWorkbench(false);
+      if (group.dataset.control) {
+        syncShiftSizeControls();
+        drawWorkbench(false);
+      }
     });
   });
 
@@ -539,6 +580,7 @@
       setSelected("data-control", "supplyShift", "none");
       setSelected("data-control", "supplySize", "small");
     }
+    syncShiftSizeControls();
     clearPredictions();
     drawWorkbench(false);
   };
@@ -582,6 +624,7 @@
   restoreMarketState();
   drawHatForecast();
   updateTrialMarket();
+  syncShiftSizeControls();
   drawWorkbench(false);
   const initialHash = window.location.hash.match(/^#screen-(\d+)$/);
   showScreen(initialHash ? Number(initialHash[1]) - 1 : 0);
