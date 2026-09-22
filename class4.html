@@ -9,7 +9,7 @@
       name="description"
       content="Class prompts, a live market experiment, and an equilibrium workbench for PUBPOL 553, Class 4."
     />
-    <link rel="stylesheet" href="./class4.css" />
+    <link rel="stylesheet" href="./class4.css?v=3" />
   </head>
   <body>
     <main id="deck" aria-live="polite">
@@ -101,7 +101,101 @@
         </div>
       </article>
 
-      <article class="screen forecast-screen" data-time="0:23–0:28" data-label="The economic forecast">
+      <article class="screen build-screen" data-time="0:23–0:25" data-label="Building market demand" data-build="demand">
+        <div class="build-heading">
+          <div><p class="eyebrow">From birthdays to a demand curve</p><h2>Add up buyers’ 0-or-1 choices</h2></div>
+          <div class="build-progress" aria-live="polite">Step <strong data-build-count>0</strong> of 4</div>
+        </div>
+        <div class="build-layout">
+          <section class="build-chart-panel">
+            <svg viewBox="0 0 720 470" role="img" aria-label="A demand curve assembled from buyers whose values equal their birthday day">
+              <line x1="88" y1="408" x2="680" y2="408" class="axis-line" />
+              <line x1="88" y1="408" x2="88" y2="35" class="axis-line" />
+              <text x="385" y="455" class="axis-label" text-anchor="middle">Share of buyers who would buy</text>
+              <text x="24" y="225" class="axis-label" text-anchor="middle" transform="rotate(-90 24 225)">Price of a hat</text>
+              <text x="77" y="77" class="axis-tick" text-anchor="end">$31</text>
+              <text x="77" y="88" class="axis-tick" text-anchor="end">$30</text>
+              <text x="77" y="99" class="axis-tick" text-anchor="end">$29</text>
+              <text x="106" y="430" class="axis-tick" text-anchor="middle">1/31</text>
+              <text x="125" y="430" class="axis-tick" text-anchor="middle">2/31</text>
+              <text x="144" y="430" class="axis-tick" text-anchor="middle">3/31</text>
+              <g class="build-reveal" data-build-step="1">
+                <line x1="88" y1="73" x2="106" y2="73" class="build-guide" /><line x1="106" y1="73" x2="106" y2="408" class="build-guide" /><circle cx="106" cy="73" r="7" class="build-point demand-point" />
+              </g>
+              <g class="build-reveal" data-build-step="2">
+                <line x1="88" y1="84" x2="125" y2="84" class="build-guide" /><line x1="125" y1="84" x2="125" y2="408" class="build-guide" /><circle cx="125" cy="84" r="7" class="build-point demand-point" />
+              </g>
+              <g class="build-reveal" data-build-step="3">
+                <line x1="88" y1="95" x2="144" y2="95" class="build-guide" /><line x1="144" y1="95" x2="144" y2="408" class="build-guide" /><circle cx="144" cy="95" r="7" class="build-point demand-point" />
+              </g>
+              <g class="build-reveal" data-build-step="4">
+                <path d="M 88 62 L 680 397" class="build-curve demand-curve" />
+                <text x="590" y="335" class="curve-label" fill="#1167b1">Demand = marginal benefit</text>
+              </g>
+            </svg>
+          </section>
+          <section class="build-logic">
+            <p class="build-premise">At each possible price, each buyer asks: <strong>buy one, or buy none?</strong></p>
+            <ol>
+              <li class="build-reveal" data-build-step="1"><strong>At $31</strong><span>Only a day-31 buyer says yes: about 1/31 of buyers.</span></li>
+              <li class="build-reveal" data-build-step="2"><strong>At $30</strong><span>Day 30 or 31 says yes: about 2/31.</span></li>
+              <li class="build-reveal" data-build-step="3"><strong>At $29</strong><span>Days 29–31 say yes: about 3/31.</span></li>
+              <li class="build-reveal" data-build-step="4"><strong>Keep going</strong><span>A lower price adds willing buyers. Connecting those quantities gives market demand.</span></li>
+            </ol>
+            <div class="build-actions"><button class="primary-button" type="button" data-build-next>Next step</button><button class="secondary-button" type="button" data-build-reset>Reset</button></div>
+          </section>
+        </div>
+        <p class="takeaway">Demand is not one number. It is the quantity buyers plan to buy at every possible price.</p>
+      </article>
+
+      <article class="screen build-screen" data-time="0:25–0:27" data-label="Building market supply" data-build="supply">
+        <div class="build-heading">
+          <div><p class="eyebrow">From birthdays to a supply curve</p><h2>Add up sellers’ 0-or-1 choices</h2></div>
+          <div class="build-progress" aria-live="polite">Step <strong data-build-count>0</strong> of 4</div>
+        </div>
+        <div class="build-layout">
+          <section class="build-chart-panel">
+            <svg viewBox="0 0 720 470" role="img" aria-label="A supply curve assembled from sellers whose costs equal their birthday month">
+              <line x1="88" y1="408" x2="680" y2="408" class="axis-line" />
+              <line x1="88" y1="408" x2="88" y2="35" class="axis-line" />
+              <text x="385" y="455" class="axis-label" text-anchor="middle">Share of sellers who would sell</text>
+              <text x="24" y="225" class="axis-label" text-anchor="middle" transform="rotate(-90 24 225)">Price of a hat</text>
+              <text x="77" y="384" class="axis-tick" text-anchor="end">$1</text>
+              <text x="77" y="353" class="axis-tick" text-anchor="end">$2</text>
+              <text x="77" y="322" class="axis-tick" text-anchor="end">$3</text>
+              <text x="137" y="430" class="axis-tick" text-anchor="middle">1/12</text>
+              <text x="187" y="430" class="axis-tick" text-anchor="middle">2/12</text>
+              <text x="236" y="430" class="axis-tick" text-anchor="middle">3/12</text>
+              <g class="build-reveal" data-build-step="1">
+                <line x1="88" y1="380" x2="137" y2="380" class="build-guide" /><line x1="137" y1="380" x2="137" y2="408" class="build-guide" /><circle cx="137" cy="380" r="7" class="build-point supply-point" />
+              </g>
+              <g class="build-reveal" data-build-step="2">
+                <line x1="88" y1="349" x2="187" y2="349" class="build-guide" /><line x1="187" y1="349" x2="187" y2="408" class="build-guide" /><circle cx="187" cy="349" r="7" class="build-point supply-point" />
+              </g>
+              <g class="build-reveal" data-build-step="3">
+                <line x1="88" y1="318" x2="236" y2="318" class="build-guide" /><line x1="236" y1="318" x2="236" y2="408" class="build-guide" /><circle cx="236" cy="318" r="7" class="build-point supply-point" />
+              </g>
+              <g class="build-reveal" data-build-step="4">
+                <path d="M 88 408 L 680 35" class="build-curve supply-curve" />
+                <text x="474" y="136" class="curve-label" fill="#c74440">Supply = marginal cost</text>
+              </g>
+            </svg>
+          </section>
+          <section class="build-logic">
+            <p class="build-premise">At each possible price, each seller asks: <strong>sell one, or sell none?</strong></p>
+            <ol>
+              <li class="build-reveal" data-build-step="1"><strong>At $1</strong><span>Only a January seller covers cost: about 1/12 of sellers.</span></li>
+              <li class="build-reveal" data-build-step="2"><strong>At $2</strong><span>January or February says yes: about 2/12.</span></li>
+              <li class="build-reveal" data-build-step="3"><strong>At $3</strong><span>January–March says yes: about 3/12.</span></li>
+              <li class="build-reveal" data-build-step="4"><strong>Keep going</strong><span>A higher price adds willing sellers. Connecting those quantities gives market supply.</span></li>
+            </ol>
+            <div class="build-actions"><button class="primary-button" type="button" data-build-next>Next step</button><button class="secondary-button" type="button" data-build-reset>Reset</button></div>
+          </section>
+        </div>
+        <p class="takeaway">Supply is not one number. It is the quantity sellers plan to offer at every possible price.</p>
+      </article>
+
+      <article class="screen forecast-screen" data-time="0:27–0:30" data-label="The economic forecast">
         <div class="forecast-heading">
           <div><p class="eyebrow">A forecast from birthdays</p><h2>Where should this market settle?</h2></div>
           <div class="participant-inputs">
@@ -130,7 +224,7 @@
         <p class="quiet">This is a smooth forecast from the distribution of birthdays, not a promise about any particular class.</p>
       </article>
 
-      <article class="screen" data-time="0:28–0:31" data-label="What coordinated the market?">
+      <article class="screen" data-time="0:30–0:33" data-label="What coordinated the market?">
         <p class="eyebrow">Debrief</p>
         <h2>No one knew the demand curve or the supply curve.</h2>
         <div class="debrief-grid">
@@ -142,7 +236,7 @@
         <p class="takeaway">A market coordinates information that no single participant possesses.</p>
       </article>
 
-      <article class="screen definition-screen" data-time="0:31–0:34" data-label="Equilibrium">
+      <article class="screen definition-screen" data-time="0:33–0:36" data-label="Equilibrium">
         <p class="eyebrow">Equilibrium</p>
         <h2>The point where there is no tendency for change</h2>
         <div class="equilibrium-definition">
@@ -152,7 +246,7 @@
         <p class="takeaway">Equilibrium describes where the market comes to rest. It does not certify that the outcome is fair, efficient, or wise.</p>
       </article>
 
-      <article class="screen balance-screen" data-time="0:34–0:39" data-label="Shortage or surplus?">
+      <article class="screen balance-screen" data-time="0:36–0:40" data-label="Shortage or surplus?">
         <div class="balance-heading">
           <div><p class="eyebrow">Move the price</p><h2>Shortage, surplus, or equilibrium?</h2></div>
           <label class="price-control">Price <span>$</span><input id="trial-price" type="number" min="0" max="32" step="0.25" value="5" /></label>
@@ -170,7 +264,7 @@
         <p class="takeaway">A shortage does not mean “expensive.” It means quantity demanded exceeds quantity supplied at the current price.</p>
       </article>
 
-      <article class="screen recipe-screen" data-time="0:39–0:42" data-label="Forecasting a changed market">
+      <article class="screen recipe-screen" data-time="0:40–0:43" data-label="Forecasting a changed market">
         <p class="eyebrow">When market conditions change</p>
         <h2>Three questions</h2>
         <ol class="three-questions">
@@ -181,26 +275,26 @@
         <p class="takeaway">The curve that does not shift still matters because the new equilibrium moves along it.</p>
       </article>
 
-      <article class="screen prompt-screen" data-time="0:42–0:48" data-label="Read the clues">
+      <article class="screen prompt-screen" data-time="0:43–0:49" data-label="Read the clues">
         <p class="eyebrow">Rapid fire · Thumbs first, cold call second</p>
         <h2>Which curve shifted, and in which direction?</h2>
         <div class="scenario-list">
-          <span>A new employer brings 2,000 workers to town.</span>
-          <span>New software cuts the time needed to process a benefits claim.</span>
-          <span>A safety rule raises the staffing cost of each child-care place.</span>
-          <span>A subsidy attracts buyers while easier permitting attracts sellers.</span>
+          <section><strong>Local rental housing</strong><small><b>Price:</b> monthly rent · <b>Quantity:</b> occupied rental units</small><span>A new employer brings 2,000 workers to town.</span></section>
+          <section><strong>Benefit-claims processing</strong><small><b>Price:</b> fee per completed claim · <b>Quantity:</b> claims processed</small><span>New software cuts the time needed to process each claim.</span></section>
+          <section><strong>Licensed child-care places</strong><small><b>Price:</b> weekly tuition or reimbursement · <b>Quantity:</b> places filled</small><span>A safety rule raises the staffing cost of each place.</span></section>
+          <section><strong>EV charging sessions</strong><small><b>Price:</b> price per charging session · <b>Quantity:</b> sessions sold</small><span>A purchase subsidy attracts EV drivers while permitting reform attracts charging providers.</span></section>
         </div>
-        <p class="instruction">For each case: name the market, define price and quantity, then forecast their directions.</p>
+        <p class="instruction">Now the question is well-posed: which curve shifts, in which direction—and what happens to this price and this quantity?</p>
       </article>
 
-      <article class="screen transition-screen" data-time="0:48–0:51" data-label="Direction is not enough">
+      <article class="screen transition-screen" data-time="0:49–0:52" data-label="Direction is not enough">
         <p class="eyebrow">Equilibrium gives us direction</p>
         <h2>But will prices move a little or a lot?</h2>
         <p class="huge-copy">Will the adjustment show up mainly in <strong>price</strong>, or mainly in <strong>quantity</strong>?</p>
         <p class="takeaway">For that, we need elasticity.</p>
       </article>
 
-      <article class="screen definition-screen" data-time="0:51–0:54" data-label="Elasticity">
+      <article class="screen definition-screen" data-time="0:52–0:55" data-label="Elasticity">
         <p class="eyebrow">Elasticity</p>
         <h2>A measure of responsiveness</h2>
         <div class="responsive-grid">
@@ -210,7 +304,7 @@
         <p class="takeaway">The arithmetic gives the idea a number. The economic question comes first: how easily can people change their plans?</p>
       </article>
 
-      <article class="screen prompt-screen" data-time="0:54–0:58" data-label="Demand responsiveness">
+      <article class="screen prompt-screen" data-time="0:55–0:59" data-label="Demand responsiveness">
         <p class="eyebrow">Demand elasticity</p>
         <h2>How easy is it for buyers to say “or what?”</h2>
         <div class="comparison-strip">
@@ -220,7 +314,7 @@
         <p class="instruction">Choose a market from chat. What could buyers do instead, and how quickly?</p>
       </article>
 
-      <article class="screen prompt-screen" data-time="0:58–1:02" data-label="Supply responsiveness">
+      <article class="screen prompt-screen" data-time="0:59–1:03" data-label="Supply responsiveness">
         <p class="eyebrow">Supply elasticity</p>
         <h2>How easily can providers do one more?</h2>
         <div class="supply-flexibility">
@@ -229,7 +323,7 @@
         <p class="instruction">Choose a government or nonprofit service. What prevents supply from expanding this month? What could change in five years?</p>
       </article>
 
-      <article class="screen workbench-screen" data-time="1:02–1:12" data-label="Equilibrium workbench">
+      <article class="screen workbench-screen" data-time="1:03–1:13" data-label="Equilibrium workbench">
         <div class="workbench-heading">
           <div><p class="eyebrow">Virtual whiteboard</p><h2>Equilibrium workbench</h2></div>
           <div class="preset-buttons" aria-label="Scenario presets">
@@ -256,7 +350,7 @@
             <div class="control-block">
               <h3>2. Which curves shift?</h3>
               <div class="control-row"><span>Demand</span><div class="segmented" data-control="demandShift"><button data-value="decrease">Decrease</button><button data-value="none">No shift</button><button data-value="increase" class="selected">Increase</button></div><div class="segmented compact" data-control="demandSize"><button data-value="small">Small</button><button data-value="large" class="selected">Large</button></div></div>
-              <div class="control-row"><span>Supply</span><div class="segmented" data-control="supplyShift"><button data-value="decrease">Decrease</button><button data-value="none" class="selected">No shift</button><button data-value="increase">Increase</button></div><div class="segmented compact" data-control="supplySize"><button data-value="small" class="selected">Small</button><button data-value="large">Large</button></div></div>
+              <div class="control-row"><span>Supply</span><div class="segmented" data-control="supplyShift"><button data-value="decrease">Decrease</button><button data-value="none" class="selected">No shift</button><button data-value="increase">Increase</button></div><div class="segmented compact" data-control="supplySize"><button data-value="small" class="selected" disabled>Small</button><button data-value="large" disabled>Large</button></div></div>
             </div>
 
             <div class="prediction-board">
@@ -289,7 +383,7 @@
         </div>
       </article>
 
-      <article class="screen fare-screen" data-time="1:12–1:16" data-label="Elasticity and revenue">
+      <article class="screen fare-screen" data-time="1:13–1:17" data-label="Elasticity and revenue">
         <p class="eyebrow">One small calculation</p>
         <h2>A transit agency raises its fare</h2>
         <div class="fare-grid">
@@ -301,7 +395,7 @@
         <p class="takeaway">Revenue is one outcome. It does not tell us whether the fare increase is good policy.</p>
       </article>
 
-      <article class="screen prompt-screen" data-time="1:16–1:18" data-label="Both curves can move">
+      <article class="screen prompt-screen" data-time="1:17–1:19" data-label="Both curves can move">
         <p class="eyebrow">If time</p>
         <h2>The city subsidizes EV purchases and streamlines permits for charging stations.</h2>
         <div class="two-shift-grid">
@@ -312,7 +406,7 @@
         <p class="instruction">Use the workbench. The answer depends on the relative size of the two shifts.</p>
       </article>
 
-      <article class="screen close-screen" data-time="1:18–1:20" data-label="At work this week">
+      <article class="screen close-screen" data-time="1:19–1:20" data-label="At work this week">
         <p class="eyebrow">At work this week</p>
         <h2>Make one professional forecast</h2>
         <blockquote>“If ______ changes, the ______ curve shifts ______. Price will ______ and quantity will ______. Most adjustment will occur through ______ because ______ is relatively inelastic.”</blockquote>
@@ -329,6 +423,6 @@
       <button id="fullscreen" type="button" aria-label="Enter full screen">Full screen</button>
       <button id="next" type="button" aria-label="Next screen">→</button>
     </footer>
-    <script src="./class4.js?v=2"></script>
+    <script src="./class4.js?v=3"></script>
   </body>
 </html>
