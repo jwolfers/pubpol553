@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#00274c" />
+    <title>PUBPOL 553 — Taxes, Price Controls, and Quantity Regulations</title>
+    <meta name="description" content="Interactive teaching deck for PUBPOL 553, Class 5." />
+    <link rel="stylesheet" href="./class5.css?v=1" />
+  </head>
+  <body>
+    <main id="deck" aria-live="polite">
+      <article class="screen cover" data-time="0:00–0:02" data-label="Welcome">
+        <p class="eyebrow">PUBPOL 553 · Class 5</p>
+        <h1>When policy enters<br />the market</h1>
+        <p class="subtitle">Taxes, price controls, and quantity regulations</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:02–0:05" data-label="A policy from your work">
+        <p class="eyebrow">Start with your work · Put it in chat</p>
+        <h2>Name one government policy you have worked on</h2>
+        <blockquote>In one sentence, what was the policy trying to get people or organizations to do differently?</blockquote>
+        <p class="instruction">Designed, administered, evaluated, enforced, or wrestled with all count. Keep chatting as we go.</p>
+      </article>
+
+      <article class="screen sorter-screen" data-time="0:05–0:14" data-label="Sort their policies">
+        <div class="sorter-heading">
+          <div>
+            <p class="eyebrow">Live policy sorter</p>
+            <h2>What kind of intervention is it?</h2>
+          </div>
+          <div class="sorter-actions">
+            <button class="secondary-button" id="undo-policy" type="button">Undo</button>
+            <button class="secondary-button" id="clear-policies" type="button">Clear</button>
+          </div>
+        </div>
+        <div class="policy-entry">
+          <input id="policy-input" type="text" autocomplete="off" placeholder="Type a policy from chat" aria-label="Policy from chat" />
+          <button type="button" data-policy-category="incentive">Financial incentive</button>
+          <button type="button" data-policy-category="price">Price rule</button>
+          <button type="button" data-policy-category="quantity">Quantity rule</button>
+          <button type="button" data-policy-category="other">Something else</button>
+        </div>
+        <div class="policy-buckets">
+          <section><h3>Financial incentive</h3><p>Taxes, subsidies, fees, grants</p><div class="policy-list" data-policy-list="incentive"></div></section>
+          <section><h3>Price rule</h3><p>Ceilings, floors, regulated rates</p><div class="policy-list" data-policy-list="price"></div></section>
+          <section><h3>Quantity rule</h3><p>Caps, mandates, licenses, eligibility</p><div class="policy-list" data-policy-list="quantity"></div></section>
+          <section><h3>Something else</h3><p>Standards, information, public provision</p><div class="policy-list" data-policy-list="other"></div></section>
+        </div>
+        <p class="quiet">Cold call: What is the market? What counts as price and quantity? Whose decision changes?</p>
+      </article>
+
+      <article class="screen ideas-screen" data-time="0:14–0:17" data-label="Six ideas">
+        <p class="eyebrow">Today’s agenda</p>
+        <h2>Six ideas worth carrying back to work</h2>
+        <ol class="idea-list">
+          <li><b>1</b><span>Government policy changes market choices</span></li>
+          <li><b>2</b><span>A tax creates two prices</span></li>
+          <li><b>3</b><span>Who remits a tax does not determine who bears it</span></li>
+          <li><b>4</b><span>Elasticity determines who bears the brunt</span></li>
+          <li><b>5</b><span>Price controls change how scarce goods are allocated</span></li>
+          <li><b>6</b><span>Quantity limits create valuable rights</span></li>
+        </ol>
+      </article>
+
+      <article class="screen principle-screen" data-time="0:17–0:20" data-label="Markets keep working">
+        <p class="eyebrow">The governing idea</p>
+        <h2>Policy changes the choices. People still respond.</h2>
+        <div class="choice-sequence">
+          <section><small>Government</small><strong>Changes a payment, price, or quantity</strong></section>
+          <section><small>People and organizations</small><strong>Revise their plans</strong></section>
+          <section><small>Market outcome</small><strong>Prices, quantities, and allocation change</strong></section>
+        </div>
+        <p class="takeaway">Our first job is prediction: What will people do next?</p>
+      </article>
+
+      <article class="screen two-price-screen" data-time="0:20–0:24" data-label="Two prices">
+        <p class="eyebrow">The tax wedge</p>
+        <h2>One market price becomes two</h2>
+        <div class="price-story">
+          <section class="before-tax">
+            <small>Before the tax</small>
+            <strong>$20</strong>
+            <span>Buyer pays $20<br />Seller receives $20</span>
+          </section>
+          <section class="tax-token">
+            <small>Tax per transaction</small>
+            <strong>$6</strong>
+          </section>
+          <section class="after-tax" id="after-tax-story">
+            <small>After the tax</small>
+            <div><span>Buyer pays</span><strong>$24</strong></div>
+            <div><span>Seller keeps</span><strong>$18</strong></div>
+          </section>
+        </div>
+        <button class="primary-button center-button" id="reveal-two-prices" type="button">Reveal the two prices</button>
+        <p class="takeaway">The $6 gap between the prices is the tax wedge. Quantity traded also falls.</p>
+      </article>
+
+      <article class="screen jar-screen" data-time="0:24–0:29" data-label="The tax jar">
+        <p class="eyebrow">Who fills the jar?</p>
+        <h2>A $6 tax must come from somewhere</h2>
+        <div class="jar-layout">
+          <section class="jar-side buyer-side">
+            <small>Buyer’s contribution</small>
+            <strong>$4</strong>
+            <p>Pays $24 rather than $20</p>
+          </section>
+          <div class="tax-jar static-jar" aria-label="Tax jar containing four dollars from buyers and two dollars from sellers">
+            <div class="jar-rim"></div>
+            <div class="jar-body">
+              <div class="jar-segment buyer-fill" style="height:66.67%"><span>Buyer $4</span></div>
+              <div class="jar-segment seller-fill" style="height:33.33%"><span>Seller $2</span></div>
+            </div>
+            <strong class="jar-total">$6 tax</strong>
+          </div>
+          <section class="jar-side seller-side">
+            <small>Seller’s contribution</small>
+            <strong>$2</strong>
+            <p>Keeps $18 rather than $20</p>
+          </section>
+        </div>
+        <p class="takeaway">The person who sends the payment may not be the person whose income pays for it.</p>
+      </article>
+
+      <article class="screen remittance-screen" data-time="0:29–0:34" data-label="Who sends the tax?">
+        <p class="eyebrow">Thumbs before the reveal</p>
+        <h2>Does the outcome change when the law changes who remits the tax?</h2>
+        <div class="remit-controls" data-control="remitter">
+          <button type="button" data-remitter="seller" class="selected">Seller sends $6</button>
+          <button type="button" data-remitter="buyer">Buyer sends $6</button>
+        </div>
+        <div class="remit-result">
+          <div><small>Buyer pays</small><strong>$24</strong></div>
+          <div class="remit-center"><small>Legal responsibility</small><strong id="remitter-label">Seller remits $6</strong></div>
+          <div><small>Seller keeps</small><strong>$18</strong></div>
+        </div>
+        <div class="same-outcome" id="same-outcome">
+          <strong>Same prices. Same quantity. Same economic burden.</strong>
+          <span>Only the paperwork changes.</span>
+        </div>
+        <button class="primary-button center-button" id="reveal-invariance" type="button">Reveal the comparison</button>
+        <p class="takeaway">The statute determines who sends the money. Supply and demand determine who bears the burden.</p>
+      </article>
+
+      <article class="screen incidence-screen" data-time="0:34–0:40" data-label="Who bears the brunt?">
+        <div class="incidence-heading">
+          <div><p class="eyebrow">Tax incidence</p><h2>Who can escape?</h2></div>
+          <label>Tax <span>$</span><input id="tax-size" type="number" min="1" max="20" step="1" value="6" /></label>
+        </div>
+        <div class="incidence-layout">
+          <section class="escape-controls">
+            <h3>Buyers’ alternatives</h3>
+            <div class="segmented" data-elasticity="demand">
+              <button type="button" data-value="0.35">Few</button>
+              <button type="button" data-value="1" class="selected">Some</button>
+              <button type="button" data-value="2.5">Many</button>
+            </div>
+            <p id="demand-description">Buyers have some ability to walk away.</p>
+            <h3>Sellers’ alternatives</h3>
+            <div class="segmented" data-elasticity="supply">
+              <button type="button" data-value="0.35">Few</button>
+              <button type="button" data-value="1" class="selected">Some</button>
+              <button type="button" data-value="2.5">Many</button>
+            </div>
+            <p id="supply-description">Sellers have some ability to use their resources elsewhere.</p>
+            <div class="remitter-mini segmented" data-control="incidence-remitter">
+              <button type="button" data-value="seller" class="selected">Seller remits</button>
+              <button type="button" data-value="buyer">Buyer remits</button>
+            </div>
+          </section>
+          <section class="live-jar-panel">
+            <div class="tax-jar live-jar">
+              <div class="jar-rim"></div>
+              <div class="jar-body">
+                <div class="jar-segment buyer-fill" id="buyer-fill"><span id="buyer-fill-label"></span></div>
+                <div class="jar-segment seller-fill" id="seller-fill"><span id="seller-fill-label"></span></div>
+              </div>
+              <strong class="jar-total" id="live-jar-total"></strong>
+            </div>
+            <p id="remittance-note"></p>
+          </section>
+          <section class="incidence-results">
+            <div><small>Buyer pays</small><strong id="incidence-buyer-price"></strong><span id="buyer-share"></span></div>
+            <div><small>Seller keeps</small><strong id="incidence-seller-price"></strong><span id="seller-share"></span></div>
+            <p id="incidence-explanation"></p>
+          </section>
+        </div>
+        <p class="takeaway">The side with fewer alternatives puts more into the jar.</p>
+      </article>
+
+      <article class="screen work-policy-screen" data-time="0:40–0:45" data-label="Apply incidence at work">
+        <p class="eyebrow">Use a policy from chat</p>
+        <h2>Who has the better escape route?</h2>
+        <div class="work-policy-form">
+          <label>Policy or fee <input id="work-policy" list="policy-options" type="text" placeholder="Choose or type a policy" /><datalist id="policy-options"></datalist></label>
+          <label>What can buyers do instead?<textarea id="buyer-alternatives" rows="3" placeholder="Delay, substitute, move, stop buying..."></textarea></label>
+          <label>What can sellers do instead?<textarea id="seller-alternatives" rows="3" placeholder="Change products, relocate, exit, wait..."></textarea></label>
+        </div>
+        <p class="instruction">Cold call the policy’s author. Then ask the class to commit.</p>
+        <div class="burden-vote" data-control="burden-vote">
+          <button type="button" data-value="buyers">Buyers are more stuck</button>
+          <button type="button" data-value="equal">About equal</button>
+          <button type="button" data-value="sellers">Sellers are more stuck</button>
+        </div>
+        <div class="burden-answer" id="burden-answer" hidden></div>
+      </article>
+
+      <article class="screen subsidy-screen" data-time="0:45–0:48" data-label="Subsidies">
+        <p class="eyebrow">Taxes run backward</p>
+        <h2>A subsidy also creates two prices</h2>
+        <div class="subsidy-story">
+          <div><small>Parents pay</small><strong>$9,000</strong></div>
+          <div class="subsidy-token"><small>Child-care subsidy</small><strong>$3,000</strong></div>
+          <div><small>Provider receives</small><strong>$12,000</strong></div>
+        </div>
+        <p class="large-copy">Who captures more of the subsidy?</p>
+        <p class="instruction">Ask who has fewer alternatives. The same incidence logic applies.</p>
+        <p class="takeaway">A subsidy lowers the buyer’s net price, raises the seller’s received price, and increases quantity.</p>
+      </article>
+
+      <article class="screen regulation-screen" data-time="0:48–0:54" data-label="Binding or irrelevant?">
+        <div class="regulation-heading">
+          <div><p class="eyebrow">Price regulation</p><h2>Binding or irrelevant?</h2></div>
+          <div class="segmented regulation-type" data-control="regulation-type">
+            <button type="button" data-value="ceiling" class="selected">Price ceiling</button>
+            <button type="button" data-value="floor">Price floor</button>
+          </div>
+        </div>
+        <div class="regulation-layout">
+          <section class="regulation-controls">
+            <div class="equilibrium-reference"><small>Unregulated equilibrium</small><strong>$20 · 100 units</strong></div>
+            <label>Regulated price <strong id="regulated-price-label">$15</strong><input id="regulated-price" type="range" min="5" max="35" step="1" value="15" /></label>
+            <div class="binding-result" id="binding-result"></div>
+            <div class="quantity-results">
+              <div><small>Quantity demanded</small><strong id="regulated-qd"></strong></div>
+              <div><small>Quantity supplied</small><strong id="regulated-qs"></strong></div>
+              <div><small>Quantity traded</small><strong id="regulated-traded"></strong></div>
+            </div>
+          </section>
+          <section class="regulation-chart-panel">
+            <svg id="regulation-chart" viewBox="0 0 720 500" role="img" aria-label="Interactive supply and demand graph with a regulated price">
+              <g id="regulation-grid"></g>
+              <g id="regulation-curves"></g>
+              <g id="regulation-annotations"></g>
+            </svg>
+          </section>
+        </div>
+        <p class="takeaway">A rule changes behavior only when it prevents the market from reaching its unregulated equilibrium.</p>
+      </article>
+
+      <article class="screen shortage-screen" data-time="0:54–0:58" data-label="The short side">
+        <p class="eyebrow">A binding price ceiling</p>
+        <h2>More people want the good than sellers provide</h2>
+        <div class="shortage-numbers">
+          <section><small>Want to buy</small><strong>125</strong></section>
+          <section class="shortage-gap"><small>Shortage</small><strong>56</strong></section>
+          <section><small>Offered for sale</small><strong>69</strong></section>
+        </div>
+        <p class="huge-copy">How are the 69 units allocated among 125 willing buyers?</p>
+        <p class="takeaway">The quantity traded comes from the short side of the market: here, supply.</p>
+      </article>
+
+      <article class="screen pressure-screen" data-time="0:58–1:03" data-label="Where does the pressure go?">
+        <p class="eyebrow">Chat first</p>
+        <h2>If the money price cannot rise, what changes instead?</h2>
+        <div class="pressure-entry">
+          <input id="pressure-input" type="text" placeholder="Type a response from chat" />
+          <button class="primary-button" id="add-pressure" type="button">Add</button>
+          <button class="secondary-button" id="reveal-pressures" type="button">Reveal examples</button>
+          <button class="secondary-button" id="clear-pressures" type="button">Clear</button>
+        </div>
+        <div class="pressure-wall" id="pressure-wall"></div>
+        <p class="takeaway">Lower posted prices can coexist with higher waiting, search, compliance, and quality costs.</p>
+      </article>
+
+      <article class="screen floor-screen" data-time="1:03–1:07" data-label="Price floors">
+        <p class="eyebrow">A binding price floor</p>
+        <h2>The regulated price sits above equilibrium</h2>
+        <div class="floor-layout">
+          <section>
+            <small>Buyers</small>
+            <strong>Want less</strong>
+            <p>The higher price reduces quantity demanded.</p>
+          </section>
+          <div class="floor-center">
+            <span>Minimum alcohol price</span>
+            <strong>Surplus</strong>
+          </div>
+          <section>
+            <small>Sellers</small>
+            <strong>Offer more</strong>
+            <p>The higher price increases quantity supplied.</p>
+          </section>
+        </div>
+        <p class="instruction">Thumbs: Which side determines the quantity actually sold?</p>
+        <p class="takeaway">Buyers are the short side, so quantity sold equals quantity demanded.</p>
+      </article>
+
+      <article class="screen quota-screen" data-time="1:07–1:13" data-label="Quantity limits">
+        <div class="quota-heading">
+          <div><p class="eyebrow">Quantity regulation</p><h2>When government fixes quantity, price adjusts</h2></div>
+          <label>Maximum quantity <strong id="quota-label">70</strong><input id="quota-slider" type="range" min="20" max="130" step="5" value="70" /></label>
+        </div>
+        <div class="quota-layout">
+          <section class="quota-chart-panel">
+            <svg id="quota-chart" viewBox="0 0 720 500" role="img" aria-label="Interactive supply and demand graph with a quantity cap">
+              <g id="quota-grid"></g>
+              <g id="quota-curves"></g>
+              <g id="quota-annotations"></g>
+            </svg>
+          </section>
+          <section class="quota-results">
+            <div class="quota-status" id="quota-status"></div>
+            <div><small>Price buyers pay</small><strong id="quota-buyer-price"></strong></div>
+            <div><small>Supply price at the cap</small><strong id="quota-seller-cost"></strong></div>
+            <div class="rent-result"><small>Scarcity value per permit</small><strong id="quota-rent"></strong></div>
+          </section>
+        </div>
+        <p class="takeaway">A binding cap makes permission to participate valuable.</p>
+      </article>
+
+      <article class="screen rent-screen" data-time="1:13–1:16" data-label="Scarcity rents">
+        <p class="eyebrow">Who receives the valuable right?</p>
+        <h2>A quota creates scarcity rents</h2>
+        <div class="permit-choice" data-control="permit-allocation">
+          <button type="button" data-value="auction">Government auctions permits</button>
+          <button type="button" data-value="free">Existing providers receive them</button>
+          <button type="button" data-value="administrative">Officials allocate them</button>
+        </div>
+        <div class="permit-result" id="permit-result">
+          <strong>Choose an allocation rule</strong>
+          <span>The quantity cap determines scarcity. The allocation rule determines who captures its value.</span>
+        </div>
+        <p class="instruction">Cold call: Which allocation rule resembles programs you have worked with?</p>
+      </article>
+
+      <article class="screen compare-screen" data-time="1:16–1:18" data-label="Same target, different tools">
+        <p class="eyebrow">Reduce a harmful product from 100 units to 70</p>
+        <h2>Three policies can reach the same quantity</h2>
+        <table>
+          <thead><tr><th>Policy</th><th>Buyer pays</th><th>Seller receives</th><th>Who gets the wedge?</th></tr></thead>
+          <tbody>
+            <tr><th>Tax</th><td>$26</td><td>$15.20</td><td>Government</td></tr>
+            <tr><th>Minimum price</th><td>$26</td><td>$26 for units sold</td><td>Successful sellers</td></tr>
+            <tr><th>Quantity cap</th><td>$26</td><td>Depends on permits</td><td>Government or permit holders</td></tr>
+          </tbody>
+        </table>
+        <p class="takeaway">The quantity target may match. The distribution, revenue, and administrative problems do not.</p>
+      </article>
+
+      <article class="screen work-close-screen" data-time="1:18–1:19" data-label="Return to their policies">
+        <p class="eyebrow">Back to the policies in chat</p>
+        <h2>One professional forecast</h2>
+        <div class="forecast-prompts">
+          <span>What choice does the policy change?</span>
+          <span>What happens to buyer price, seller price, and quantity?</span>
+          <span>Who can adjust most easily?</span>
+          <span>If price cannot adjust, what changes instead?</span>
+          <span>Does the policy create a valuable right?</span>
+        </div>
+      </article>
+
+      <article class="screen close-screen" data-time="1:19–1:20" data-label="At work this week">
+        <p class="eyebrow">At work this week</p>
+        <h2>Find the hidden adjustment</h2>
+        <blockquote>“This policy directly changes ______. People will respond by ______. The burden or benefit will fall mainly on ______ because ______.”</blockquote>
+        <p class="instruction">Put one version in chat. Keep the framework; replace the blanks with something real.</p>
+      </article>
+    </main>
+
+    <header class="chrome topbar">
+      <span>PUBPOL 553</span>
+      <span id="screen-time"></span>
+    </header>
+    <footer class="chrome bottombar">
+      <button id="prev" type="button" aria-label="Previous screen">←</button>
+      <div class="progress"><span id="screen-label"></span><small id="screen-count"></small></div>
+      <div class="timer" id="timer" hidden>
+        <strong id="timer-value">0:00</strong>
+        <button id="timer-toggle" type="button">Start</button>
+        <button id="timer-reset" type="button">Reset</button>
+      </div>
+      <button id="fullscreen" type="button">Full screen</button>
+      <button id="next" type="button" aria-label="Next screen">→</button>
+    </footer>
+    <script src="./class5.js?v=1"></script>
+  </body>
+</html>
