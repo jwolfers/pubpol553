@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#00274c" />
     <title>PUBPOL 553 — Taxes, Price Controls, and Quantity Regulations</title>
     <meta name="description" content="Interactive teaching deck for PUBPOL 553, Class 5." />
-    <link rel="stylesheet" href="./class5.css?v=1" />
+    <link rel="stylesheet" href="./class5.css?v=2" />
   </head>
   <body>
     <main id="deck" aria-live="polite">
@@ -23,7 +23,7 @@
         <p class="instruction">Designed, administered, evaluated, enforced, or wrestled with all count. Keep chatting as we go.</p>
       </article>
 
-      <article class="screen sorter-screen" data-time="0:05–0:14" data-label="Sort their policies">
+      <article class="screen sorter-screen" data-time="0:05–0:11" data-label="Sort their policies">
         <div class="sorter-heading">
           <div>
             <p class="eyebrow">Live policy sorter</p>
@@ -50,7 +50,7 @@
         <p class="quiet">Cold call: What is the market? What counts as price and quantity? Whose decision changes?</p>
       </article>
 
-      <article class="screen ideas-screen" data-time="0:14–0:17" data-label="Six ideas">
+      <article class="screen ideas-screen" data-time="0:11–0:13" data-label="Six ideas">
         <p class="eyebrow">Today’s agenda</p>
         <h2>Six ideas worth carrying back to work</h2>
         <ol class="idea-list">
@@ -63,7 +63,7 @@
         </ol>
       </article>
 
-      <article class="screen principle-screen" data-time="0:17–0:20" data-label="Markets keep working">
+      <article class="screen principle-screen" data-time="0:13–0:15" data-label="Markets keep working">
         <p class="eyebrow">The governing idea</p>
         <h2>Policy changes the choices. People still respond.</h2>
         <div class="choice-sequence">
@@ -74,92 +74,171 @@
         <p class="takeaway">Our first job is prediction: What will people do next?</p>
       </article>
 
-      <article class="screen two-price-screen" data-time="0:20–0:24" data-label="Two prices">
+      <article class="screen two-price-screen" data-time="0:15–0:18" data-label="Two prices">
         <p class="eyebrow">The tax wedge</p>
-        <h2>One market price becomes two</h2>
+        <h2>A $3 cigarette tax creates two prices</h2>
         <div class="price-story">
           <section class="before-tax">
             <small>Before the tax</small>
-            <strong>$20</strong>
-            <span>Buyer pays $20<br />Seller receives $20</span>
+            <strong>$5</strong>
+            <span>Buyer pays $5<br />Seller receives $5</span>
           </section>
           <section class="tax-token">
-            <small>Tax per transaction</small>
-            <strong>$6</strong>
+            <small>Tax per pack</small>
+            <strong>$3</strong>
           </section>
           <section class="after-tax" id="after-tax-story">
             <small>After the tax</small>
-            <div><span>Buyer pays</span><strong>$24</strong></div>
-            <div><span>Seller keeps</span><strong>$18</strong></div>
+            <div><span>Buyer pays</span><strong>$7</strong></div>
+            <div><span>Seller keeps</span><strong>$4</strong></div>
           </section>
         </div>
         <button class="primary-button center-button" id="reveal-two-prices" type="button">Reveal the two prices</button>
-        <p class="takeaway">The $6 gap between the prices is the tax wedge. Quantity traded also falls.</p>
+        <p class="takeaway">The $3 gap between the prices is the tax wedge. Quantity falls from 15 to 13 billion packs.</p>
       </article>
 
-      <article class="screen jar-screen" data-time="0:24–0:29" data-label="The tax jar">
+      <article class="screen jar-screen" data-time="0:18–0:21" data-label="The tax jar">
         <p class="eyebrow">Who fills the jar?</p>
-        <h2>A $6 tax must come from somewhere</h2>
+        <h2>A $3 tax must come from somewhere</h2>
         <div class="jar-layout">
           <section class="jar-side buyer-side">
             <small>Buyer’s contribution</small>
-            <strong>$4</strong>
-            <p>Pays $24 rather than $20</p>
+            <strong>$2</strong>
+            <p>Pays $7 rather than $5</p>
           </section>
-          <div class="tax-jar static-jar" aria-label="Tax jar containing four dollars from buyers and two dollars from sellers">
+          <div class="tax-jar static-jar" aria-label="Tax jar containing two dollars from buyers and one dollar from sellers">
             <div class="jar-rim"></div>
             <div class="jar-body">
-              <div class="jar-segment buyer-fill" style="height:66.67%"><span>Buyer $4</span></div>
-              <div class="jar-segment seller-fill" style="height:33.33%"><span>Seller $2</span></div>
+              <div class="jar-segment buyer-fill" style="height:66.67%"><span>Buyer $2</span></div>
+              <div class="jar-segment seller-fill" style="height:33.33%"><span>Seller $1</span></div>
             </div>
-            <strong class="jar-total">$6 tax</strong>
+            <strong class="jar-total">$3 tax</strong>
           </div>
           <section class="jar-side seller-side">
             <small>Seller’s contribution</small>
-            <strong>$2</strong>
-            <p>Keeps $18 rather than $20</p>
+            <strong>$1</strong>
+            <p>Keeps $4 rather than $5</p>
           </section>
         </div>
         <p class="takeaway">The person who sends the payment may not be the person whose income pays for it.</p>
       </article>
 
-      <article class="screen remittance-screen" data-time="0:29–0:34" data-label="Who sends the tax?">
+      <article class="screen tax-graph-screen" data-time="0:21–0:25" data-label="Tax on sellers">
+        <div class="tax-graph-heading">
+          <div>
+            <p class="eyebrow">Cigarette tax · Case 1</p>
+            <h2>The tax is levied on sellers</h2>
+          </div>
+          <div class="graph-question">Which curve moves?</div>
+        </div>
+        <div class="tax-graph-layout">
+          <section class="tax-chart-panel">
+            <svg id="seller-tax-chart" class="tax-chart" viewBox="0 0 760 470" role="img" aria-label="Market for cigarettes with a three dollar tax on sellers"></svg>
+          </section>
+          <section class="tax-build-controls" data-tax-builder="seller">
+            <button type="button" data-step="1"><b>1</b><span>Shift supply up $3</span></button>
+            <button type="button" data-step="2"><b>2</b><span>Find the new quantity</span></button>
+            <button type="button" data-step="3"><b>3</b><span>Read the two prices</span></button>
+            <button class="tax-reset" type="button" data-step="0">Reset graph</button>
+            <div class="tax-graph-answer" id="seller-tax-answer" hidden>
+              <strong>Buyers pay $7</strong>
+              <strong>Sellers keep $4</strong>
+              <span>Quantity falls to 13 billion packs.</span>
+            </div>
+          </section>
+        </div>
+        <p class="takeaway">A tax on sellers raises marginal cost, so the supply curve shifts up by the tax.</p>
+      </article>
+
+      <article class="screen tax-graph-screen" data-time="0:25–0:29" data-label="Tax on buyers">
+        <div class="tax-graph-heading">
+          <div>
+            <p class="eyebrow">Cigarette tax · Case 2</p>
+            <h2>The tax is levied on buyers</h2>
+          </div>
+          <div class="graph-question">Now which curve moves?</div>
+        </div>
+        <div class="tax-graph-layout">
+          <section class="tax-chart-panel">
+            <svg id="buyer-tax-chart" class="tax-chart" viewBox="0 0 760 470" role="img" aria-label="Market for cigarettes with a three dollar tax on buyers"></svg>
+          </section>
+          <section class="tax-build-controls" data-tax-builder="buyer">
+            <button type="button" data-step="1"><b>1</b><span>Shift demand down $3</span></button>
+            <button type="button" data-step="2"><b>2</b><span>Find the new quantity</span></button>
+            <button type="button" data-step="3"><b>3</b><span>Read the two prices</span></button>
+            <button class="tax-reset" type="button" data-step="0">Reset graph</button>
+            <div class="tax-graph-answer" id="buyer-tax-answer" hidden>
+              <strong>Buyers pay $7</strong>
+              <strong>Sellers keep $4</strong>
+              <span>Quantity falls to 13 billion packs.</span>
+            </div>
+          </section>
+        </div>
+        <p class="takeaway">A tax on buyers lowers their marginal benefit, so the demand curve shifts down by the tax.</p>
+      </article>
+
+      <article class="screen remittance-screen" data-time="0:29–0:32" data-label="Who sends the tax?">
         <p class="eyebrow">Thumbs before the reveal</p>
-        <h2>Does the outcome change when the law changes who remits the tax?</h2>
+        <h2>What changed between the two graphs?</h2>
         <div class="remit-controls" data-control="remitter">
-          <button type="button" data-remitter="seller" class="selected">Seller sends $6</button>
-          <button type="button" data-remitter="buyer">Buyer sends $6</button>
+          <button type="button" data-remitter="seller" class="selected">Seller sends $3</button>
+          <button type="button" data-remitter="buyer">Buyer sends $3</button>
         </div>
         <div class="remit-result">
-          <div><small>Buyer pays</small><strong>$24</strong></div>
-          <div class="remit-center"><small>Legal responsibility</small><strong id="remitter-label">Seller remits $6</strong></div>
-          <div><small>Seller keeps</small><strong>$18</strong></div>
+          <div><small>Buyer pays</small><strong>$7</strong></div>
+          <div class="remit-center"><small>Legal responsibility</small><strong id="remitter-label">Seller remits $3</strong></div>
+          <div><small>Seller keeps</small><strong>$4</strong></div>
         </div>
         <div class="same-outcome" id="same-outcome">
-          <strong>Same prices. Same quantity. Same economic burden.</strong>
-          <span>Only the paperwork changes.</span>
+          <strong>Same buyer price. Same seller price. Same quantity.</strong>
+          <span>The shifted curve and the paperwork change. The economic outcome does not.</span>
         </div>
         <button class="primary-button center-button" id="reveal-invariance" type="button">Reveal the comparison</button>
         <p class="takeaway">The statute determines who sends the money. Supply and demand determine who bears the burden.</p>
       </article>
 
-      <article class="screen incidence-screen" data-time="0:34–0:40" data-label="Who bears the brunt?">
+      <article class="screen elasticity-graphs-screen" data-time="0:32–0:37" data-label="Elasticity and burden">
+        <div class="elasticity-graphs-heading">
+          <div>
+            <p class="eyebrow">Same $3 tax · Different markets</p>
+            <h2>The side that can escape bears less</h2>
+          </div>
+          <button class="primary-button" id="reveal-elasticity-graphs" type="button">Reveal who bears it</button>
+        </div>
+        <div class="elasticity-graph-grid">
+          <section>
+            <h3>Supply is more elastic</h3>
+            <p>Sellers can readily shift their resources elsewhere.</p>
+            <svg id="elastic-supply-chart" class="mini-tax-chart" viewBox="0 0 560 400" role="img" aria-label="Tax incidence when supply is more elastic than demand"></svg>
+            <div class="elasticity-verdict"><strong>Buyers bear most</strong><span>Demand is the inelastic side.</span></div>
+          </section>
+          <section>
+            <h3>Demand is more elastic</h3>
+            <p>Buyers can readily switch to something else.</p>
+            <svg id="elastic-demand-chart" class="mini-tax-chart" viewBox="0 0 560 400" role="img" aria-label="Tax incidence when demand is more elastic than supply"></svg>
+            <div class="elasticity-verdict"><strong>Sellers bear most</strong><span>Supply is the inelastic side.</span></div>
+          </section>
+        </div>
+        <p class="takeaway">Elasticity is an escape route. The side with the worse escape route bears more of the tax.</p>
+      </article>
+
+      <article class="screen incidence-screen" data-time="0:37–0:42" data-label="Who bears the brunt?">
         <div class="incidence-heading">
           <div><p class="eyebrow">Tax incidence</p><h2>Who can escape?</h2></div>
-          <label>Tax <span>$</span><input id="tax-size" type="number" min="1" max="20" step="1" value="6" /></label>
+          <label>Tax <span>$</span><input id="tax-size" type="number" min="1" max="10" step="1" value="3" /></label>
         </div>
         <div class="incidence-layout">
           <section class="escape-controls">
             <h3>Buyers’ alternatives</h3>
             <div class="segmented" data-elasticity="demand">
-              <button type="button" data-value="0.35">Few</button>
-              <button type="button" data-value="1" class="selected">Some</button>
+              <button type="button" data-value="0.5" class="selected">Few</button>
+              <button type="button" data-value="1">Some</button>
               <button type="button" data-value="2.5">Many</button>
             </div>
             <p id="demand-description">Buyers have some ability to walk away.</p>
             <h3>Sellers’ alternatives</h3>
             <div class="segmented" data-elasticity="supply">
-              <button type="button" data-value="0.35">Few</button>
+              <button type="button" data-value="0.5">Few</button>
               <button type="button" data-value="1" class="selected">Some</button>
               <button type="button" data-value="2.5">Many</button>
             </div>
@@ -189,7 +268,7 @@
         <p class="takeaway">The side with fewer alternatives puts more into the jar.</p>
       </article>
 
-      <article class="screen work-policy-screen" data-time="0:40–0:45" data-label="Apply incidence at work">
+      <article class="screen work-policy-screen" data-time="0:42–0:46" data-label="Apply incidence at work">
         <p class="eyebrow">Use a policy from chat</p>
         <h2>Who has the better escape route?</h2>
         <div class="work-policy-form">
@@ -206,20 +285,67 @@
         <div class="burden-answer" id="burden-answer" hidden></div>
       </article>
 
-      <article class="screen subsidy-screen" data-time="0:45–0:48" data-label="Subsidies">
-        <p class="eyebrow">Taxes run backward</p>
-        <h2>A subsidy also creates two prices</h2>
-        <div class="subsidy-story">
-          <div><small>Parents pay</small><strong>$9,000</strong></div>
-          <div class="subsidy-token"><small>Child-care subsidy</small><strong>$3,000</strong></div>
-          <div><small>Provider receives</small><strong>$12,000</strong></div>
+      <article class="screen policy-incidence-screen" data-time="0:46–0:51" data-label="Who really gains?">
+        <div class="policy-incidence-heading">
+          <div>
+            <p class="eyebrow">This is where policy gets annoying</p>
+            <h2>The named beneficiary rarely keeps every dollar</h2>
+          </div>
+          <button class="secondary-button" id="reveal-policy-incidence" type="button">Reveal all</button>
         </div>
-        <p class="large-copy">Who captures more of the subsidy?</p>
-        <p class="instruction">Ask who has fewer alternatives. The same incidence logic applies.</p>
-        <p class="takeaway">A subsidy lowers the buyer’s net price, raises the seller’s received price, and increases quantity.</p>
+        <div class="policy-incidence-grid">
+          <button type="button" data-incidence-case>
+            <small>Pell Grants</small><b>Policy names: students</b>
+            <span>Colleges capture about 12% through their pricing and institutional aid.</span>
+          </button>
+          <button type="button" data-incidence-case>
+            <small>Child-care tax credits</small><b>Policy names: families</b>
+            <span>One study finds providers capture over half through higher prices and wages.</span>
+          </button>
+          <button type="button" data-incidence-case>
+            <small>Housing vouchers</small><b>Policy names: tenants</b>
+            <span>When rental supply is tight, landlords capture part through higher rents.</span>
+          </button>
+          <button type="button" data-incidence-case>
+            <small>Earned Income Tax Credit</small><b>Policy names: workers</b>
+            <span>Employers may capture part when greater labor supply puts downward pressure on wages.</span>
+          </button>
+          <button type="button" data-incidence-case>
+            <small>Homebuyer subsidies</small><b>Policy names: buyers</b>
+            <span>When housing supply is tight, sellers can capture part through higher house prices.</span>
+          </button>
+          <button type="button" data-incidence-case>
+            <small>Employer payroll-tax cut</small><b>Policy names: employers</b>
+            <span>Workers may gain through higher wages. The employer’s name on the check settles nothing.</span>
+          </button>
+        </div>
+        <p class="quiet source-note">Evidence examples: Turner (Pell Grants); Rodgers (child care); Susin (housing vouchers); Rothstein (EITC).</p>
+        <p class="takeaway">For every subsidy, ask: Which side can expand or walk away most easily?</p>
       </article>
 
-      <article class="screen regulation-screen" data-time="0:48–0:54" data-label="Binding or irrelevant?">
+      <article class="screen tariff-screen" data-time="0:51–0:56" data-label="Who pays a tariff?">
+        <div class="tariff-heading">
+          <div>
+            <p class="eyebrow">Tariffs are taxes on imports</p>
+            <h2>The importer sends the check. Who supplies the money?</h2>
+          </div>
+          <button class="primary-button" id="build-tariff" type="button">Build the tariff</button>
+        </div>
+        <div class="tariff-layout">
+          <section class="tariff-chart-panel">
+            <svg id="tariff-chart" class="tariff-chart" viewBox="0 0 760 470" role="img" aria-label="Tariff incidence in the United States import market"></svg>
+          </section>
+          <section class="tariff-story">
+            <div><small>Legal payer</small><strong>U.S. importer</strong><span>Customs collects the tariff at the border.</span></div>
+            <div><small>Economic burden</small><strong>Mostly the U.S. side</strong><span>Foreign suppliers cut their prices little when their supply to the United States is elastic.</span></div>
+            <div class="tariff-evidence"><small>Recent evidence</small><strong>92% pass-through</strong><span>to U.S. import prices for the 2025 tariffs.</span></div>
+          </section>
+        </div>
+        <p class="takeaway">Recent tariffs were borne mainly by U.S. importers, downstream businesses, and consumers. Foreign exporters bore some burden in some sectors.</p>
+        <p class="quiet source-note">Source: Gopinath and Neiman, Journal of Economic Perspectives (2026); Amiti, Redding, and Weinstein (2019, 2020).</p>
+      </article>
+
+      <article class="screen regulation-screen" data-time="0:56–1:00" data-label="Binding or irrelevant?">
         <div class="regulation-heading">
           <div><p class="eyebrow">Price regulation</p><h2>Binding or irrelevant?</h2></div>
           <div class="segmented regulation-type" data-control="regulation-type">
@@ -249,7 +375,7 @@
         <p class="takeaway">A rule changes behavior only when it prevents the market from reaching its unregulated equilibrium.</p>
       </article>
 
-      <article class="screen shortage-screen" data-time="0:54–0:58" data-label="The short side">
+      <article class="screen shortage-screen" data-time="1:00–1:03" data-label="The short side">
         <p class="eyebrow">A binding price ceiling</p>
         <h2>More people want the good than sellers provide</h2>
         <div class="shortage-numbers">
@@ -261,7 +387,7 @@
         <p class="takeaway">The quantity traded comes from the short side of the market: here, supply.</p>
       </article>
 
-      <article class="screen pressure-screen" data-time="0:58–1:03" data-label="Where does the pressure go?">
+      <article class="screen pressure-screen" data-time="1:03–1:06" data-label="Where does the pressure go?">
         <p class="eyebrow">Chat first</p>
         <h2>If the money price cannot rise, what changes instead?</h2>
         <div class="pressure-entry">
@@ -274,7 +400,7 @@
         <p class="takeaway">Lower posted prices can coexist with higher waiting, search, compliance, and quality costs.</p>
       </article>
 
-      <article class="screen floor-screen" data-time="1:03–1:07" data-label="Price floors">
+      <article class="screen floor-screen" data-time="1:06–1:09" data-label="Price floors">
         <p class="eyebrow">A binding price floor</p>
         <h2>The regulated price sits above equilibrium</h2>
         <div class="floor-layout">
@@ -297,7 +423,7 @@
         <p class="takeaway">Buyers are the short side, so quantity sold equals quantity demanded.</p>
       </article>
 
-      <article class="screen quota-screen" data-time="1:07–1:13" data-label="Quantity limits">
+      <article class="screen quota-screen" data-time="1:09–1:14" data-label="Quantity limits">
         <div class="quota-heading">
           <div><p class="eyebrow">Quantity regulation</p><h2>When government fixes quantity, price adjusts</h2></div>
           <label>Maximum quantity <strong id="quota-label">70</strong><input id="quota-slider" type="range" min="20" max="130" step="5" value="70" /></label>
@@ -320,7 +446,7 @@
         <p class="takeaway">A binding cap makes permission to participate valuable.</p>
       </article>
 
-      <article class="screen rent-screen" data-time="1:13–1:16" data-label="Scarcity rents">
+      <article class="screen rent-screen" data-time="1:14–1:16" data-label="Scarcity rents">
         <p class="eyebrow">Who receives the valuable right?</p>
         <h2>A quota creates scarcity rents</h2>
         <div class="permit-choice" data-control="permit-allocation">
@@ -335,7 +461,7 @@
         <p class="instruction">Cold call: Which allocation rule resembles programs you have worked with?</p>
       </article>
 
-      <article class="screen compare-screen" data-time="1:16–1:18" data-label="Same target, different tools">
+      <article class="screen compare-screen" data-time="1:16–1:17" data-label="Same target, different tools">
         <p class="eyebrow">Reduce a harmful product from 100 units to 70</p>
         <h2>Three policies can reach the same quantity</h2>
         <table>
@@ -349,7 +475,7 @@
         <p class="takeaway">The quantity target may match. The distribution, revenue, and administrative problems do not.</p>
       </article>
 
-      <article class="screen work-close-screen" data-time="1:18–1:19" data-label="Return to their policies">
+      <article class="screen work-close-screen" data-time="1:17–1:18" data-label="Return to their policies">
         <p class="eyebrow">Back to the policies in chat</p>
         <h2>One professional forecast</h2>
         <div class="forecast-prompts">
@@ -361,7 +487,7 @@
         </div>
       </article>
 
-      <article class="screen close-screen" data-time="1:19–1:20" data-label="At work this week">
+      <article class="screen close-screen" data-time="1:18–1:20" data-label="At work this week">
         <p class="eyebrow">At work this week</p>
         <h2>Find the hidden adjustment</h2>
         <blockquote>“This policy directly changes ______. People will respond by ______. The burden or benefit will fall mainly on ______ because ______.”</blockquote>
@@ -384,6 +510,6 @@
       <button id="fullscreen" type="button">Full screen</button>
       <button id="next" type="button" aria-label="Next screen">→</button>
     </footer>
-    <script src="./class5.js?v=1"></script>
+    <script src="./class5.js?v=2"></script>
   </body>
 </html>
