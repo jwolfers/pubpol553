@@ -250,6 +250,196 @@ input, textarea {
 .same-outcome strong, .same-outcome span { display: block; }
 .same-outcome strong { font-size: clamp(1.25rem, 2vw, 1.9rem); }
 
+.tax-graph-screen, .elasticity-graphs-screen, .policy-incidence-screen, .tariff-screen {
+  justify-content: flex-start;
+  padding-top: 4.2rem;
+}
+.tax-graph-heading, .elasticity-graphs-heading, .policy-incidence-heading, .tariff-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.tax-graph-heading h2, .elasticity-graphs-heading h2, .policy-incidence-heading h2, .tariff-heading h2 {
+  margin-bottom: .1rem;
+  font-size: clamp(2.2rem, 4vw, 4.15rem);
+}
+.graph-question {
+  border: 3px solid var(--blue);
+  border-radius: .75rem;
+  padding: .7rem 1rem;
+  background: white;
+  color: var(--blue);
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+.tax-graph-layout {
+  display: grid;
+  grid-template-columns: minmax(580px, 1.45fr) minmax(280px, .55fr);
+  gap: 1rem;
+  min-height: 0;
+}
+.tax-chart-panel, .tax-build-controls {
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  background: white;
+  box-shadow: var(--shadow);
+}
+.tax-chart-panel { min-height: 470px; overflow: hidden; }
+.tax-chart { display: block; width: 100%; height: 100%; min-height: 470px; }
+.tax-build-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .55rem;
+  padding: .9rem;
+}
+.tax-build-controls > button:not(.tax-reset) {
+  display: grid;
+  grid-template-columns: 2.3rem 1fr;
+  align-items: center;
+  border: 2px solid var(--blue);
+  border-radius: .7rem;
+  padding: .55rem .65rem;
+  background: white;
+  color: var(--blue);
+  text-align: left;
+}
+.tax-build-controls > button:not(.tax-reset):hover,
+.tax-build-controls > button:not(.tax-reset).selected { background: #e7f1f8; }
+.tax-build-controls button b {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--maize);
+  color: var(--blue);
+}
+.tax-build-controls button span { font-weight: 900; }
+.tax-reset { align-self: flex-end; border: 0; background: transparent; color: var(--muted); font-size: .86rem; font-weight: 850; }
+.tax-graph-answer { border-left: .5rem solid var(--maize); padding: .7rem .8rem; background: var(--paper); }
+.tax-graph-answer strong, .tax-graph-answer span { display: block; }
+.tax-graph-answer strong { color: var(--blue); font-size: 1.35rem; }
+.tax-graph-answer span { margin-top: .25rem; color: var(--muted); font-weight: 800; }
+
+.tax-grid-line { stroke: #e0e7ed; stroke-width: 1; }
+.tax-axis-line { stroke: var(--blue); stroke-width: 3; }
+.tax-tick { fill: var(--muted); font-size: 14px; }
+.tax-axis-label { fill: var(--blue); font-size: 16px; font-weight: 900; }
+.tax-demand-curve, .tax-supply-curve, .tax-shifted-curve { fill: none; stroke-linecap: round; }
+.tax-demand-curve { stroke: var(--demand); stroke-width: 5; }
+.tax-supply-curve { stroke: var(--supply); stroke-width: 5; }
+.tax-shifted-curve { stroke: var(--purple); stroke-width: 6; }
+.tax-old-curve { opacity: .38; }
+.tax-guide-line { stroke: #718597; stroke-width: 2; stroke-dasharray: 7 6; }
+.tax-wedge-line { stroke: var(--maize); stroke-width: 12; }
+.tax-point { fill: var(--maize); stroke: var(--blue); stroke-width: 3; }
+.tax-new-point { fill: white; stroke: var(--purple); stroke-width: 4; }
+.tax-chart-label { font-size: 17px; font-weight: 900; paint-order: stroke; stroke: white; stroke-width: 5px; }
+.tax-chart-note { fill: var(--ink); font-size: 15px; font-weight: 800; paint-order: stroke; stroke: white; stroke-width: 4px; }
+.tax-buyer-label { fill: var(--demand); }
+.tax-seller-label { fill: var(--supply); }
+.tax-purple-label { fill: var(--purple); }
+.elasticity-burden-layer { opacity: 0; transition: opacity .2s ease; }
+.elasticity-graphs-screen.revealed .elasticity-burden-layer { opacity: 1; }
+.buyer-burden-line { stroke: var(--demand); stroke-width: 11; }
+.seller-burden-line { stroke: var(--supply); stroke-width: 11; }
+
+.elasticity-graph-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  min-height: 0;
+}
+.elasticity-graph-grid > section {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  border: 1px solid var(--line);
+  border-top: .55rem solid var(--blue);
+  border-radius: .85rem;
+  padding: .7rem .9rem;
+  background: white;
+  box-shadow: var(--shadow);
+}
+.elasticity-graph-grid > section:first-child { border-top-color: var(--demand); }
+.elasticity-graph-grid > section:last-child { border-top-color: var(--supply); }
+.elasticity-graph-grid h3 { margin: 0; font-size: 1.25rem; }
+.elasticity-graph-grid p { margin: .2rem 0 0; color: var(--muted); font-weight: 750; }
+.mini-tax-chart { display: block; width: 100%; height: 300px; }
+.elasticity-verdict {
+  border-left: .45rem solid var(--maize);
+  padding: .55rem .7rem;
+  background: var(--paper);
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.elasticity-graphs-screen.revealed .elasticity-verdict { opacity: 1; transform: none; }
+.elasticity-verdict strong, .elasticity-verdict span { display: block; }
+.elasticity-verdict strong { color: var(--blue); font-size: 1.35rem; }
+.elasticity-verdict span { color: var(--muted); font-weight: 750; }
+
+.policy-incidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .65rem;
+  min-height: 0;
+}
+.policy-incidence-grid button {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 145px;
+  border: 2px solid var(--line);
+  border-top: .5rem solid var(--purple);
+  border-radius: .75rem;
+  padding: .7rem .8rem;
+  background: white;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+.policy-incidence-grid button:hover { border-color: var(--blue); }
+.policy-incidence-grid small { color: var(--blue-2); font-size: .92rem; font-weight: 950; text-transform: uppercase; }
+.policy-incidence-grid b { margin-top: .35rem; color: var(--blue); font-size: 1.12rem; }
+.policy-incidence-grid span {
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  color: #405b72;
+  font-weight: 750;
+  line-height: 1.3;
+  opacity: 0;
+  transition: max-height .25s ease, margin .25s ease, opacity .25s ease;
+}
+.policy-incidence-grid button.revealed { border-color: var(--maize); }
+.policy-incidence-grid button.revealed span { max-height: 6rem; margin-top: .55rem; opacity: 1; }
+.source-note { text-align: right; }
+
+.tariff-layout {
+  display: grid;
+  grid-template-columns: minmax(580px, 1.35fr) minmax(320px, .65fr);
+  gap: 1rem;
+  min-height: 0;
+}
+.tariff-chart-panel, .tariff-story {
+  border: 1px solid var(--line);
+  border-radius: .9rem;
+  background: white;
+  box-shadow: var(--shadow);
+}
+.tariff-chart-panel { min-height: 445px; overflow: hidden; }
+.tariff-chart { display: block; width: 100%; height: 100%; min-height: 445px; }
+.tariff-story { display: flex; flex-direction: column; justify-content: center; gap: .6rem; padding: .85rem; }
+.tariff-story > div { border-left: .45rem solid var(--maize); padding: .65rem .75rem; background: var(--paper); }
+.tariff-story small, .tariff-story strong, .tariff-story span { display: block; }
+.tariff-story small { color: var(--muted); font-weight: 900; text-transform: uppercase; }
+.tariff-story strong { margin: .1rem 0; color: var(--blue); font-size: clamp(1.45rem, 2.4vw, 2.35rem); }
+.tariff-story span { color: #405b72; font-size: .9rem; font-weight: 750; line-height: 1.3; }
+.tariff-story .tariff-evidence { border-left-color: var(--purple); opacity: .28; transition: opacity .2s ease; }
+.tariff-screen.revealed .tariff-evidence { opacity: 1; }
+
 .incidence-screen { justify-content: flex-start; padding-top: 4.25rem; }
 .incidence-heading label { color: var(--blue); font-weight: 900; }
 .incidence-heading input { width: 5rem; margin-left: .25rem; font-size: 1.15rem; font-weight: 900; }
@@ -419,17 +609,17 @@ input, textarea {
   .policy-entry { grid-template-columns: 1fr 1fr 1fr; }
   .policy-entry input { grid-column: 1 / -1; }
   .incidence-layout { grid-template-columns: 1fr 250px 1fr; }
-  .regulation-layout, .quota-layout { grid-template-columns: 1fr; overflow-y: auto; }
+  .regulation-layout, .quota-layout, .tax-graph-layout, .tariff-layout { grid-template-columns: 1fr; overflow-y: auto; }
   .regulation-chart-panel, .quota-chart-panel { min-height: 420px; }
 }
 @media (max-width: 820px) {
   .screen { overflow-y: auto; padding-inline: 1rem; }
-  .policy-buckets, .idea-list, .choice-sequence, .price-story, .jar-layout, .remit-result, .incidence-layout, .work-policy-form, .subsidy-story, .shortage-numbers, .floor-layout, .permit-choice, .forecast-prompts { grid-template-columns: 1fr; }
+  .policy-buckets, .idea-list, .choice-sequence, .price-story, .jar-layout, .remit-result, .incidence-layout, .work-policy-form, .subsidy-story, .shortage-numbers, .floor-layout, .permit-choice, .forecast-prompts, .elasticity-graph-grid, .policy-incidence-grid { grid-template-columns: 1fr; }
   .policy-buckets { min-height: 760px; }
   .work-policy-form label:first-child, .forecast-prompts span:last-child { grid-column: auto; }
   .policy-entry, .pressure-entry { grid-template-columns: 1fr 1fr; }
   .policy-entry input, .pressure-entry input { grid-column: 1 / -1; }
-  .sorter-heading, .incidence-heading, .regulation-heading, .quota-heading { align-items: flex-start; flex-direction: column; }
+  .sorter-heading, .incidence-heading, .regulation-heading, .quota-heading, .tax-graph-heading, .elasticity-graphs-heading, .policy-incidence-heading, .tariff-heading { align-items: flex-start; flex-direction: column; }
   .quota-heading label { align-items: flex-start; flex-direction: column; }
   .remit-controls, .burden-vote { grid-template-columns: 1fr; }
   .after-tax { grid-template-columns: 1fr; }
@@ -438,5 +628,5 @@ input, textarea {
 }
 @media (prefers-reduced-motion: reduce) {
   .screen.active, .pressure-chip { animation: none; }
-  .after-tax, .same-outcome, .jar-segment { transition: none; }
+  .after-tax, .same-outcome, .jar-segment, .elasticity-verdict, .policy-incidence-grid span, .tariff-evidence { transition: none; }
 }
