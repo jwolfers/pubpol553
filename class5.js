@@ -169,6 +169,114 @@
     revealTwoPrices.textContent = revealed ? "Hide the two prices" : "Reveal the two prices";
   });
 
+  const appendSvg = (parent, name, attributes = {}, content = "") => {
+    const element = createSvg(name, attributes, content);
+    parent.append(element);
+    return element;
+  };
+  const marketAxes = (svg, options) => {
+    const bounds = options.bounds || { left: 72, right: 715, top: 34, bottom: 408 };
+    const x = (quantity) => bounds.left + ((quantity - options.qMin) / (options.qMax - options.qMin)) * (bounds.right - bounds.left);
+    const y = (price) => bounds.bottom - ((price - options.pMin) / (options.pMax - options.pMin)) * (bounds.bottom - bounds.top);
+    svg.replaceChildren();
+
+    options.pTicks.forEach((tick) => {
+      appendSvg(svg, "line", { x1: bounds.left, y1: y(tick), x2: bounds.right, y2: y(tick), class: "tax-grid-line" });
+      appendSvg(svg, "text", { x: bounds.left - 12, y: y(tick) + 5, "text-anchor": "end", class: "tax-tick" }, `$${tick}`);
+    });
+    options.qTicks.forEach((tick) => {
+      appendSvg(svg, "line", { x1: x(tick), y1: bounds.top, x2: x(tick), y2: bounds.bottom, class: "tax-grid-line" });
+      appendSvg(svg, "text", { x: x(tick), y: bounds.bottom + 23, "text-anchor": "middle", class: "tax-tick" }, String(tick));
+    });
+    appendSvg(svg, "line", { x1: bounds.left, y1: bounds.top, x2: bounds.left, y2: bounds.bottom, class: "tax-axis-line" });
+    appendSvg(svg, "line", { x1: bounds.left, y1: bounds.bottom, x2: bounds.right, y2: bounds.bottom, class: "tax-axis-line" });
+    appendSvg(svg, "text", { x: (bounds.left + bounds.right) / 2, y: bounds.bottom + 53, "text-anchor": "middle", class: "tax-axis-label" }, options.xLabel || "Quantity");
+    const priceLabel = appendSvg(svg, "text", { x: 19, y: (bounds.top + bounds.bottom) / 2, "text-anchor": "middle", class: "tax-axis-label", transform: `rotate(-90 19 ${(bounds.top + bounds.bottom) / 2})` }, options.yLabel || "Price");
+    priceLabel.setAttribute("aria-hidden", "true");
+    if (options.title) appendSvg(svg, "text", { x: (bounds.left + bounds.right) / 2, y: 22, "text-anchor": "middle", class: "tax-axis-label" }, options.title);
+    return { bounds, x, y };
+  };
+  const curvePath = (x, y, fn, qStart, qEnd, samples = 36) => {
+    const points = [];
+    for (let i = 0; i <= samples; i += 1) {
+      const quantity = qStart + ((qEnd - qStart) * i) / samples;
+      points.push(`${i === 0 ? "M" : "L"}${x(quantity).toFixed(1)},${y(fn(quantity)).toFixed(1)}`);
+    }
+    return points.join(" ");
+  };
+
+  const cigaretteDemand = (quantity) => 20 - quantity;
+  const cigaretteSupply = (quantity) => -2.5 + .5 * quantity;
+  const detailedTaxState = { seller: 0, buyer: 0 };
+  const drawDetailedTaxGraph = (type) => {
+    const svg = document.getElementById(`${type}-tax-chart`);
+    const step = detailedTaxState[type];
+    const { bounds, x, y } = marketAxes(svg, {
+      qMin: 11, qMax: 18, pMin: 0, pMax: 10,
+      qTicks: [11, 12, 13, 14, 15, 16, 17, 18],
+      pTicks: [0, 2, 4, 6, 8, 10],
+      title: "The market for cigarettes",
+      xLabel: "Billions of packs per year",
+      yLabel: "Price per pack"
+    });
+    const shifted = type === "seller"
+      ? (quantity) => cigaretteSupply(quantity) + 3
+      : (quantity) => cigaretteDemand(quantity) - 3;
+
+    appendSvg(svg, "path", {
+      d: curvePath(x, y, cigaretteDemand, 11, 18),
+      class: `tax-demand-curve ${type === "buyer" && step >= 1 ? "tax-old-curve" : ""}`
+    });
+    appendSvg(svg, "path", {
+      d: curvePath(x, y, cigaretteSupply, 11, 18),
+      class: `tax-supply-curve ${type === "seller" && step >= 1 ? "tax-old-curve" : ""}`
+    });
+    appendSvg(svg, "text", { x: x(17.2), y: y(cigaretteDemand(17.2)) - 10, class: "tax-chart-label tax-buyer-label" }, "Demand");
+    appendSvg(svg, "text", { x: x(16.6), y: y(cigaretteSupply(16.6)) - 12, class: "tax-chart-label tax-seller-label" }, "Supply");
+
+    appendSvg(svg, "line", { x1: x(15), y1: y(5), x2: x(15), y2: bounds.bottom, class: "tax-guide-line" });
+    appendSvg(svg, "circle", { cx: x(15), cy: y(5), r: 7, class: "tax-point" });
+    appendSvg(svg, "text", { x: x(15) + 12, y: y(5) - 12, class: "tax-chart-note" }, "Before tax: $5, Q=15");
+
+    if (step >= 1) {
+      appendSvg(svg, "path", { d: curvePath(x, y, shifted, 11, 18), class: "tax-shifted-curve" });
+      const labelQuantity = type === "seller" ? 16.2 : 16.4;
+      const labelY = type === "seller" ? y(shifted(labelQuantity)) - 12 : y(shifted(labelQuantity)) + 25;
+      appendSvg(svg, "text", { x: x(labelQuantity), y: labelY, class: "tax-chart-label tax-purple-label", "text-anchor": "middle" }, type === "seller" ? "Supply + $3 tax" : "Demand − $3 tax");
+    }
+    if (step >= 2) {
+      const equilibriumPrice = type === "seller" ? 7 : 4;
+      appendSvg(svg, "line", { x1: x(13), y1: y(equilibriumPrice), x2: x(13), y2: bounds.bottom, class: "tax-guide-line" });
+      appendSvg(svg, "circle", { cx: x(13), cy: y(equilibriumPrice), r: 8, class: "tax-new-point" });
+      appendSvg(svg, "text", { x: x(13), y: bounds.bottom + 23, "text-anchor": "middle", class: "tax-chart-label tax-purple-label" }, "13");
+      appendSvg(svg, "text", { x: x(13) + 12, y: y(equilibriumPrice) - 13, class: "tax-chart-note" }, "New equilibrium");
+    }
+    if (step >= 3) {
+      appendSvg(svg, "line", { x1: x(13), y1: y(7), x2: x(13), y2: y(4), class: "tax-wedge-line" });
+      appendSvg(svg, "circle", { cx: x(13), cy: y(type === "seller" ? 4 : 7), r: 7, class: "tax-new-point" });
+      appendSvg(svg, "line", { x1: bounds.left, y1: y(7), x2: x(13), y2: y(7), class: "tax-guide-line" });
+      appendSvg(svg, "line", { x1: bounds.left, y1: y(4), x2: x(13), y2: y(4), class: "tax-guide-line" });
+      appendSvg(svg, "text", { x: bounds.left + 9, y: y(7) - 10, class: "tax-chart-label tax-buyer-label" }, "Buyer pays $7");
+      appendSvg(svg, "text", { x: bounds.left + 9, y: y(4) + 24, class: "tax-chart-label tax-seller-label" }, "Seller keeps $4");
+      appendSvg(svg, "text", { x: x(13) + 14, y: (y(7) + y(4)) / 2 + 5, class: "tax-chart-label tax-purple-label" }, "$3 wedge");
+    }
+    document.getElementById(`${type}-tax-answer`).hidden = step < 3;
+    const builder = document.querySelector(`[data-tax-builder="${type}"]`);
+    builder.querySelectorAll("button[data-step]").forEach((button) => {
+      const buttonStep = Number(button.dataset.step);
+      button.classList.toggle("selected", buttonStep > 0 && buttonStep <= step);
+    });
+  };
+  document.querySelectorAll("[data-tax-builder] button[data-step]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const type = button.closest("[data-tax-builder]").dataset.taxBuilder;
+      detailedTaxState[type] = Number(button.dataset.step);
+      drawDetailedTaxGraph(type);
+    });
+  });
+  drawDetailedTaxGraph("seller");
+  drawDetailedTaxGraph("buyer");
+
   let selectedRemitter = "seller";
   const remitterLabel = document.getElementById("remitter-label");
   const sameOutcome = document.getElementById("same-outcome");
@@ -176,7 +284,7 @@
     button.addEventListener("click", () => {
       selectedRemitter = button.dataset.remitter;
       document.querySelectorAll("[data-remitter]").forEach((peer) => peer.classList.toggle("selected", peer === button));
-      remitterLabel.textContent = selectedRemitter === "seller" ? "Seller remits $6" : "Buyer remits $6";
+      remitterLabel.textContent = selectedRemitter === "seller" ? "Seller remits $3" : "Buyer remits $3";
     });
   });
   const revealInvariance = document.getElementById("reveal-invariance");
@@ -185,8 +293,47 @@
     revealInvariance.textContent = revealed ? "Hide the comparison" : "Reveal the comparison";
   });
 
+  const drawElasticityGraph = (svgId, elasticSide) => {
+    const svg = document.getElementById(svgId);
+    const supplyIsElastic = elasticSide === "supply";
+    const demand = supplyIsElastic ? (quantity) => 20 - quantity : (quantity) => 8 - .2 * quantity;
+    const supply = supplyIsElastic ? (quantity) => 2 + .2 * quantity : (quantity) => quantity - 10;
+    const shiftedSupply = (quantity) => supply(quantity) + 3;
+    const newQuantity = 12.5;
+    const buyerPrice = demand(newQuantity);
+    const sellerPrice = supply(newQuantity);
+    const { bounds, x, y } = marketAxes(svg, {
+      qMin: 8, qMax: 18, pMin: 0, pMax: 10,
+      qTicks: [10, 12.5, 15, 17.5], pTicks: [0, 2.5, 5, 7.5, 10],
+      bounds: { left: 62, right: 525, top: 25, bottom: 342 },
+      xLabel: "Quantity", yLabel: "Price"
+    });
+    appendSvg(svg, "path", { d: curvePath(x, y, demand, 8, 18), class: "tax-demand-curve" });
+    appendSvg(svg, "path", { d: curvePath(x, y, supply, 8, 18), class: "tax-supply-curve tax-old-curve" });
+    appendSvg(svg, "path", { d: curvePath(x, y, shiftedSupply, 8, 18), class: "tax-shifted-curve" });
+    appendSvg(svg, "circle", { cx: x(15), cy: y(5), r: 6, class: "tax-point" });
+    appendSvg(svg, "line", { x1: x(newQuantity), y1: y(buyerPrice), x2: x(newQuantity), y2: bounds.bottom, class: "tax-guide-line" });
+    appendSvg(svg, "circle", { cx: x(newQuantity), cy: y(buyerPrice), r: 7, class: "tax-new-point" });
+    appendSvg(svg, "circle", { cx: x(newQuantity), cy: y(sellerPrice), r: 7, class: "tax-new-point" });
+    const burdenLayer = appendSvg(svg, "g", { class: "elasticity-burden-layer" });
+    appendSvg(burdenLayer, "line", { x1: x(newQuantity), y1: y(5), x2: x(newQuantity), y2: y(buyerPrice), class: "buyer-burden-line" });
+    appendSvg(burdenLayer, "line", { x1: x(newQuantity), y1: y(sellerPrice), x2: x(newQuantity), y2: y(5), class: "seller-burden-line" });
+    appendSvg(burdenLayer, "text", { x: x(newQuantity) + 13, y: y((5 + buyerPrice) / 2) + 5, class: "tax-chart-note tax-buyer-label" }, `Buyer +$${(buyerPrice - 5).toFixed(2)}`);
+    appendSvg(burdenLayer, "text", { x: x(newQuantity) + 13, y: y((sellerPrice + 5) / 2) + 5, class: "tax-chart-note tax-seller-label" }, `Seller −$${(5 - sellerPrice).toFixed(2)}`);
+    appendSvg(svg, "text", { x: x(17), y: y(demand(17)) - 9, class: "tax-chart-label tax-buyer-label" }, "Demand");
+    appendSvg(svg, "text", { x: x(16.6), y: y(shiftedSupply(16.6)) - 10, class: "tax-chart-label tax-purple-label", "text-anchor": "middle" }, "Supply + tax");
+  };
+  drawElasticityGraph("elastic-supply-chart", "supply");
+  drawElasticityGraph("elastic-demand-chart", "demand");
+  const elasticityScreen = document.querySelector(".elasticity-graphs-screen");
+  const revealElasticity = document.getElementById("reveal-elasticity-graphs");
+  revealElasticity.addEventListener("click", () => {
+    const revealed = elasticityScreen.classList.toggle("revealed");
+    revealElasticity.textContent = revealed ? "Hide the burden" : "Reveal who bears it";
+  });
+
   const elasticityText = {
-    "0.35": {
+    "0.5": {
       demand: "Buyers have few good alternatives and find it hard to walk away.",
       supply: "Sellers have few alternative uses for their resources."
     },
@@ -205,13 +352,13 @@
     const demandElasticity = selectedElasticity("demand");
     const supplyElasticity = selectedElasticity("supply");
     const enteredTax = Number(document.getElementById("tax-size").value);
-    const tax = clamp(Number.isFinite(enteredTax) ? enteredTax : 6, 1, 20);
+    const tax = clamp(Number.isFinite(enteredTax) ? enteredTax : 3, 1, 10);
     const buyerFraction = supplyElasticity / (supplyElasticity + demandElasticity);
     const sellerFraction = 1 - buyerFraction;
     const buyerBurden = tax * buyerFraction;
     const sellerBurden = tax * sellerFraction;
-    const buyerPrice = 20 + buyerBurden;
-    const sellerPrice = 20 - sellerBurden;
+    const buyerPrice = 5 + buyerBurden;
+    const sellerPrice = 5 - sellerBurden;
 
     document.getElementById("buyer-fill").style.height = `${buyerFraction * 100}%`;
     document.getElementById("seller-fill").style.height = `${sellerFraction * 100}%`;
@@ -249,6 +396,64 @@
   });
   document.getElementById("tax-size").addEventListener("input", updateIncidence);
   updateIncidence();
+
+  const incidenceCases = [...document.querySelectorAll("[data-incidence-case]")];
+  incidenceCases.forEach((button) => {
+    button.addEventListener("click", () => button.classList.toggle("revealed"));
+  });
+  const revealAllIncidence = document.getElementById("reveal-policy-incidence");
+  revealAllIncidence.addEventListener("click", () => {
+    const reveal = incidenceCases.some((button) => !button.classList.contains("revealed"));
+    incidenceCases.forEach((button) => button.classList.toggle("revealed", reveal));
+    revealAllIncidence.textContent = reveal ? "Hide all" : "Reveal all";
+  });
+
+  let tariffStep = 0;
+  const drawTariffGraph = () => {
+    const svg = document.getElementById("tariff-chart");
+    const demand = (quantity) => 200 - quantity;
+    const foreignSupply = (quantity) => 91.3 + .087 * quantity;
+    const tariffSupply = (quantity) => foreignSupply(quantity) + 25;
+    const newQuantity = 83.7 / 1.087;
+    const buyerPrice = demand(newQuantity);
+    const foreignPrice = foreignSupply(newQuantity);
+    const { bounds, x, y } = marketAxes(svg, {
+      qMin: 60, qMax: 120, pMin: 80, pMax: 140,
+      qTicks: [60, 80, 100, 120], pTicks: [80, 100, 120, 140],
+      title: "The U.S. market for imports",
+      xLabel: "Quantity imported", yLabel: "Price at the border"
+    });
+    appendSvg(svg, "path", { d: curvePath(x, y, demand, 60, 120), class: "tax-demand-curve" });
+    appendSvg(svg, "path", { d: curvePath(x, y, foreignSupply, 60, 120), class: `tax-supply-curve ${tariffStep >= 1 ? "tax-old-curve" : ""}` });
+    appendSvg(svg, "circle", { cx: x(100), cy: y(100), r: 7, class: "tax-point" });
+    appendSvg(svg, "text", { x: x(100) + 11, y: y(100) - 12, class: "tax-chart-note" }, "Before tariff: $100");
+    appendSvg(svg, "text", { x: x(111), y: y(demand(111)) - 10, class: "tax-chart-label tax-buyer-label" }, "U.S. import demand");
+    appendSvg(svg, "text", { x: x(104), y: y(foreignSupply(104)) + 25, class: "tax-chart-label tax-seller-label", "text-anchor": "middle" }, "Foreign export supply");
+    if (tariffStep >= 1) {
+      appendSvg(svg, "path", { d: curvePath(x, y, tariffSupply, 60, 120), class: "tax-shifted-curve" });
+      appendSvg(svg, "text", { x: x(104), y: y(tariffSupply(104)) - 11, class: "tax-chart-label tax-purple-label", "text-anchor": "middle" }, "Supply + $25 tariff");
+    }
+    if (tariffStep >= 2) {
+      appendSvg(svg, "line", { x1: x(newQuantity), y1: y(buyerPrice), x2: x(newQuantity), y2: bounds.bottom, class: "tax-guide-line" });
+      appendSvg(svg, "circle", { cx: x(newQuantity), cy: y(buyerPrice), r: 8, class: "tax-new-point" });
+      appendSvg(svg, "text", { x: x(newQuantity) + 12, y: y(buyerPrice) - 12, class: "tax-chart-note" }, "New equilibrium");
+    }
+    if (tariffStep >= 3) {
+      appendSvg(svg, "line", { x1: x(newQuantity), y1: y(buyerPrice), x2: x(newQuantity), y2: y(foreignPrice), class: "tax-wedge-line" });
+      appendSvg(svg, "circle", { cx: x(newQuantity), cy: y(foreignPrice), r: 7, class: "tax-new-point" });
+      appendSvg(svg, "text", { x: bounds.left + 10, y: y(buyerPrice) - 10, class: "tax-chart-label tax-buyer-label" }, `U.S. price $${buyerPrice.toFixed(0)}`);
+      appendSvg(svg, "text", { x: bounds.left + 10, y: y(foreignPrice) + 24, class: "tax-chart-label tax-seller-label" }, `Foreign seller $${foreignPrice.toFixed(0)}`);
+      appendSvg(svg, "text", { x: x(newQuantity) + 14, y: (y(buyerPrice) + y(foreignPrice)) / 2 + 5, class: "tax-chart-label tax-purple-label" }, "$25 tariff");
+    }
+    const labels = ["Add the tariff", "Find the new equilibrium", "Show who bears it", "Reset graph"];
+    document.getElementById("build-tariff").textContent = labels[tariffStep];
+    document.querySelector(".tariff-screen").classList.toggle("revealed", tariffStep >= 3);
+  };
+  document.getElementById("build-tariff").addEventListener("click", () => {
+    tariffStep = tariffStep >= 3 ? 0 : tariffStep + 1;
+    drawTariffGraph();
+  });
+  drawTariffGraph();
 
   const burdenAnswer = document.getElementById("burden-answer");
   document.querySelectorAll("[data-control='burden-vote'] button").forEach((button) => {
