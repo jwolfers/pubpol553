@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#00274c" />
+    <title>PUBPOL 553 — International Trade</title>
+    <meta name="description" content="Interactive teaching deck for PUBPOL 553, Class 6: International Trade." />
+    <link rel="stylesheet" href="./class6.css?v=1" />
+  </head>
+  <body>
+    <main id="deck" aria-live="polite">
+      <article class="screen cover" data-time="0:00–0:02" data-label="Welcome">
+        <p class="eyebrow">PUBPOL 553 · Class 6</p>
+        <h1>Trading with<br />the world</h1>
+        <p class="subtitle">A bigger pie, rearranged slices, and some genuinely hard policy choices</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:02–0:06" data-label="The world within reach">
+        <p class="eyebrow">Start with what is around you · Put it in chat</p>
+        <h2>Pick up one object within reach</h2>
+        <blockquote>What is it? Where was it made? What other countries probably helped make it?</blockquote>
+        <p class="instruction">A label names the final stop, not the whole supply chain. Keep chatting as we go.</p>
+      </article>
+
+      <article class="screen promise-screen" data-time="0:06–0:09" data-label="Three questions">
+        <p class="eyebrow">The promise for tonight</p>
+        <h2>Three questions that clarify almost every trade fight</h2>
+        <div class="question-grid">
+          <section><b>1</b><strong>What becomes possible because of trade?</strong></section>
+          <section><b>2</b><strong>Who gains—and who bears the disruption?</strong></section>
+          <section><b>3</b><strong>What problem is trade policy actually solving?</strong></section>
+        </div>
+        <p class="takeaway">Trade can expand total opportunity and still cause concentrated, lasting harm. Both facts belong in the room.</p>
+      </article>
+
+      <article class="screen corn-screen" data-time="0:09–0:13" data-label="Cars from corn">
+        <p class="eyebrow">Thumbs up or down · Then defend your vote</p>
+        <h2>Can Iowa farmers produce cars?</h2>
+        <div class="corn-flow">
+          <section><span>🌽</span><strong>Grow corn</strong></section>
+          <div class="flow-arrow">→</div>
+          <section><span>🚢</span><strong>Export it</strong></section>
+          <div class="flow-arrow">→</div>
+          <section><span>🚗</span><strong>Import cars</strong></section>
+        </div>
+        <button class="primary-button center-button" id="reveal-corn" type="button">Reveal the economic answer</button>
+        <div class="reveal-box" id="corn-answer" hidden>
+          <strong>Yes. Exports are one technology for producing imports.</strong>
+          <span>Comparative advantage asks whether growing the car is cheaper than building it.</span>
+        </div>
+      </article>
+
+      <article class="screen market-screen" data-time="0:13–0:19" data-label="Opening an import market">
+        <div class="screen-heading">
+          <div>
+            <p class="eyebrow">A market opens to trade</p>
+            <h2>What changes when the world price is lower?</h2>
+          </div>
+          <div class="thumb-prompt">Predict before clicking</div>
+        </div>
+        <div class="market-layout">
+          <section class="chart-card">
+            <svg id="trade-chart" class="trade-chart" viewBox="0 0 820 500" role="img" aria-label="Domestic market before and after opening to imports"></svg>
+          </section>
+          <section class="market-controls">
+            <button type="button" data-trade-state="closed"><b>1</b><span>Closed economy</span></button>
+            <button type="button" data-trade-state="open"><b>2</b><span>Open to trade</span></button>
+            <div class="number-stack">
+              <div><small>Domestic price</small><strong id="market-price">$20</strong></div>
+              <div><small>Domestic production</small><strong id="market-supply">40</strong></div>
+              <div><small>Domestic purchases</small><strong id="market-demand">40</strong></div>
+              <div class="accent-number"><small>Imports</small><strong id="market-imports">0</strong></div>
+            </div>
+          </section>
+        </div>
+        <p class="takeaway">Imports fill the gap between what domestic buyers want and domestic sellers supply at the world price.</p>
+      </article>
+
+      <article class="screen distribution-screen" data-time="0:19–0:24" data-label="Gains and losses">
+        <p class="eyebrow">Same policy · Different experiences</p>
+        <h2>“America gains” is not the end of the analysis</h2>
+        <div class="distribution-grid">
+          <section class="buyer-card"><small>Domestic buyers</small><strong>Pay less and buy more</strong><span class="verdict gain">Gain</span></section>
+          <section class="seller-card"><small>Import-competing sellers</small><strong>Receive less and sell less</strong><span class="verdict loss">Lose</span></section>
+          <section class="total-card"><small>Total economic surplus</small><strong>The buyers’ gains exceed sellers’ losses</strong><span class="verdict net">Net gain</span></section>
+        </div>
+        <button class="primary-button center-button" id="reveal-distribution" type="button">Reveal the distribution</button>
+        <p class="takeaway">Trade expands the pie. It also rearranges the slices. Policy arguments usually begin when someone forgets one of those sentences.</p>
+      </article>
+
+      <article class="screen tariff-screen" data-time="0:24–0:31" data-label="Tariff simulator">
+        <div class="screen-heading">
+          <div>
+            <p class="eyebrow">Interactive tariff simulator</p>
+            <h2>Protection is a trade-off, not a free lunch</h2>
+          </div>
+          <button class="secondary-button" id="reset-tariff" type="button">Reset to free trade</button>
+        </div>
+        <div class="tariff-layout">
+          <section class="chart-card">
+            <svg id="tariff-chart" class="trade-chart" viewBox="0 0 820 500" role="img" aria-label="Effects of a tariff in an import market"></svg>
+          </section>
+          <section class="tariff-panel">
+            <label for="tariff-slider">Tariff per unit <output id="tariff-output">$0</output></label>
+            <input id="tariff-slider" type="range" min="0" max="10" step="1" value="0" />
+            <div class="tariff-presets">
+              <button type="button" data-tariff="0">Free trade</button>
+              <button type="button" data-tariff="4">Textbook tariff: $4</button>
+              <button type="button" data-tariff="10">No imports</button>
+            </div>
+            <div class="tariff-stats">
+              <div><small>Price</small><strong id="tariff-price">$10</strong></div>
+              <div><small>Imports</small><strong id="tariff-imports">50</strong></div>
+              <div><small>Tariff revenue</small><strong id="tariff-revenue">$0</strong></div>
+              <div class="loss-stat"><small>Deadweight loss</small><strong id="tariff-dwl">$0</strong></div>
+            </div>
+            <p id="tariff-story">Buyers enjoy the world price. Domestic sellers face foreign competition.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen dashboard-screen" data-time="0:31–0:35" data-label="Trade policy now">
+        <div class="screen-heading">
+          <div>
+            <p class="eyebrow">The trade-policy dashboard · October 27, 2026</p>
+            <h2>Globalization is not dead. It is wearing armor.</h2>
+          </div>
+          <button class="primary-button" id="reveal-dashboard" type="button">Reveal the numbers</button>
+        </div>
+        <div class="dashboard-grid">
+          <section><strong>11.0%</strong><span>Average statutory U.S. tariff now</span><small>11.8% scheduled by year-end</small></section>
+          <section><strong>7.1%</strong><span>Effective tariff rate collected</span><small>August 2026; up from 2.3% in January 2025</small></section>
+          <section><strong>+$1,100</strong><span>Estimated annual household cost</span><small>About +0.7% on the price level</small></section>
+          <section><strong>+3.9%</strong><span>Forecast growth in world goods trade</span><small>Trade proved more resilient than expected</small></section>
+        </div>
+        <p class="current-warning"><strong>The bigger argument:</strong> trade is resilient, but it is being reorganized around security and political blocs. WTO modelling puts the long-run cost of geopolitical fragmentation at 5.1% of global GDP and 18.6% of exports.</p>
+        <p class="quiet">Statutory rate = rates written into the current policy schedule. Effective rate = duties actually collected as a share of imports.</p>
+        <p class="source-line">Sources: <a href="https://budgetlab.yale.edu/research/state-us-tariffs" target="_blank" rel="noreferrer">Yale Budget Lab</a> · <a href="https://budgetmodel.wharton.upenn.edu/p/2026-10-14-effective-tariff-rates-and-revenues-updated-october-14-2026/" target="_blank" rel="noreferrer">Penn Wharton Budget Model</a> · <a href="https://www.wto.org/english/res_e/booksp_e/gtos1026_e.pdf" target="_blank" rel="noreferrer">WTO Trade Outlook</a> · <a href="https://www.wto.org/english/res_e/publications_e/world-trade-report-2026_execsum_e.htm" target="_blank" rel="noreferrer">WTO World Trade Report</a></p>
+      </article>
+
+      <article class="screen law-screen" data-time="0:35–0:39" data-label="The legal policy cycle">
+        <p class="eyebrow">Economics meets institutions</p>
+        <h2>The tariff wall changed legal foundations—not economic logic</h2>
+        <div class="timeline-grid">
+          <section><small>2025</small><strong>Broad tariffs under emergency powers</strong><span>IEEPA supplied the claimed authority.</span></section>
+          <section><small>Feb. 20, 2026</small><strong>Supreme Court: IEEPA does not authorize tariffs</strong><span>The broad IEEPA tariffs were invalidated.</span></section>
+          <section><small>2026</small><strong>Tariffs rebuilt under other statutes</strong><span>Temporary Section 122 duties, then Section 301 actions and existing Section 232 tariffs.</span></section>
+        </div>
+        <p class="discussion-question">Cold call: What changes when legal authority changes—incidence, scope, durability, discretion, or lobbying?</p>
+        <p class="source-line">Sources: <a href="https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf" target="_blank" rel="noreferrer">U.S. Supreme Court</a> · <a href="https://ustr.gov/sites/default/files/files/Press/Releases/2026/FLIP%20301%20Investigation%20Final%20Action%20FRN%207-23-26%20FINAL.pdf" target="_blank" rel="noreferrer">USTR Section 301 action</a></p>
+      </article>
+
+      <article class="screen case-screen" data-time="0:39–0:44" data-label="The blueberry-box test">
+        <p class="eyebrow">A live case · Maine, October 2026</p>
+        <h2>Should a cardboard box require a senator?</h2>
+        <div class="case-layout">
+          <section class="case-facts">
+            <div><b>50%</b><span>U.S. tariff on specified Canadian goods</span></div>
+            <div><b>Specialized input</b><span>Maine blueberry growers say the Canadian harvesting boxes are not available domestically</span></div>
+            <div><b>Exemption</b><span>Secured after lobbying; scheduled to begin October 30</span></div>
+          </section>
+          <section class="case-vote">
+            <h3>What does the exemption show?</h3>
+            <button type="button" data-case-answer="efficient">A sensible correction</button>
+            <button type="button" data-case-answer="warning">The original tariff was too broad</button>
+            <button type="button" data-case-answer="favoritism">Political favoritism</button>
+            <button type="button" data-case-answer="all">All three can be true</button>
+            <div id="case-response" class="case-response" hidden></div>
+          </section>
+        </div>
+        <p class="source-line">Source: <a href="https://apnews.com/article/ede51283125c071561178e6455048994" target="_blank" rel="noreferrer">Associated Press, October 23, 2026</a></p>
+      </article>
+
+      <article class="screen reasons-screen" data-time="0:44–0:47" data-label="Five arguments">
+        <p class="eyebrow">From the chapter · No straw people allowed</p>
+        <h2>Five serious arguments for limiting trade</h2>
+        <div class="reason-row">
+          <section><b>1</b><strong>National security</strong></section>
+          <section><b>2</b><strong>Infant industry</strong></section>
+          <section><b>3</b><strong>Unfair competition</strong></section>
+          <section><b>4</b><strong>Minimum standards</strong></section>
+          <section><b>5</b><strong>Jobs and communities</strong></section>
+        </div>
+        <p class="takeaway">The useful question is not “trade: good or bad?” It is “when is this argument strong, and is this instrument well targeted?”</p>
+      </article>
+
+      <article class="screen cabinet-screen" data-time="0:47–0:55" data-label="Policy cabinet" data-timer="240">
+        <div class="screen-heading">
+          <div>
+            <p class="eyebrow">Interactive · Four minutes in groups, pairs, or chat</p>
+            <h2>Choose a case for the policy cabinet</h2>
+          </div>
+          <button class="secondary-button" id="reset-cabinet" type="button">Reset</button>
+        </div>
+        <div class="cabinet-buttons">
+          <button type="button" data-cabinet="chips">Semiconductors</button>
+          <button type="button" data-cabinet="batteries">Batteries</button>
+          <button type="button" data-cabinet="steel">Subsidized steel</button>
+          <button type="button" data-cabinet="labor">Forced-labor goods</button>
+          <button type="button" data-cabinet="autos">An auto-plant town</button>
+        </div>
+        <div class="cabinet-workspace">
+          <section id="cabinet-case" class="cabinet-case">
+            <small>Select a case</small>
+            <strong>Then make the strongest case for—and against—protection.</strong>
+          </section>
+          <section class="cabinet-questions">
+            <ol>
+              <li>What exactly is the problem?</li>
+              <li>What evidence would show it is real?</li>
+              <li>Why is a trade restriction the best instrument?</li>
+              <li>What would change your mind?</li>
+            </ol>
+          </section>
+        </div>
+        <p class="quiet">Debrief by cold call. The class is allowed to conclude that the argument is valid but the policy is badly designed.</p>
+      </article>
+
+      <article class="screen labor-screen" data-time="0:55–0:59" data-label="Your labor travels">
+        <p class="eyebrow">Section 9.5 · Globalization reaches beyond goods</p>
+        <h2>Your labor can cross a border even when you do not</h2>
+        <div class="labor-grid">
+          <section><small>Export embodied labor</small><strong>A Boeing worker’s labor travels inside an exported aircraft</strong></section>
+          <section><small>Import embodied labor</small><strong>A Bangladeshi worker’s labor arrives inside an imported shirt</strong></section>
+          <section><small>Digital trade</small><strong>Code, consulting, finance, design, and policy expertise can cross borders instantly</strong></section>
+        </div>
+        <p class="discussion-question">Put in chat: What does your organization supply that already crosses—or could cross—a border?</p>
+      </article>
+
+      <article class="screen productivity-screen" data-time="0:59–1:03" data-label="Wages and productivity">
+        <div class="screen-heading">
+          <div>
+            <p class="eyebrow">Low wages are not the whole cost calculation</p>
+            <h2>Why don’t all jobs move to the lowest-wage country?</h2>
+          </div>
+          <button class="primary-button" id="reveal-productivity" type="button">Reveal the relationship</button>
+        </div>
+        <div class="productivity-layout">
+          <svg id="productivity-chart" viewBox="0 0 760 420" role="img" aria-label="Stylized relationship between productivity and wages across countries"></svg>
+          <section class="productivity-copy">
+            <strong>Businesses care about labor cost per unit of output—not wages alone.</strong>
+            <p>Higher wages often travel with higher productivity, better infrastructure, more capital, and specialized skills.</p>
+            <p class="inequality-note">But trade can still raise demand for some workers and reduce it for workers in import-competing sectors.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen shirt-screen" data-time="1:03–1:09" data-label="The $5 shirt">
+        <p class="eyebrow">Section 9.5 · The “or what?” test</p>
+        <h2>A $5 shirt was made in Bangladesh under grim conditions</h2>
+        <div class="shirt-question">
+          <strong>Your friend says:</strong>
+          <blockquote>“Charge $10 instead. Then the workers will be much better off.”</blockquote>
+        </div>
+        <div class="shirt-votes">
+          <button type="button" data-shirt="agree">Agree</button>
+          <button type="button" data-shirt="disagree">Disagree</button>
+          <button type="button" data-shirt="depends">It depends</button>
+        </div>
+        <div class="shirt-response" id="shirt-response" hidden></div>
+        <p class="takeaway">The moral comparison is not “$2 an hour versus an American wage.” It is “this job—or what?” That does not make bad conditions good. It makes the counterfactual indispensable.</p>
+      </article>
+
+      <article class="screen standards-screen" data-time="1:09–1:13" data-label="Fair trade choices">
+        <p class="eyebrow">Fair trade versus free trade</p>
+        <h2>If you care about workers, which instrument follows?</h2>
+        <div class="instrument-grid">
+          <button type="button" data-instrument="ban"><strong>Ban the imports</strong><span>Strong leverage; risks eliminating the jobs.</span></button>
+          <button type="button" data-instrument="tariff"><strong>Tariff the imports</strong><span>Raises U.S. prices; does not ensure workers receive the money.</span></button>
+          <button type="button" data-instrument="standards"><strong>Require labor standards</strong><span>Targets conditions; enforcement and appropriate standards are hard.</span></button>
+          <button type="button" data-instrument="support"><strong>Support workers directly</strong><span>Education, enforcement, transfers, and development may be better targeted.</span></button>
+        </div>
+        <div class="instrument-response" id="instrument-response">Click an instrument, then ask: who changes what—and then what?</div>
+      </article>
+
+      <article class="screen claims-screen" data-time="1:13–1:17" data-label="How economists view trade">
+        <div class="screen-heading">
+          <div>
+            <p class="eyebrow">Section 9.6 · Thumbs up or down before each reveal</p>
+            <h2>Stress-test the economist’s view</h2>
+          </div>
+          <button class="secondary-button" id="reset-claims" type="button">Start again</button>
+        </div>
+        <div class="claims-layout">
+          <div class="claim-buttons">
+            <button type="button" data-claim="cooperation">Trade is cooperation</button>
+            <button type="button" data-claim="people">People trade; countries don’t</button>
+            <button type="button" data-claim="consumers">Consumers count too</button>
+            <button type="button" data-claim="opportunity">Trade is opportunity and threat</button>
+          </div>
+          <section class="claim-stage" id="claim-stage">
+            <small>Choose a claim</small>
+            <strong>Ask what this framing helps us see—and what it might hide.</strong>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen closing-screen" data-time="1:17–1:20" data-label="The professional blind spot">
+        <p class="eyebrow">The economist’s professional blind spot · Then take it to work</p>
+        <h2>A bigger pie does not console someone who lost their slice</h2>
+        <div class="blind-grid">
+          <section><strong>Concentrated harm</strong><span>Losses may fall heavily on particular workers, firms, and towns.</span></section>
+          <section><strong>A very long “short run”</strong><span>Adjustment can last years—long enough to feel permanent.</span></section>
+          <section><strong>More than income</strong><span>Work, identity, community, security, and culture also matter.</span></section>
+        </div>
+        <div class="exit-prompt">
+          <strong>At work this week:</strong>
+          <span>Find one policy described as “protecting us.” Ask: Protecting whom, from what, at whose expense—and what happens next?</span>
+        </div>
+      </article>
+    </main>
+
+    <header class="topbar"><strong>PUBPOL 553</strong><span id="screen-time"></span></header>
+    <footer class="controls" aria-label="Deck controls">
+      <button id="prev" type="button" aria-label="Previous screen">←</button>
+      <div class="screen-meta"><strong id="screen-label"></strong><span id="screen-count"></span></div>
+      <div class="timer" id="timer" hidden><strong id="timer-value">0:00</strong><button id="timer-toggle" type="button">Start</button><button id="timer-reset" type="button">Reset</button></div>
+      <button id="fullscreen" type="button">Full screen</button>
+      <button id="next" type="button" aria-label="Next screen">→</button>
+    </footer>
+    <script src="./class6.js?v=1"></script>
+  </body>
+</html>
