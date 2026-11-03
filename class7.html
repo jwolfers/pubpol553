@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#00274c" />
+    <title>PUBPOL 553 — Externalities and Public Goods</title>
+    <meta name="description" content="Interactive teaching deck for PUBPOL 553, Class 7: Externalities and Public Goods." />
+    <link rel="stylesheet" href="./class7.css?v=1" />
+  </head>
+  <body>
+    <main id="deck" aria-live="polite">
+      <article class="screen cover" data-time="0:00–0:02" data-label="Welcome">
+        <p class="eyebrow">PUBPOL 553 · Class 7</p>
+        <h1>Who isn’t<br />in the room?</h1>
+        <p class="subtitle">Externalities, public goods, and the costs and benefits missing from the ledger</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:02–0:06" data-label="Externalities in this class">
+        <p class="eyebrow">Chapter 10.1 · Put it in chat</p>
+        <h2>What externalities can you create in tonight’s class?</h2>
+        <blockquote>How can your preparation, questions, attention, or participation affect everyone else?</blockquote>
+        <p class="cue">Cold-call two positive and two negative examples. Keep chatting as we go.</p>
+      </article>
+
+      <article class="screen definition-screen" data-time="0:06–0:08" data-label="The definition">
+        <p class="eyebrow">The chapter’s central idea</p>
+        <h2>An externality is a side effect on a bystander</h2>
+        <div class="definition-grid">
+          <section class="negative-card"><small>Negative externality</small><strong>A cost imposed on a bystander</strong><span>Too much of the harmful activity</span></section>
+          <section class="positive-card"><small>Positive externality</small><strong>A benefit enjoyed by a bystander</strong><span>Too little of the helpful activity</span></section>
+        </div>
+        <p class="takeaway">The diagnostic question: Whose interests are not fully taken into account?</p>
+      </article>
+
+      <article class="screen classify-screen" data-time="0:08–0:14" data-label="Externality or not?">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Chapter 10.1 · Thumbs first, then click</p><h2>Is it really an externality?</h2></div>
+          <button class="secondary-button" id="reset-externalities" type="button">Reset</button>
+        </div>
+        <div class="classify-layout">
+          <div class="case-buttons">
+            <button data-externality="concert" type="button">Standing at a concert</button>
+            <button data-externality="antibiotics" type="button">Overusing antibiotics</button>
+            <button data-externality="question" type="button">Asking a good class question</button>
+            <button data-externality="research" type="button">A scientific breakthrough</button>
+            <button data-externality="suv" type="button">Driving a large SUV</button>
+            <button data-externality="houses" type="button">Rising house prices</button>
+          </div>
+          <section class="answer-stage" id="externality-stage">
+            <small>Choose a case</small>
+            <strong>Who acts? Who is the bystander? What is the side effect?</strong>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen price-screen" data-time="0:14–0:17" data-label="The price-change trap">
+        <p class="eyebrow">A warning from Section 10.1</p>
+        <h2>A price change is not an externality</h2>
+        <div class="price-flow">
+          <section><small>Home buyer</small><strong>Pays more</strong><span>− $</span></section>
+          <div class="flow-arrow">↔</div>
+          <section><small>Home seller</small><strong>Receives more</strong><span>+ $</span></section>
+        </div>
+        <p class="takeaway">This is a market-mediated transfer between decision-makers—not an omitted side effect on a bystander.</p>
+      </article>
+
+      <article class="screen bill-screen" data-time="0:17–0:21" data-label="Predict the restaurant bill">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Everyday Economics · Enter the class predictions</p><h2>How much will each diner order?</h2></div>
+          <button class="primary-button" id="reveal-bills" type="button">Reveal the experiment</button>
+        </div>
+        <div class="bill-grid">
+          <label><span>Pay for your own meal</span><div><b>$</b><input id="predict-own" type="number" min="0" max="100" placeholder="?" /></div><small>Class prediction</small><strong data-bill-result="own">$9</strong></label>
+          <label><span>Split the bill evenly</span><div><b>$</b><input id="predict-split" type="number" min="0" max="100" placeholder="?" /></div><small>Class prediction</small><strong data-bill-result="split">$13</strong></label>
+          <label><span>The researchers pay</span><div><b>$</b><input id="predict-boss" type="number" min="0" max="100" placeholder="?" /></div><small>Class prediction</small><strong data-bill-result="boss">$22</strong></label>
+        </div>
+        <p class="cue" id="bill-caption">Predict first. What changes in the diner’s private cost?</p>
+      </article>
+
+      <article class="screen cake-screen" data-time="0:21–0:24" data-label="The $6 cake">
+        <p class="eyebrow">Six diners split the bill</p>
+        <h2>Your cake. Everyone’s bill.</h2>
+        <div class="cake-math">
+          <section><small>Price of cake</small><strong>$6</strong></section>
+          <section><small>Your private cost</small><strong>$1</strong></section>
+          <section><small>Cost imposed on others</small><strong>$5</strong></section>
+          <section class="social-total"><small>Marginal social cost</small><strong>$6</strong></section>
+        </div>
+        <p class="takeaway">The diner receives the whole sugar rush but bears only one-sixth of the cost. Result: too much dessert.</p>
+      </article>
+
+      <article class="screen recipe-screen" data-time="0:24–0:27" data-label="The four-step recipe">
+        <p class="eyebrow">Chapter 10.2 · Use this twice</p>
+        <h2>The chapter’s four-step recipe</h2>
+        <div class="recipe-grid">
+          <section><b>1</b><strong>Predict the equilibrium quantity</strong></section>
+          <section><b>2</b><strong>Assess the externalities</strong></section>
+          <section><b>3</b><strong>Find the socially optimal quantity</strong></section>
+          <section><b>4</b><strong>Compare the two quantities</strong></section>
+        </div>
+        <p class="rule">The Rational Rule for Society: produce while marginal social benefit is at least as large as marginal social cost.</p>
+      </article>
+
+      <article class="screen graph-screen" data-time="0:27–0:37" data-label="Gasoline: four steps">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Chapter 10.2 · Negative externality</p><h2>Gasoline: work the recipe</h2></div>
+          <button class="secondary-button" id="reset-gas" type="button">Start again</button>
+        </div>
+        <div class="graph-layout">
+          <section class="chart-card"><svg id="gas-chart" viewBox="0 0 820 500" role="img" aria-label="Gasoline market with a negative externality"></svg></section>
+          <section class="step-panel">
+            <button data-gas-step="1" type="button"><b>1</b><span>Market equilibrium</span></button>
+            <button data-gas-step="2" type="button"><b>2</b><span>Add the $2.10 external cost</span></button>
+            <button data-gas-step="3" type="button"><b>3</b><span>Find the social optimum</span></button>
+            <button data-gas-step="4" type="button"><b>4</b><span>Compare</span></button>
+            <div class="step-story" id="gas-story">Buyers and sellers determine the market quantity. Bystanders do not get a vote.</div>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen pollution-screen" data-time="0:37–0:40" data-label="How much pollution?">
+        <p class="eyebrow">Thumbs up or down before the reveal</p>
+        <h2>Is the socially optimal quantity of pollution zero?</h2>
+        <button class="primary-button center-button" id="reveal-pollution" type="button">Reveal the chapter’s answer</button>
+        <div class="pollution-answer" id="pollution-answer" hidden>
+          <strong>No—not if eliminating it also eliminates valuable activity.</strong>
+          <span>The social optimum balances the marginal benefit of gasoline against its full marginal social cost. “Pollution is bad” does not imply “zero at any cost.”</span>
+        </div>
+      </article>
+
+      <article class="screen graph-screen" data-time="0:40–0:46" data-label="Flu shots: four steps">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Chapter 10.2 · Positive externality</p><h2>Flu shots: run it backward</h2></div>
+          <button class="secondary-button" id="reset-flu" type="button">Start again</button>
+        </div>
+        <div class="graph-layout">
+          <section class="chart-card"><svg id="flu-chart" viewBox="0 0 820 500" role="img" aria-label="Flu shot market with a positive externality"></svg></section>
+          <section class="step-panel">
+            <button data-flu-step="1" type="button"><b>1</b><span>Market equilibrium: $25</span></button>
+            <button data-flu-step="2" type="button"><b>2</b><span>Add the $10 external benefit</span></button>
+            <button data-flu-step="3" type="button"><b>3</b><span>Find the social optimum</span></button>
+            <button data-flu-step="4" type="button"><b>4</b><span>Compare</span></button>
+            <div class="step-story" id="flu-story">Demand counts protection for the vaccinated person, but not protection for bystanders.</div>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen symmetry-screen" data-time="0:46–0:48" data-label="The symmetry">
+        <p class="eyebrow">The entire diagnosis in two lines</p>
+        <h2>What the market leaves out predicts the mistake</h2>
+        <div class="symmetry-grid">
+          <section class="negative-card"><small>Negative externality</small><strong>Missing external cost</strong><span>Marginal social cost lies above supply</span><b>Overproduction</b></section>
+          <section class="positive-card"><small>Positive externality</small><strong>Missing external benefit</strong><span>Marginal social benefit lies above demand</span><b>Underproduction</b></section>
+        </div>
+      </article>
+
+      <article class="screen solutions-screen" data-time="0:48–0:51" data-label="Six solutions">
+        <p class="eyebrow">Chapter 10.3–10.4 · Click any tool</p>
+        <h2>Six ways to internalize the externality</h2>
+        <div class="solution-grid">
+          <button data-solution="bargain" type="button"><b>1</b><span>Private bargaining</span></button>
+          <button data-solution="price" type="button"><b>2</b><span>Fix the price</span></button>
+          <button data-solution="quantity" type="button"><b>3</b><span>Fix the quantity</span></button>
+          <button data-solution="rules" type="button"><b>4</b><span>Laws and regulations</span></button>
+          <button data-solution="public" type="button"><b>5</b><span>Support public goods</span></button>
+          <button data-solution="ownership" type="button"><b>6</b><span>Assign ownership</span></button>
+        </div>
+        <div class="solution-stage" id="solution-stage">Different settings call for different tools. The common goal is to put the missing cost or benefit onto someone’s ledger.</div>
+      </article>
+
+      <article class="screen coase-screen" data-time="0:51–0:56" data-label="Could bargaining work?">
+        <div class="screen-heading">
+          <div><p class="eyebrow">The Coase Theorem · Thumbs first</p><h2>Could private bargaining solve it?</h2></div>
+          <button class="secondary-button" id="reset-coase" type="button">Reset</button>
+        </div>
+        <div class="coase-layout">
+          <div class="coase-buttons">
+            <button data-coase="alarm" type="button">Home alarm → insurer</button>
+            <button data-coase="anchor" type="button">Anchor store → nearby shops</button>
+            <button data-coase="bees" type="button">Bees → apple orchard</button>
+            <button data-coase="lawn" type="button">Mowing at midnight</button>
+            <button data-coase="research" type="button">Scientific research</button>
+            <button data-coase="steel" type="button">Steel pollution → millions</button>
+          </div>
+          <section class="answer-stage" id="coase-stage"><small>Choose a case</small><strong>Are rights clear? Are the parties identifiable? Are bargaining costs low?</strong></section>
+        </div>
+      </article>
+
+      <article class="screen tool-screen" data-time="0:56–0:59" data-label="Price, quantity, or rule?">
+        <p class="eyebrow">The best tool depends on what you know</p>
+        <h2>What are you most confident about?</h2>
+        <div class="tool-buttons">
+          <button data-tool-choice="cost" type="button"><strong>The marginal external cost</strong><span>I can price the damage.</span></button>
+          <button data-tool-choice="quantity" type="button"><strong>The safe or optimal quantity</strong><span>I know the limit we cannot exceed.</span></button>
+          <button data-tool-choice="rule" type="button"><strong>A dangerous action to prohibit</strong><span>Market tools are impractical or too risky.</span></button>
+        </div>
+        <div class="tool-answer" id="tool-answer">Choose one, then defend why the other instruments are worse.</div>
+      </article>
+
+      <article class="screen clinic-screen" data-time="0:59–1:05" data-label="Policy clinic" data-timer="360">
+        <p class="eyebrow">Six minutes · Breakout rooms or main-room chat</p>
+        <h2>Put a real policy through Chapter 10</h2>
+        <div class="clinic-grid">
+          <section><b>1</b><span>Predict the outcome without intervention.</span></section>
+          <section><b>2</b><span>Identify the external cost or benefit.</span></section>
+          <section><b>3</b><span>Describe the socially optimal outcome.</span></section>
+          <section><b>4</b><span>Is there too much or too little?</span></section>
+          <section><b>5</b><span>Choose one of the six solutions.</span></section>
+          <section><b>6</b><span>What is the strongest reason it might fail?</span></section>
+        </div>
+      </article>
+
+      <article class="screen goods-screen" data-time="1:05–1:12" data-label="Classify the good">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Chapter 10.4 · Interactive classifier</p><h2>Rival? Excludable? What kind of good?</h2></div>
+          <button class="secondary-button" id="reset-goods" type="button">Reset</button>
+        </div>
+        <div class="goods-layout">
+          <div class="goods-cases">
+            <button data-good="cookie" type="button">Cookie</button>
+            <button data-good="sirius" type="button">SiriusXM</button>
+            <button data-good="commons" type="button">Town commons</button>
+            <button data-good="defense" type="button">National defense</button>
+            <button data-good="radio" type="button">Broadcast radio</button>
+            <button data-good="fish" type="button">Ocean fish</button>
+          </div>
+          <section class="goods-quiz">
+            <strong id="goods-question">Choose a case</strong>
+            <div class="quadrants">
+              <button data-kind="private" type="button"><small>Excludable · Rival</small><b>Private good</b></button>
+              <button data-kind="club" type="button"><small>Excludable · Nonrival</small><b>Club good</b></button>
+              <button data-kind="common" type="button"><small>Nonexcludable · Rival</small><b>Common resource</b></button>
+              <button data-kind="public" type="button"><small>Nonexcludable · Nonrival</small><b>Public good</b></button>
+            </div>
+            <p id="goods-feedback">Ask both questions before choosing a label.</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen facts-screen" data-time="1:12–1:15" data-label="Three warnings">
+        <p class="eyebrow">Three facts from Section 10.4</p>
+        <h2>“Public good” does less work than people think</h2>
+        <div class="fact-grid">
+          <section><b>1</b><strong>Government provision does not make it a public good.</strong><span>Postal delivery is rival and excludable.</span></section>
+          <section><b>2</b><strong>A public good need not pass cost-benefit analysis.</strong><span>Classification does not establish that it is worth funding.</span></section>
+          <section><b>3</b><strong>Government funding does not require government production.</strong><span>Finance the fireworks; contract with someone who knows explosives.</span></section>
+        </div>
+      </article>
+
+      <article class="screen commons-screen" data-time="1:15–1:18" data-label="The commons">
+        <p class="eyebrow">Rival + nonexcludable</p>
+        <h2>Private gains. Shared costs. Too much use.</h2>
+        <div class="commons-row">
+          <section><span>🐑</span><strong>Town grazing</strong></section>
+          <section><span>🐟</span><strong>Ocean fish</strong></section>
+          <section><span>🚗</span><strong>Congested roads</strong></section>
+          <section><span>📧</span><strong>Inbox capacity</strong></section>
+          <section><span>💻</span><strong>Processor capacity</strong></section>
+        </div>
+        <p class="takeaway">When everyone owns it, each person acts as if no one owns it. Chapter solution 6: assign ownership or stewardship rights so someone bears the cost of overuse.</p>
+      </article>
+
+      <article class="screen insights-screen" data-time="1:18–1:19" data-label="Six final insights">
+        <p class="eyebrow">Chapter 10.5 · Type the number that matters most at work</p>
+        <h2>Six rules for choosing among solutions</h2>
+        <div class="insight-grid">
+          <section><b>1</b><span>Don’t intervene if you don’t need to.</span></section>
+          <section><b>2</b><span>Complement market forces.</span></section>
+          <section><b>3</b><span>Let uncertainty determine the tool.</span></section>
+          <section><b>4</b><span>Apply cost-benefit analysis.</span></section>
+          <section><b>5</b><span>Target outcomes, not processes.</span></section>
+          <section><b>6</b><span>Preserve incentives to innovate.</span></section>
+        </div>
+      </article>
+
+      <article class="screen closing-screen" data-time="1:19–1:20" data-label="At work this week">
+        <p class="eyebrow">At work this week</p>
+        <h2>Find the missing person in the ledger</h2>
+        <div class="exit-prompt">
+          <span>Take one policy through the chapter’s four-step recipe. Choose among its six solutions. Then ask whether your solution targets the outcome—or merely tells people what to do.</span>
+        </div>
+      </article>
+    </main>
+
+    <header class="topbar"><strong>PUBPOL 553</strong><span id="screen-time"></span></header>
+    <footer class="controls" aria-label="Deck controls">
+      <button id="prev" type="button" aria-label="Previous screen">←</button>
+      <div class="screen-meta"><strong id="screen-label"></strong><span id="screen-count"></span></div>
+      <div class="timer" id="timer" hidden><strong id="timer-value">0:00</strong><button id="timer-toggle" type="button">Start</button><button id="timer-reset" type="button">Reset</button></div>
+      <button id="fullscreen" type="button">Full screen</button>
+      <button id="next" type="button" aria-label="Next screen">→</button>
+    </footer>
+    <script src="./class7.js?v=1"></script>
+  </body>
+</html>
