@@ -138,8 +138,12 @@
     5: "The two sets of best-response checks meet at free ride–free ride: the Nash equilibrium. Yet invest–invest leaves both better off."
   };
   const drawFloodStep = (step) => {
+    const matrix = document.getElementById("flood-matrix");
     const cells = Object.fromEntries([...document.querySelectorAll("[data-flood-cell]")].map((cell) => [cell.dataset.floodCell, cell]));
+    matrix.classList.remove("focus-col-invest", "focus-col-free");
     Object.values(cells).forEach((cell) => cell.classList.remove("row-best", "col-best", "nash", "cooperative"));
+    if (step === 2) matrix.classList.add("focus-col-invest");
+    if (step === 3) matrix.classList.add("focus-col-free");
     if (step >= 2) cells.fi.classList.add("row-best");
     if (step >= 3) cells.ff.classList.add("row-best");
     if (step >= 4) {
@@ -220,15 +224,47 @@
   renderRepeat();
 
   const pdCases = {
-    commons: { label: "Yes—classic dilemma", title: "Each fleet’s one-shot incentive is to catch more fish.", detail: "Both overfish even though mutual restraint would preserve the stock and leave both better off." },
-    standard: { label: "No—coordination game", title: "Each agency mainly wants compatibility.", detail: "If both would prefer either common standard to mismatch, the problem is selecting among multiple equilibria—not resisting a dominant temptation to defect." },
-    collusion: { label: "Yes—for the firms", title: "Each publisher wants to undercut the cartel.", detail: "The chapter’s warning: cooperation between the firms would sustain higher prices, so solving their dilemma would harm consumers." },
-    bridge: { label: "No—anti-coordination", title: "The towns want complementary inspection shifts.", detail: "One should cover days and the other nights. The problem is deciding who does which, not a dominant strategy to defect." }
+    advertising: {
+      label: "Prisoner’s Dilemma",
+      title: "Advertising arms race",
+      detail: "Each brand advertises to steal market share when its rival is quiet and to defend market share when its rival advertises. Both spend heavily and may end up with roughly the same shares.",
+      note: "Cooperate: restrain advertising. Defect: advertise. Caveat: an explicit agreement may be illegal collusion."
+    },
+    commons: {
+      label: "Prisoner’s Dilemma",
+      title: "Shared fisheries and the commons",
+      detail: "Each fleet catches more by fishing hard, whether the other fleet restrains itself or not. Both overfish, deplete the stock, and leave both fleets worse off.",
+      note: "Policy question: Can quotas, property rights, prices, or monitoring change the payoff from overuse?"
+    },
+    campaign: {
+      label: "Prisoner’s Dilemma",
+      title: "Campaign spending",
+      detail: "Each side spends to gain an advantage if the other side holds back and to avoid falling behind if the other side spends. Mutual restraint saves resources, but unilateral restraint is risky.",
+      note: "Policy question: Can enforceable mutual limits replace an unstable promise to spend less?"
+    },
+    arms: {
+      label: "Prisoner’s Dilemma",
+      title: "International arms race",
+      detail: "Each country arms itself to gain an advantage if the other disarms and to avoid vulnerability if the other arms. The equilibrium can be an expensive arms race neither country wants.",
+      note: "Policy question: Can verification and credible enforcement make arms control sustainable?"
+    },
+    collusion: {
+      label: "Prisoner’s Dilemma for the firms",
+      title: "Cartel undercutting",
+      detail: "Each firm wants its rivals to keep prices high while it quietly undercuts them. That temptation makes a cartel unstable.",
+      note: "Important twist: cooperation helps the cartel but harms consumers. Society should not rescue every cooperative outcome."
+    },
+    standard: {
+      label: "Not a Prisoner’s Dilemma",
+      title: "A shared data standard is a coordination problem",
+      detail: "Each agency mainly wants compatibility. Either standard may work, but a mismatch is costly. There is no dominant temptation to choose the incompatible standard.",
+      note: "Diagnostic: multiple equilibria and aligned interests point to coordination, not failed cooperation."
+    }
   };
   document.querySelectorAll("[data-pd-case]").forEach((button) => button.addEventListener("click", () => {
     document.querySelectorAll("[data-pd-case]").forEach((peer) => peer.classList.toggle("selected", peer === button));
     const item = pdCases[button.dataset.pdCase];
-    document.getElementById("pd-case-stage").replaceChildren(node("small", "", item.label), node("strong", "", item.title), node("span", "", item.detail));
+    document.getElementById("pd-case-stage").replaceChildren(node("small", "", item.label), node("strong", "", item.title), node("span", "", item.detail), node("b", "application-note", item.note));
   }));
 
   const phoneChoices = { you: null, them: null };
@@ -300,6 +336,50 @@
   document.querySelectorAll("[data-coord-solution]").forEach((button) => button.addEventListener("click", () => {
     document.querySelectorAll("[data-coord-solution]").forEach((peer) => peer.classList.toggle("selected", peer === button));
     document.getElementById("coord-answer").textContent = coordinationSolutions[button.dataset.coordSolution];
+  }));
+
+  const coordinationCases = {
+    standard: {
+      label: "Same-choice coordination",
+      title: "Technology standards",
+      detail: "A common standard makes systems compatible. Either standard can work, but each agency loses when it chooses a different one from its partners.",
+      note: "Possible solution: communication, an industry focal point, or a mandated standard."
+    },
+    protest: {
+      label: "Good and bad equilibria",
+      title: "Political protest",
+      detail: "Staying home is safest when others stay home. Protesting becomes safer and more effective when many people protest together. Expectations can sustain either an oppressive equilibrium or a successful revolution.",
+      note: "Mechanism: public signals and focal dates can shift beliefs about how many others will participate."
+    },
+    skills: {
+      label: "Good and bad equilibria",
+      title: "Skills and good jobs",
+      detail: "Workers train when firms create skilled jobs. Firms create skilled jobs when trained workers are available. An economy can settle into either a high-skill or low-skill equilibrium.",
+      note: "Policy question: Can training support and employer commitments move together?"
+    },
+    bank: {
+      label: "Good and bad equilibria",
+      title: "Bank runs",
+      detail: "Keeping money deposited is sensible when others do the same. Withdrawing becomes the best response when you expect everyone else to run for the vault.",
+      note: "Policy tools: deposit insurance, a lender of last resort, and credible communication."
+    },
+    macro: {
+      label: "Good and bad equilibria",
+      title: "Booms and busts",
+      detail: "Firms hire when households spend, and households spend when jobs look secure. The same feedback can work in reverse during a downturn.",
+      note: "Policy question: Can stabilization policy change both spending and hiring expectations?"
+    },
+    entry: {
+      label: "Anti-coordination",
+      title: "Market entry",
+      detail: "A market may support one new firm but not two. Each firm wants to enter if the rival stays out and to stay out if the rival enters.",
+      note: "The equilibria use different but complementary choices: one enters and one stays out."
+    }
+  };
+  document.querySelectorAll("[data-coord-case]").forEach((button) => button.addEventListener("click", () => {
+    document.querySelectorAll("[data-coord-case]").forEach((peer) => peer.classList.toggle("selected", peer === button));
+    const item = coordinationCases[button.dataset.coordCase];
+    document.getElementById("coord-case-stage").replaceChildren(node("small", "", item.label), node("strong", "", item.title), node("span", "", item.detail), node("b", "application-note", item.note));
   }));
 
   const builderIds = ["builder-row-name", "builder-col-name", "builder-r1", "builder-r2", "builder-c1", "builder-c2"];
