@@ -259,8 +259,8 @@ h2 { margin-bottom: .4rem; color: var(--blue); font-size: clamp(2.35rem, 4.7vw, 
 
 /* Class 8: Game theory */
 .strategy-screen, .promise-screen, .paradox-screen, .repeated-logic-screen, .compare-screen,
-.focal-screen, .coord-solutions-screen, .anti-screen, .mover-screen, .map-screen { justify-content: center; }
-.flood-screen, .matrix-screen, .repeat-screen, .pd-cases-screen, .phone-screen, .bank-screen, .builder-screen { justify-content: flex-start; padding-top: 4.05rem; }
+.focal-screen, .coord-solutions-screen, .mover-screen, .map-screen { justify-content: center; }
+.flood-screen, .matrix-screen, .repeat-screen, .pd-cases-screen, .phone-screen, .bank-screen, .coord-cases-screen, .builder-screen { justify-content: flex-start; padding-top: 4.05rem; }
 .strategy-recipe section { min-height: 10rem; }
 .promise-grid section { min-height: 14rem; }
 .promise-grid span { line-height: 1.35; }
@@ -290,17 +290,53 @@ h2 { margin-bottom: .4rem; color: var(--blue); font-size: clamp(2.35rem, 4.7vw, 
 .outcome-stage.revealed { border-style: solid; border-color: var(--maize); }
 
 .matrix-teach-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, .7fr); gap: 1rem; min-height: 0; flex: 1; }
-.matrix-card { display: grid; grid-template-columns: .72fr 1fr 1fr; grid-template-rows: .55fr 1fr 1fr; gap: .45rem; min-height: 0; border-radius: .9rem; padding: .8rem; background: white; box-shadow: var(--shadow); }
-.matrix-corner, .matrix-head, .matrix-row, .payoff-cell { display: flex; align-items: center; justify-content: center; border-radius: .55rem; padding: .55rem; text-align: center; }
-.matrix-corner, .matrix-head, .matrix-row { background: var(--blue); color: white; font-weight: 900; }
-.payoff-cell { position: relative; flex-direction: column; border: 3px solid var(--line); background: var(--paper); }
-.payoff-cell b, .payoff-cell span { display: block; }
-.payoff-cell b { color: var(--blue); font-size: clamp(1.7rem, 3vw, 2.8rem); }
-.payoff-cell span { margin-top: .3rem; color: var(--muted); font-weight: 750; }
+.matrix-card {
+  display: grid;
+  grid-template-columns: .34fr .78fr 1fr 1fr;
+  grid-template-rows: .38fr .62fr 1fr 1fr;
+  min-height: 0;
+  overflow: hidden;
+  border: 2px solid var(--blue);
+  border-radius: .35rem;
+  background: white;
+  box-shadow: var(--shadow);
+}
+.matrix-player-band, .matrix-corner, .matrix-head, .matrix-row, .payoff-cell { display: flex; align-items: center; justify-content: center; padding: .55rem; text-align: center; }
+.matrix-player-band { background: var(--blue); color: white; font-size: clamp(.82rem, 1.16vw, 1.05rem); font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+.column-player { grid-column: 3 / 5; grid-row: 1; border-bottom: 2px solid white; }
+.row-player { grid-column: 1; grid-row: 2 / 5; border-right: 2px solid white; writing-mode: vertical-rl; transform: rotate(180deg); }
+.matrix-corner { grid-column: 2; grid-row: 1 / 3; flex-direction: column; gap: .18rem; background: #e9eef3; color: var(--blue); font-size: clamp(.7rem, .95vw, .88rem); line-height: 1.15; }
+.matrix-corner strong { margin-bottom: .15rem; font-size: 1.05em; text-transform: uppercase; }
+.matrix-corner span { display: flex; align-items: center; gap: .28rem; white-space: nowrap; }
+.matrix-corner i { width: .62rem; height: .62rem; border-radius: 50%; }
+.north-key { background: var(--negative); }
+.south-key { background: var(--private); }
+.matrix-head, .matrix-row { background: var(--blue); color: white; font-weight: 900; }
+.matrix-head { border-left: 2px solid white; }
+.matrix-head[data-flood-col="invest"] { grid-column: 3; grid-row: 2; }
+.matrix-head[data-flood-col="free"] { grid-column: 4; grid-row: 2; }
+.matrix-row { grid-column: 2; border-top: 2px solid white; }
+.matrix-row[data-flood-row="invest"] { grid-row: 3; }
+.matrix-row[data-flood-row="free"] { grid-row: 4; }
+.payoff-cell { position: relative; flex-direction: column; border-left: 2px solid var(--blue); border-top: 2px solid var(--blue); background: #f7f9fb; transition: opacity .16s ease, background .16s ease, box-shadow .16s ease; }
+.payoff-cell[data-flood-cell="ii"] { grid-column: 3; grid-row: 3; }
+.payoff-cell[data-flood-cell="if"] { grid-column: 4; grid-row: 3; }
+.payoff-cell[data-flood-cell="fi"] { grid-column: 3; grid-row: 4; }
+.payoff-cell[data-flood-cell="ff"] { grid-column: 4; grid-row: 4; }
+.payoff-pair { display: flex; align-items: baseline; justify-content: center; gap: .3rem; }
+.payoff-pair b { font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1; }
+.payoff-pair span { color: var(--muted); font-size: clamp(1.35rem, 2vw, 2rem); font-weight: 900; }
+.north-payoff { color: var(--negative); }
+.south-payoff { color: var(--private); }
+.payoff-cell p { margin: .38rem 0 0; color: var(--muted); font-size: clamp(.78rem, 1vw, .95rem); font-weight: 750; line-height: 1.2; }
+.matrix-card.focus-col-invest [data-flood-col]:not([data-flood-col="invest"]),
+.matrix-card.focus-col-free [data-flood-col]:not([data-flood-col="free"]) { opacity: .24; }
+.matrix-card.focus-col-invest [data-flood-col="invest"],
+.matrix-card.focus-col-free [data-flood-col="free"] { background: #fff4b8; box-shadow: inset 0 0 0 5px var(--maize); }
 .payoff-cell.row-best::before { content: "✓ North"; position: absolute; left: .45rem; top: .35rem; color: var(--negative); font-size: .78rem; font-weight: 900; }
 .payoff-cell.col-best::after { content: "✓ South"; position: absolute; right: .45rem; top: .35rem; color: var(--private); font-size: .78rem; font-weight: 900; }
-.payoff-cell.nash { border-color: var(--maize); background: #fff8d6; box-shadow: inset 0 0 0 3px var(--blue); }
-.payoff-cell.cooperative { border-color: var(--positive); background: #e8f6f1; }
+.payoff-cell.nash { background: #fff8d6; box-shadow: inset 0 0 0 5px var(--maize); }
+.payoff-cell.cooperative { background: #e8f6f1; box-shadow: inset 0 0 0 5px var(--positive); }
 .matrix-steps { min-height: 0; }
 
 .paradox-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
@@ -332,6 +368,11 @@ h2 { margin-bottom: .4rem; color: var(--blue); font-size: clamp(2.35rem, 4.7vw, 
 .condition-grid strong { margin-top: .8rem; color: var(--blue); font-size: 1.4rem; line-height: 1.18; }
 .condition-grid span { margin-top: .55rem; color: var(--muted); font-weight: 750; line-height: 1.3; }
 .pd-layout { min-height: 0; flex: 1; }
+.application-stage { justify-content: center; }
+.application-stage strong { font-size: clamp(1.5rem, 2.45vw, 2.35rem); }
+.application-stage span { font-size: clamp(.96rem, 1.18vw, 1.08rem); }
+.application-note { display: block; margin-top: .85rem; border-left: .45rem solid var(--maize); padding: .58rem .7rem; background: var(--paper); color: var(--blue); font-size: clamp(.86rem, 1.05vw, .98rem); line-height: 1.28; }
+.coord-case-layout { min-height: 0; flex: 1; }
 
 .phone-game { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: .8rem; }
 .phone-game > section:first-child { border-top: .6rem solid var(--blue-2); }
@@ -370,12 +411,6 @@ h2 { margin-bottom: .4rem; color: var(--blue); font-size: clamp(2.35rem, 4.7vw, 
 .bank-matrix span.active { border-color: var(--maize); background: #fff8d6; box-shadow: inset 0 0 0 3px var(--blue); }
 
 .coord-tools button { min-height: 12rem; }
-.anti-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
-.anti-row section { border-radius: .85rem; padding: 1rem; background: white; box-shadow: var(--shadow); text-align: center; }
-.anti-row span, .anti-row strong, .anti-row small { display: block; }
-.anti-row span { font-size: 3.3rem; }
-.anti-row strong { margin-top: .35rem; color: var(--blue); font-size: 1.55rem; }
-.anti-row small { margin-top: .3rem; color: var(--muted); font-size: 1rem; font-weight: 800; }
 
 .builder-layout { display: grid; grid-template-columns: .56fr 1.44fr; gap: .8rem; min-height: 0; flex: 1; }
 .builder-labels { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; align-content: start; border-radius: .8rem; padding: .7rem; background: white; box-shadow: var(--shadow); }
@@ -402,7 +437,7 @@ h2 { margin-bottom: .4rem; color: var(--blue); font-size: clamp(2.35rem, 4.7vw, 
 
 @media (max-width: 900px), (max-height: 650px) {
   .live-game-layout, .matrix-teach-layout, .repeat-layout, .phone-game, .bank-layout, .builder-layout, .mover-layout { grid-template-columns: 1fr; }
-  .paradox-row, .condition-grid, .anti-row, .chapter-map { grid-template-columns: 1fr 1fr; }
+  .paradox-row, .condition-grid, .chapter-map { grid-template-columns: 1fr 1fr; }
   .matrix-card, .bank-matrix, .builder-matrix { min-height: 520px; }
   .phone-matrix { min-height: 260px; }
 }
