@@ -134,23 +134,25 @@
     1: "Step 1: Start with all four combinations of choices and their payoffs.",
     2: "Step 2: If South invests, North gets 5 by free riding rather than 3 by investing.",
     3: "Step 3: If South free rides, North gets 1 by free riding rather than 0 by investing. Free riding is North’s dominant strategy.",
-    4: "Step 4: South faces the same incentives. Its best response is also to free ride in either case.",
-    5: "The two sets of best-response checks meet at free ride–free ride: the Nash equilibrium. Yet invest–invest leaves both better off."
+    4: "Step 4: Now choose South’s best response. Compare South’s payoff across each row.",
+    5: "Step 5: If North invests, South gets 5 by free riding rather than 3 by investing.",
+    6: "Step 6: If North free rides, South gets 1 by free riding rather than 0 by investing. Free riding is also South’s dominant strategy.",
+    7: "The two sets of best-response checks meet at free ride–free ride: the Nash equilibrium. Yet invest–invest leaves both better off."
   };
   const drawFloodStep = (step) => {
     const matrix = document.getElementById("flood-matrix");
     const cells = Object.fromEntries([...document.querySelectorAll("[data-flood-cell]")].map((cell) => [cell.dataset.floodCell, cell]));
-    matrix.classList.remove("focus-col-invest", "focus-col-free");
+    matrix.classList.remove("focus-col-invest", "focus-col-free", "focus-row-invest", "focus-row-free");
     Object.values(cells).forEach((cell) => cell.classList.remove("row-best", "col-best", "nash", "cooperative"));
     if (step === 2) matrix.classList.add("focus-col-invest");
     if (step === 3) matrix.classList.add("focus-col-free");
+    if (step === 5) matrix.classList.add("focus-row-invest");
+    if (step === 6) matrix.classList.add("focus-row-free");
     if (step >= 2) cells.fi.classList.add("row-best");
     if (step >= 3) cells.ff.classList.add("row-best");
-    if (step >= 4) {
-      cells.if.classList.add("col-best");
-      cells.ff.classList.add("col-best");
-    }
-    if (step >= 5) {
+    if (step >= 5) cells.if.classList.add("col-best");
+    if (step >= 6) cells.ff.classList.add("col-best");
+    if (step >= 7) {
       cells.ff.classList.add("nash");
       cells.ii.classList.add("cooperative");
     }
