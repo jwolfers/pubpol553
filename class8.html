@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#00274c" />
     <title>PUBPOL 553 — Game Theory</title>
     <meta name="description" content="Interactive teaching deck for PUBPOL 553, Class 8: Game Theory." />
-    <link rel="stylesheet" href="./class8.css?v=2" />
+    <link rel="stylesheet" href="./class8.css?v=3" />
   </head>
   <body>
     <main id="deck" aria-live="polite">
@@ -85,20 +85,20 @@
             <div class="matrix-head" data-flood-col="invest">Invest</div>
             <div class="matrix-head" data-flood-col="free">Free ride</div>
             <div class="matrix-row" data-flood-row="invest">Invest</div>
-            <div class="payoff-cell" data-flood-cell="ii" data-flood-col="invest">
+            <div class="payoff-cell" data-flood-cell="ii" data-flood-col="invest" data-flood-row="invest">
               <div class="payoff-pair"><b class="north-payoff">3</b><span>,</span><b class="south-payoff">3</b></div>
               <p>Both protected; costs shared</p>
             </div>
-            <div class="payoff-cell" data-flood-cell="if" data-flood-col="free">
+            <div class="payoff-cell" data-flood-cell="if" data-flood-col="free" data-flood-row="invest">
               <div class="payoff-pair"><b class="north-payoff">0</b><span>,</span><b class="south-payoff">5</b></div>
               <p>North pays; South free rides</p>
             </div>
             <div class="matrix-row" data-flood-row="free">Free ride</div>
-            <div class="payoff-cell" data-flood-cell="fi" data-flood-col="invest">
+            <div class="payoff-cell" data-flood-cell="fi" data-flood-col="invest" data-flood-row="free">
               <div class="payoff-pair"><b class="north-payoff">5</b><span>,</span><b class="south-payoff">0</b></div>
               <p>North free rides; South pays</p>
             </div>
-            <div class="payoff-cell" data-flood-cell="ff" data-flood-col="free">
+            <div class="payoff-cell" data-flood-cell="ff" data-flood-col="free" data-flood-row="free">
               <div class="payoff-pair"><b class="north-payoff">1</b><span>,</span><b class="south-payoff">1</b></div>
               <p>No shared protection</p>
             </div>
@@ -108,7 +108,9 @@
             <button data-flood-step="2" type="button"><b>2</b><span>If South invests…</span></button>
             <button data-flood-step="3" type="button"><b>3</b><span>If South free rides…</span></button>
             <button data-flood-step="4" type="button"><b>4</b><span>Stand in South’s shoes</span></button>
-            <button data-flood-step="5" type="button"><b>5</b><span>Find the Nash equilibrium</span></button>
+            <button data-flood-step="5" type="button"><b>5</b><span>If North invests…</span></button>
+            <button data-flood-step="6" type="button"><b>6</b><span>If North free rides…</span></button>
+            <button data-flood-step="7" type="button"><b>7</b><span>Find the Nash equilibrium</span></button>
             <div class="step-story" id="flood-story">Start with the four possible combinations of choices and their payoffs.</div>
           </section>
         </div>
@@ -312,6 +314,6 @@
       <button id="fullscreen" type="button">Full screen</button>
       <button id="next" type="button" aria-label="Next screen">→</button>
     </footer>
-    <script src="./class8.js?v=2"></script>
+    <script src="./class8.js?v=3"></script>
   </body>
 </html>
