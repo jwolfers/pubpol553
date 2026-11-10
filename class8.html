@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#00274c" />
+    <title>PUBPOL 553 — Game Theory</title>
+    <meta name="description" content="Interactive teaching deck for PUBPOL 553, Class 8: Game Theory." />
+    <link rel="stylesheet" href="./class8.css?v=1" />
+  </head>
+  <body>
+    <main id="deck" aria-live="polite">
+      <article class="screen cover" data-time="0:00–0:02" data-label="Welcome">
+        <p class="eyebrow">PUBPOL 553 · Class 8</p>
+        <h1>Your move<br />depends on theirs.</h1>
+        <p class="subtitle">Game theory, cooperation, coordination, and the rules that shape both</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:02–0:06" data-label="Strategic problems at work">
+        <p class="eyebrow">Start in chat · Keep chatting all night</p>
+        <h2>Where does your success depend on someone else’s choice?</h2>
+        <blockquote>Type one problem from work where another agency, firm, colleague, voter, client, or country can respond strategically.</blockquote>
+        <p class="cue">Cold-call two. For each: Who are the players? What can each choose?</p>
+      </article>
+
+      <article class="screen strategy-screen" data-time="0:06–0:10" data-label="The four-step recipe">
+        <p class="eyebrow">Chapter 18.1 · Boxer, not punching bag</p>
+        <h2>Strategic means they react to you</h2>
+        <div class="recipe-grid strategy-recipe">
+          <section><b>1</b><strong>List every possible outcome</strong></section>
+          <section><b>2</b><strong>Take each “what if?” separately</strong></section>
+          <section><b>3</b><strong>Find your best response</strong></section>
+          <section><b>4</b><strong>Put yourself in their shoes</strong></section>
+        </div>
+        <p class="rule">A Nash equilibrium is an outcome where everyone’s choice is a best response to everyone else’s choice.</p>
+      </article>
+
+      <article class="screen promise-screen" data-time="0:10–0:12" data-label="Tonight’s promise">
+        <p class="eyebrow">The two big ideas</p>
+        <h2>Good intentions are not enough</h2>
+        <div class="definition-grid promise-grid">
+          <section class="negative-card"><small>Prisoner’s Dilemma</small><strong>We fail to cooperate</strong><span>Each person has an incentive to defect—even though cooperation would leave everyone better off.</span></section>
+          <section class="positive-card"><small>Coordination game</small><strong>We fail to coordinate</strong><span>We want compatible choices—but multiple equilibria make expectations decisive.</span></section>
+        </div>
+        <p class="takeaway">Then we’ll briefly ask whether moving first helps, and whether repeated interaction can rescue cooperation.</p>
+      </article>
+
+      <article class="screen flood-screen" data-time="0:12–0:20" data-label="Play the dilemma">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Live game · Two volunteers · Decide privately</p><h2>Will your county fund flood control?</h2></div>
+          <button class="secondary-button" id="reset-once" type="button">Reset</button>
+        </div>
+        <p class="scenario-line">North County and South County share a river. Each can <b>invest</b> in upstream flood control or <b>free ride</b> on the other.</p>
+        <div class="live-game-layout">
+          <section class="player-card north-card">
+            <small>North County</small><strong>Choose privately</strong>
+            <div><button data-once-player="north" data-choice="invest" type="button">Invest</button><button data-once-player="north" data-choice="free" type="button">Free ride</button></div>
+            <span id="once-north-status">No choice entered</span>
+          </section>
+          <section class="outcome-stage" id="once-outcome"><small>Instructions</small><strong>Send Justin “invest” or “free ride” by direct message.</strong><span>He’ll enter both decisions, then reveal them simultaneously.</span></section>
+          <section class="player-card south-card">
+            <small>South County</small><strong>Choose privately</strong>
+            <div><button data-once-player="south" data-choice="invest" type="button">Invest</button><button data-once-player="south" data-choice="free" type="button">Free ride</button></div>
+            <span id="once-south-status">No choice entered</span>
+          </section>
+        </div>
+        <button class="primary-button center-button" id="reveal-once" type="button">Reveal both choices</button>
+        <p class="cue">Payoffs: both invest = 3 each; one free rides = 5 for the free rider and 0 for the investor; neither invests = 1 each.</p>
+      </article>
+
+      <article class="screen matrix-screen" data-time="0:20–0:27" data-label="Work the payoff table">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Chapter 18.2 · Build the logic slowly</p><h2>Why does cooperation unravel?</h2></div>
+          <button class="secondary-button" id="reset-flood-matrix" type="button">Start again</button>
+        </div>
+        <div class="matrix-teach-layout">
+          <section class="matrix-card">
+            <div class="matrix-corner">North ↓ · South →</div><div class="matrix-head">Invest</div><div class="matrix-head">Free ride</div>
+            <div class="matrix-row">Invest</div>
+            <div class="payoff-cell" data-flood-cell="ii"><b>3, 3</b><span>Both protected; costs shared</span></div>
+            <div class="payoff-cell" data-flood-cell="if"><b>0, 5</b><span>North pays; South free rides</span></div>
+            <div class="matrix-row">Free ride</div>
+            <div class="payoff-cell" data-flood-cell="fi"><b>5, 0</b><span>North free rides; South pays</span></div>
+            <div class="payoff-cell" data-flood-cell="ff"><b>1, 1</b><span>No shared protection</span></div>
+          </section>
+          <section class="step-panel matrix-steps">
+            <button data-flood-step="1" type="button"><b>1</b><span>Consider every outcome</span></button>
+            <button data-flood-step="2" type="button"><b>2</b><span>If South invests…</span></button>
+            <button data-flood-step="3" type="button"><b>3</b><span>If South free rides…</span></button>
+            <button data-flood-step="4" type="button"><b>4</b><span>Stand in South’s shoes</span></button>
+            <button data-flood-step="5" type="button"><b>5</b><span>Find the Nash equilibrium</span></button>
+            <div class="step-story" id="flood-story">Start with the four possible combinations of choices and their payoffs.</div>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen paradox-screen" data-time="0:27–0:31" data-label="The paradox">
+        <p class="eyebrow">The Prisoner’s Dilemma in one sentence</p>
+        <h2>Individually rational. Collectively rotten.</h2>
+        <div class="paradox-row">
+          <section><small>Dominant strategy</small><strong>Free ride</strong><span>Best response whether the other county invests or not.</span></section>
+          <section><small>Nash equilibrium</small><strong>1, 1</strong><span>Neither can do better by changing alone.</span></section>
+          <section class="better-box"><small>Better for both</small><strong>3, 3</strong><span>But each can gain by defecting from cooperation.</span></section>
+        </div>
+        <p class="takeaway">Equilibrium means stable—not good, fair, efficient, or socially desirable.</p>
+      </article>
+
+      <article class="screen repeat-screen" data-time="0:31–0:38" data-label="Repeat the game">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Same two counties · Unknown final round</p><h2>Does the future change today’s choice?</h2></div>
+          <button class="secondary-button" id="reset-repeat" type="button">Reset game</button>
+        </div>
+        <div class="score-strip"><span>Round <b id="repeat-round">1</b></span><span>North total <b id="repeat-north-total">0</b></span><span>South total <b id="repeat-south-total">0</b></span></div>
+        <div class="repeat-layout">
+          <section class="repeat-choice"><small>North County</small><div><button data-repeat-player="north" data-choice="invest" type="button">Invest</button><button data-repeat-player="north" data-choice="free" type="button">Free ride</button></div><span id="repeat-north-status">Waiting</span></section>
+          <section class="repeat-center"><strong id="repeat-result">Enter both private choices.</strong><span id="repeat-comment">Students do not know how many rounds the game will last.</span><button class="primary-button" id="reveal-repeat" type="button">Reveal round</button><button class="secondary-button" id="next-repeat" type="button" disabled>Play another round</button></section>
+          <section class="repeat-choice"><small>South County</small><div><button data-repeat-player="south" data-choice="invest" type="button">Invest</button><button data-repeat-player="south" data-choice="free" type="button">Free ride</button></div><span id="repeat-south-status">Waiting</span></section>
+        </div>
+        <div class="round-history" id="round-history"><span>No completed rounds yet.</span></div>
+      </article>
+
+      <article class="screen repeated-logic-screen" data-time="0:38–0:42" data-label="Why repetition matters">
+        <p class="eyebrow">Chapter 18.5 · Grim Trigger and credible punishment</p>
+        <h2>Cooperation needs a future</h2>
+        <div class="condition-grid">
+          <section><b>1</b><strong>Repeated interaction</strong><span>Today’s move changes tomorrow’s treatment.</span></section>
+          <section><b>2</b><strong>No known final round</strong><span>A fixed endpoint unravels cooperation backward.</span></section>
+          <section><b>3</b><strong>Observable behavior</strong><span>You must know whether the other side defected.</span></section>
+          <section><b>4</b><strong>Credible consequences</strong><span>The threatened response must actually be in your interest.</span></section>
+        </div>
+        <p class="takeaway">The threat of punishment can sustain cooperation—and if it works, the punishment never needs to occur.</p>
+      </article>
+
+      <article class="screen pd-cases-screen" data-time="0:42–0:46" data-label="Where dilemmas hide">
+        <p class="eyebrow">Thumbs first · Then click</p>
+        <h2>Is this a Prisoner’s Dilemma?</h2>
+        <div class="classify-layout pd-layout">
+          <div class="case-buttons">
+            <button data-pd-case="commons" type="button">Two fleets overfish shared waters</button>
+            <button data-pd-case="standard" type="button">Two agencies choose a data standard</button>
+            <button data-pd-case="collusion" type="button">Two publishers decide whether to undercut a cartel</button>
+            <button data-pd-case="bridge" type="button">Two towns choose opposite bridge-inspection shifts</button>
+          </div>
+          <section class="answer-stage" id="pd-case-stage"><small>Choose a case</small><strong>Is defecting each player’s best response regardless of what the other does?</strong><span>Bad outcomes alone do not make a Prisoner’s Dilemma.</span></section>
+        </div>
+      </article>
+
+      <article class="screen phone-screen" data-time="0:46–0:52" data-label="Play phone tag">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Chapter 18.3 · Two volunteers · Decide privately</p><h2>The call dropped. Who calls back?</h2></div>
+          <button class="secondary-button" id="reset-phone" type="button">Reset</button>
+        </div>
+        <div class="phone-game">
+          <section><small>You</small><div><button data-phone-player="you" data-choice="call" type="button">Call back</button><button data-phone-player="you" data-choice="wait" type="button">Wait</button></div><span id="phone-you-status">No choice entered</span></section>
+          <div class="phone-result" id="phone-result"><strong>Type your choice, but do not send it.</strong><span>On three, both volunteers send “call” or “wait.”</span></div>
+          <section><small>Colleague</small><div><button data-phone-player="them" data-choice="call" type="button">Call back</button><button data-phone-player="them" data-choice="wait" type="button">Wait</button></div><span id="phone-them-status">No choice entered</span></section>
+        </div>
+        <button class="primary-button center-button" id="reveal-phone" type="button">Reveal outcome</button>
+        <div class="phone-matrix">
+          <span></span><b>They call</b><b>They wait</b><b>You call</b><span data-phone-cell="cc">Voicemail</span><span data-phone-cell="cw">Call connects ✓</span><b>You wait</b><span data-phone-cell="wc">Call connects ✓</span><span data-phone-cell="ww">Both wait</span>
+        </div>
+      </article>
+
+      <article class="screen compare-screen" data-time="0:52–0:55" data-label="Cooperation or coordination?">
+        <p class="eyebrow">The distinction that matters</p>
+        <h2>Same table. Different problem.</h2>
+        <div class="definition-grid compare-grid">
+          <section class="negative-card"><small>Prisoner’s Dilemma</small><strong>Our incentives conflict</strong><span>I’m tempted to exploit your cooperation. There is one equilibrium, and it is worse for both.</span><b>Problem: cooperation</b></section>
+          <section class="positive-card"><small>Coordination game</small><strong>Our interests align</strong><span>We want compatible choices. There are multiple equilibria, so expectations can misfire.</span><b>Problem: expectations</b></section>
+        </div>
+      </article>
+
+      <article class="screen focal-screen" data-time="0:55–0:59" data-label="Find a focal point">
+        <p class="eyebrow">Chapter 18.3 · Everyone types, then sends together</p>
+        <h2>We agreed to meet for lunch—but forgot the time.</h2>
+        <div class="focal-options"><button type="button">11:30</button><button type="button">Noon</button><button type="button">12:30</button></div>
+        <button class="primary-button center-button" id="reveal-focal" type="button">Reveal the chapter’s focal point</button>
+        <div class="focal-answer" id="focal-answer" hidden><strong>Noon</strong><span>Not because it is intrinsically best. In the United States, the lunch norm makes noon a salient cue that helps us coordinate.</span></div>
+        <p class="cue">A focal point is a cue from outside the game. Culture and norms are coordination technology.</p>
+      </article>
+
+      <article class="screen bank-screen" data-time="0:59–1:05" data-label="Good and bad equilibria">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Good equilibrium · Bad equilibrium</p><h2>Would you run on the bank?</h2></div>
+          <button class="secondary-button" id="reset-bank" type="button">Reset</button>
+        </div>
+        <div class="bank-layout">
+          <section class="bank-controls">
+            <p>What do you expect other depositors to do?</p>
+            <button data-bank-belief="keep" type="button">They keep money in</button>
+            <button data-bank-belief="run" type="button">They rush to withdraw</button>
+            <div id="bank-advice">Choose an expectation.</div>
+          </section>
+          <section class="bank-matrix">
+            <div></div><b>Others keep money in</b><b>Others withdraw</b>
+            <b>You keep money in</b><span data-bank-cell="kk">Bank functions<br /><em>Good equilibrium</em></span><span data-bank-cell="kw">You risk being last</span>
+            <b>You withdraw</b><span data-bank-cell="wk">You give up interest</span><span data-bank-cell="ww">Bank run<br /><em>Bad equilibrium</em></span>
+          </section>
+        </div>
+        <button class="primary-button center-button" id="reveal-bank-policy" type="button">What can policy change?</button>
+        <p class="takeaway" id="bank-policy" hidden>Deposit insurance, lender-of-last-resort commitments, and credible communication change beliefs and payoffs—helping select the good equilibrium.</p>
+      </article>
+
+      <article class="screen coord-solutions-screen" data-time="1:05–1:09" data-label="Solve coordination problems">
+        <p class="eyebrow">The chapter’s three solutions · Click each</p>
+        <h2>Help everyone expect the same thing</h2>
+        <div class="tool-buttons coord-tools">
+          <button data-coord-solution="communication" type="button"><strong>1 · Communication</strong><span>“If the call drops, I’ll call you.”</span></button>
+          <button data-coord-solution="focal" type="button"><strong>2 · Focal points, culture, norms</strong><span>Noon for lunch; a familiar greeting.</span></button>
+          <button data-coord-solution="law" type="button"><strong>3 · Laws and regulations</strong><span>Everyone drives on the same side.</span></button>
+        </div>
+        <div class="tool-answer" id="coord-answer">Choose one. Then ask how it would work in a policy problem from chat.</div>
+      </article>
+
+      <article class="screen anti-screen" data-time="1:09–1:12" data-label="Anti-coordination">
+        <p class="eyebrow">A coordination game where matching is bad</p>
+        <h2>Sometimes the right answer is: do the opposite</h2>
+        <div class="anti-row">
+          <section><span>☎️</span><strong>Phone tag</strong><small>One calls; one waits</small></section>
+          <section><span>🏪</span><strong>Market entry</strong><small>One enters; one stays out</small></section>
+          <section><span>🚗</span><strong>Route choice</strong><small>Spread across roads</small></section>
+        </div>
+        <p class="takeaway">The choices differ, but they complement each other. The problem is still selecting one of several equilibria.</p>
+      </article>
+
+      <article class="screen builder-screen" data-time="1:12–1:16" data-label="Build a game from work">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Virtual whiteboard · Use a problem from the opening chat</p><h2>Build their game</h2></div>
+          <div><button class="secondary-button" id="reset-builder" type="button">Load example</button> <button class="primary-button" id="solve-builder" type="button">Find best responses</button></div>
+        </div>
+        <div class="builder-layout">
+          <section class="builder-labels">
+            <label>Row player<input id="builder-row-name" value="Agency A" /></label>
+            <label>Column player<input id="builder-col-name" value="Agency B" /></label>
+            <label>Row action 1<input id="builder-r1" value="Share data" /></label>
+            <label>Row action 2<input id="builder-r2" value="Withhold" /></label>
+            <label>Column action 1<input id="builder-c1" value="Share data" /></label>
+            <label>Column action 2<input id="builder-c2" value="Withhold" /></label>
+          </section>
+          <section class="builder-matrix" id="builder-matrix">
+            <div class="builder-corner" id="builder-corner">Agency A ↓ · Agency B →</div><div class="builder-head" id="builder-c1-label">Share data</div><div class="builder-head" id="builder-c2-label">Withhold</div>
+            <div class="builder-row-label" id="builder-r1-label">Share data</div><label data-builder-cell="11"><input id="b11r" type="number" value="3" /><span>,</span><input id="b11c" type="number" value="3" /></label><label data-builder-cell="12"><input id="b12r" type="number" value="0" /><span>,</span><input id="b12c" type="number" value="5" /></label>
+            <div class="builder-row-label" id="builder-r2-label">Withhold</div><label data-builder-cell="21"><input id="b21r" type="number" value="5" /><span>,</span><input id="b21c" type="number" value="0" /></label><label data-builder-cell="22"><input id="b22r" type="number" value="1" /><span>,</span><input id="b22c" type="number" value="1" /></label>
+          </section>
+        </div>
+        <p class="cue" id="builder-output">Enter the first player’s payoff first in each cell. Then let the page mark best responses and Nash equilibria.</p>
+      </article>
+
+      <article class="screen mover-screen" data-time="1:16–1:18" data-label="Move first or second?">
+        <p class="eyebrow">Chapter 18.4 · The short version</p>
+        <h2>Commitment or flexibility?</h2>
+        <div class="mover-layout">
+          <div class="mover-buttons">
+            <button data-mover="airline" type="button">An airline commits gates and planes</button>
+            <button data-mover="retail" type="button">A retailer observes a rival’s sale</button>
+            <button data-mover="candidate" type="button">A candidate waits to see an opponent’s position</button>
+          </div>
+          <section class="answer-stage" id="mover-stage"><small>Choose a case</small><strong>Does commitment change the rival’s response—or is adaptation more valuable?</strong></section>
+        </div>
+      </article>
+
+      <article class="screen map-screen" data-time="1:18–1:19" data-label="The chapter map">
+        <p class="eyebrow">Chapter 18 at a glance</p>
+        <h2>Four questions to carry away</h2>
+        <div class="chapter-map">
+          <section><b>1</b><strong>Cooperation</strong><span>Does self-interest make everyone defect?</span></section>
+          <section><b>2</b><strong>Coordination</strong><span>Are there several equilibria—and which will expectations select?</span></section>
+          <section><b>3</b><strong>Timing</strong><span>Is commitment or flexibility more valuable?</span></section>
+          <section><b>4</b><strong>Repetition</strong><span>Can credible future consequences sustain cooperation?</span></section>
+        </div>
+      </article>
+
+      <article class="screen closing-screen" data-time="1:19–1:20" data-label="At work this week">
+        <p class="eyebrow">At work this week</p>
+        <h2>Stop treating strategic people like punching bags</h2>
+        <div class="exit-prompt"><span>Pick one policy. Name the players and choices. Find the equilibrium. Then ask the most useful question in game theory: <b>Could we change the rules of the game?</b></span></div>
+      </article>
+    </main>
+
+    <header class="topbar"><strong>PUBPOL 553</strong><span id="screen-time"></span></header>
+    <footer class="controls" aria-label="Deck controls">
+      <button id="prev" type="button" aria-label="Previous screen">←</button>
+      <div class="screen-meta"><strong id="screen-label"></strong><span id="screen-count"></span></div>
+      <div class="timer" id="timer" hidden><strong id="timer-value">0:00</strong><button id="timer-toggle" type="button">Start</button><button id="timer-reset" type="button">Reset</button></div>
+      <button id="fullscreen" type="button">Full screen</button>
+      <button id="next" type="button" aria-label="Next screen">→</button>
+    </footer>
+    <script src="./class8.js?v=1"></script>
+  </body>
+</html>
