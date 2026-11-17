@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#00274c" />
+    <title>PUBPOL 553 — Private Information</title>
+    <meta name="description" content="Interactive teaching deck for PUBPOL 553, Class 9: Decisions Involving Private Information." />
+    <link rel="stylesheet" href="./class9.css?v=1" />
+  </head>
+  <body>
+    <main id="deck" aria-live="polite">
+      <article class="screen cover" data-time="0:00–0:02" data-label="Welcome">
+        <p class="eyebrow">PUBPOL 553 · Class 9</p>
+        <h1>Who knows<br />what?</h1>
+        <p class="subtitle">Private information, adverse selection, moral hazard—and what policy can do about them</p>
+      </article>
+
+      <article class="screen three-stories-screen" data-time="0:02–0:06" data-label="Three information gaps">
+        <p class="eyebrow">Chapter 19 · The whole chapter in three transactions</p>
+        <h2>Somebody knows more</h2>
+        <div class="story-grid">
+          <section><span class="story-icon">🚗</span><small>You buy my used car</small><strong>I know more about its quality.</strong></section>
+          <section><span class="story-icon">🩺</span><small>I sell you health insurance</small><strong>You know more about your likely costs.</strong></section>
+          <section><span class="story-icon">🧑‍💻</span><small>I hire you</small><strong>You know more about your effort.</strong></section>
+        </div>
+        <p class="takeaway">The problem begins when the better-informed person can use that advantage—and our interests do not perfectly align.</p>
+      </article>
+
+      <article class="screen compare-screen" data-time="0:06–0:09" data-label="Information or uncertainty?">
+        <p class="eyebrow">First distinction</p>
+        <h2>Private information is not just uncertainty</h2>
+        <div class="definition-grid">
+          <section class="uncertainty-card"><small>Uncertainty</small><strong>Nobody knows</strong><span>Will next winter be unusually cold?</span></section>
+          <section class="private-card"><small>Private information</small><strong>Somebody knows</strong><span>The seller knows the car has been making that noise for weeks.</span></section>
+        </div>
+        <p class="takeaway">Diagnostic question: Who knows something consequential that somebody else cannot readily observe?</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:09–0:13" data-label="Private information at work">
+        <p class="eyebrow">Put one example in chat · Keep chatting all night</p>
+        <h2>Where in your work does one party know something important that another does not?</h2>
+        <blockquote>Think about applicants, contractors, regulated firms, employees, providers, clients, grantees—or your own organization.</blockquote>
+        <p class="cue">Cold-call two. For now, just identify who knows what. Save several examples for the end.</p>
+      </article>
+
+      <article class="screen map-screen" data-time="0:13–0:15" data-label="The chapter map">
+        <p class="eyebrow">The textbook’s three-part sequence</p>
+        <h2>Two information problems</h2>
+        <div class="chapter-map">
+          <section><b>19.1</b><small>Adverse selection</small><strong>Sellers know more</strong><span>Hidden quality changes what gets offered.</span></section>
+          <section><b>19.2</b><small>Adverse selection</small><strong>Buyers know more</strong><span>Hidden risk changes who enters.</span></section>
+          <section><b>19.3</b><small>Moral hazard</small><strong>Actions are hidden</strong><span>Protection changes what people do afterward.</span></section>
+        </div>
+      </article>
+
+      <article class="screen assignment-screen" data-time="0:15–0:18" data-label="Your used laptop">
+        <p class="eyebrow">Game 1 · Everyone is a seller · No private messages</p>
+        <h2>Your birth month determines your laptop</h2>
+        <div class="assignment-grid">
+          <section class="reliable"><small>Born January–June</small><strong>Reliable laptop</strong><span>Keep that information to yourself for now.</span></section>
+          <section class="lemon"><small>Born July–December</small><strong>Lemon</strong><span>Keep that information to yourself for now.</span></section>
+        </div>
+        <p class="takeaway">You know your laptop’s quality. Justin—the buyer—does not know your birth month.</p>
+      </article>
+
+      <article class="screen laptop-table-screen" data-time="0:18–0:22" data-label="The laptop market">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Both kinds of trade would create value</p><h2>What is a random laptop worth?</h2></div>
+          <button class="primary-button" id="reveal-average" type="button">Reveal average</button>
+        </div>
+        <table class="market-table">
+          <thead><tr><th>Laptop</th><th>Value to buyer</th><th>Seller’s minimum</th><th>Gains from trade</th></tr></thead>
+          <tbody>
+            <tr class="reliable-row"><th>Reliable</th><td>$900</td><td>$700</td><td>+$200</td></tr>
+            <tr class="lemon-row"><th>Lemon</th><td>$300</td><td>$100</td><td>+$200</td></tr>
+          </tbody>
+        </table>
+        <div class="average-answer" id="average-answer" hidden><small>If each type is equally likely</small><strong>$600</strong><span>Average value to the buyer</span></div>
+        <p class="cue">Ask for the arithmetic before revealing. Then offer everyone $600.</p>
+      </article>
+
+      <article class="screen unravel-screen" data-time="0:22–0:28" data-label="Watch the market unravel">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Chapter 19.1 · Use thumbs, then click</p><h2>I offer everyone $600</h2></div>
+          <button class="secondary-button" id="reset-laptop" type="button">Start again</button>
+        </div>
+        <div class="step-layout">
+          <div class="step-buttons">
+            <button data-laptop-step="1" type="button"><b>1</b><span>Who sells at $600?</span></button>
+            <button data-laptop-step="2" type="button"><b>2</b><span>What does the buyer infer?</span></button>
+            <button data-laptop-step="3" type="button"><b>3</b><span>What price survives?</span></button>
+            <button data-laptop-step="4" type="button"><b>4</b><span>What has been lost?</span></button>
+          </div>
+          <section class="answer-stage" id="laptop-stage">
+            <small>Thumbs up if you sell · Thumbs down if you do not</small>
+            <strong>Commit to your decision before we reveal the logic.</strong>
+            <span>Reliable sellers need at least $700. Lemon sellers need only $100.</span>
+          </section>
+        </div>
+      </article>
+
+      <article class="screen warranty-screen" data-time="0:28–0:33" data-label="Can a warranty help?">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Credible signaling · Thumbs first</p><h2>Would you offer a warranty?</h2></div>
+          <button class="primary-button" id="reveal-warranty" type="button">Reveal choices</button>
+        </div>
+        <div class="warranty-layout">
+          <section class="offers-card"><small>The buyer offers</small><strong>$300</strong><span>Without a warranty</span><strong>$800</strong><span>With a credible warranty</span></section>
+          <table class="compact-table">
+            <thead><tr><th>Your laptop</th><th>Expected warranty cost</th></tr></thead>
+            <tbody><tr class="reliable-row"><th>Reliable</th><td>$50</td></tr><tr class="lemon-row"><th>Lemon</th><td>$650</td></tr></tbody>
+          </table>
+          <section class="warranty-answer" id="warranty-answer"><small>Thumbs up if you offer the warranty</small><strong>Decide before clicking.</strong><span>A signal works only if it is difficult for the low-quality seller to imitate.</span></section>
+        </div>
+      </article>
+
+      <article class="screen remedies-screen" data-time="0:33–0:36" data-label="Repair the market">
+        <p class="eyebrow">Chapter 19.1 · Four ways to create trust</p>
+        <h2>Make quality visible—or make claims credible</h2>
+        <div class="remedy-grid">
+          <section><b>1</b><strong>Verify</strong><span>Mechanics, inspectors, Carfax, reviews</span></section>
+          <section><b>2</b><strong>Signal</strong><span>Warranties, records, credentials</span></section>
+          <section><b>3</b><strong>Disclose</strong><span>Required reporting and truthful labels</span></section>
+          <section><b>4</b><strong>Set standards</strong><span>Licensing and minimum quality</span></section>
+        </div>
+        <p class="takeaway">Policy question: Does the remedy help buyers distinguish quality—or merely add paperwork?</p>
+      </article>
+
+      <article class="screen insurance-assignment-screen" data-time="0:36–0:39" data-label="Your insurance type">
+        <p class="eyebrow">Game 2 · Everyone is an insurance customer · No private messages</p>
+        <h2>Your birth month determines your fictional claims</h2>
+        <div class="risk-grid">
+          <section><small>Jan–Mar</small><strong>$1,000</strong></section>
+          <section><small>Apr–Jun</small><strong>$3,000</strong></section>
+          <section><small>Jul–Sep</small><strong>$5,000</strong></section>
+          <section><small>Oct–Dec</small><strong>$7,000</strong></section>
+        </div>
+        <p class="takeaway">These are assigned numbers, not claims about anyone’s actual health. Buy if the premium is no greater than your expected claims.</p>
+      </article>
+
+      <article class="screen premium-screen" data-time="0:39–0:44" data-label="The $4,000 premium">
+        <p class="eyebrow">Chapter 19.2 · Put your decision in chat</p>
+        <h2>Insurance costs $4,000</h2>
+        <div class="chat-command">
+          <small>If you buy</small>
+          <strong>Type your expected claims into chat.</strong>
+          <span>Enter $1,000, $3,000, $5,000, or $7,000. If you pass, type nothing.</span>
+        </div>
+        <p class="cue">Wait for the chat. Then ask: Who selected into the pool? What are their average claims?</p>
+      </article>
+
+      <article class="screen spiral-screen" data-time="0:44–0:50" data-label="The death spiral">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Buyer-side adverse selection · Click through slowly</p><h2>And then what?</h2></div>
+          <button class="secondary-button" id="reset-spiral" type="button">Start again</button>
+        </div>
+        <div class="spiral-track">
+          <button data-spiral-step="1" type="button"><small>Premium</small><strong>$4,000</strong></button>
+          <span>→</span>
+          <button data-spiral-step="2" type="button"><small>Average claims</small><strong>$6,000</strong></button>
+          <span>→</span>
+          <button data-spiral-step="3" type="button"><small>New premium</small><strong>$6,000</strong></button>
+          <span>→</span>
+          <button data-spiral-step="4" type="button"><small>Who remains?</small><strong>$7,000</strong></button>
+        </div>
+        <section class="spiral-answer" id="spiral-answer"><small>Begin with the whole pool</small><strong>If everyone bought, average claims would be $4,000.</strong><span>But the premium changes who chooses to buy.</span></section>
+        <p class="takeaway">The price changes the pool. The pool changes the price. That feedback can unravel a market.</p>
+      </article>
+
+      <article class="screen pooling-screen" data-time="0:50–0:54" data-label="Stabilize the pool">
+        <p class="eyebrow">Chapter 19.2 · Every fix changes who enters</p>
+        <h2>How might policy stabilize the pool?</h2>
+        <div class="remedy-grid insurance-remedies">
+          <section><b>1</b><strong>Broad pooling</strong><span>Bring low- and high-risk people together</span></section>
+          <section><b>2</b><strong>Enrollment rules</strong><span>Limit waiting until the need becomes obvious</span></section>
+          <section><b>3</b><strong>Screening</strong><span>Use observable information to sort risks</span></section>
+          <section><b>4</b><strong>Subsidies</strong><span>Keep lower-risk people in the pool</span></section>
+        </div>
+        <p class="takeaway">Better pricing can improve incentives while weakening insurance, solidarity, privacy, or fairness.</p>
+      </article>
+
+      <article class="screen distinction-screen" data-time="0:54–0:57" data-label="Selection or hazard?">
+        <p class="eyebrow">The distinction to remember</p>
+        <h2>Who you get—or what they do?</h2>
+        <div class="definition-grid">
+          <section class="selection-card"><small>Adverse selection</small><strong>Hidden characteristics</strong><span>Private information changes who participates or what quality is offered.</span><b>Before or when the deal is made</b></section>
+          <section class="hazard-card"><small>Moral hazard</small><strong>Hidden actions</strong><span>Protection or delegation changes behavior that others cannot fully observe.</span><b>After the deal is made</b></section>
+        </div>
+      </article>
+
+      <article class="screen bike-screen" data-time="0:57–1:00" data-label="The bicycle lock">
+        <p class="eyebrow">Game 3 · Everyone votes with thumbs</p>
+        <h2>Would you buy the lock?</h2>
+        <div class="bike-facts">
+          <section><small>Bicycle value</small><strong>$1,000</strong></section>
+          <section><small>Theft risk without lock</small><strong>10%</strong></section>
+          <section><small>Theft risk with lock</small><strong>2%</strong></section>
+          <section><small>Lock costs</small><strong>$30</strong></section>
+        </div>
+        <p class="takeaway">The lock reduces expected losses by $80. Now change the insurance contract.</p>
+      </article>
+
+      <article class="screen lock-vote-screen" data-time="1:00–1:06" data-label="Three insurance contracts">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Thumbs first · Then click the contract</p><h2>Do you buy the $30 lock?</h2></div>
+          <button class="secondary-button" id="reset-lock" type="button">Reset</button>
+        </div>
+        <div class="lock-layout">
+          <div class="contract-buttons">
+            <button data-lock-case="none" type="button"><small>Round 1</small><strong>No insurance</strong></button>
+            <button data-lock-case="full" type="button"><small>Round 2</small><strong>Full insurance</strong></button>
+            <button data-lock-case="deductible" type="button"><small>Round 3</small><strong>$500 deductible</strong></button>
+          </div>
+          <section class="answer-stage" id="lock-stage"><small>Choose a contract</small><strong>Vote before revealing the answer.</strong><span>Ask what the lock is worth to the bicycle owner under each contract.</span></section>
+        </div>
+        <p class="takeaway">Insurance did not change anyone’s character. It changed the marginal benefit of being careful.</p>
+      </article>
+
+      <article class="screen hazard-apps-screen" data-time="1:06–1:10" data-label="Hidden actions everywhere">
+        <p class="eyebrow">Chapter 19.3 · Principal and agent</p>
+        <h2>Someone else acts on your behalf</h2>
+        <div class="application-grid">
+          <section><span>🧑‍💼</span><strong>Employee effort</strong><small>The employer cannot observe every choice.</small></section>
+          <section><span>🔧</span><strong>Mechanic advice</strong><small>The customer cannot verify every repair.</small></section>
+          <section><span>🏠</span><strong>Tenant care</strong><small>The landlord cannot observe daily treatment.</small></section>
+          <section><span>🏦</span><strong>Expected rescue</strong><small>A safety net can encourage greater risk.</small></section>
+          <section><span>🩺</span><strong>Medical care</strong><small>Insurance lowers the price paid at the point of use.</small></section>
+        </div>
+      </article>
+
+      <article class="screen incentives-screen" data-time="1:10–1:14" data-label="Respond to moral hazard">
+        <p class="eyebrow">Chapter 19.3 · Change the information or the payoff</p>
+        <h2>Make good actions visible—or worthwhile</h2>
+        <div class="remedy-grid">
+          <section><b>1</b><strong>Monitor</strong><span>Audits, inspections, supervision</span></section>
+          <section><b>2</b><strong>Share the stakes</strong><span>Deductibles, deposits, “skin in the game”</span></section>
+          <section><b>3</b><strong>Reward outcomes</strong><span>Bonuses and performance contracts</span></section>
+          <section><b>4</b><strong>Redesign the job</strong><span>Make desired actions easier to observe</span></section>
+        </div>
+        <p class="takeaway">No free lunch: monitoring is costly; cost-sharing weakens insurance; performance pay can invite gaming.</p>
+      </article>
+
+      <article class="screen diagnose-screen" data-time="1:14–1:18" data-label="Diagnose a policy case">
+        <div class="screen-heading">
+          <div><p class="eyebrow">Whole-room practice · Thumbs before clicking</p><h2>Adverse selection or moral hazard?</h2></div>
+          <button class="secondary-button" id="reset-cases" type="button">Reset</button>
+        </div>
+        <div class="diagnose-layout">
+          <div class="case-buttons">
+            <button data-info-case="grant" type="button">A grant applicant knows whether its proposal is viable</button>
+            <button data-info-case="contractor" type="button">A contractor quietly reduces service quality after winning</button>
+            <button data-info-case="insurance" type="button">High-risk customers are most eager to buy insurance</button>
+            <button data-info-case="worker" type="button">An employee’s effort is hard to observe</button>
+            <button data-info-case="vendor" type="button">A vendor knows the equipment is unreliable</button>
+            <button data-info-case="bank" type="button">A protected bank takes greater risks</button>
+          </div>
+          <section class="answer-stage" id="case-stage"><small>For each case</small><strong>Who knows what—and when?</strong><span>Thumbs up for adverse selection. Thumbs down for moral hazard. Then click to reveal.</span></section>
+        </div>
+      </article>
+
+      <article class="screen clinic-screen" data-time="1:18–1:19" data-label="Return to their work">
+        <p class="eyebrow">Use one example from the opening chat</p>
+        <h2>Diagnose before prescribing</h2>
+        <div class="clinic-grid">
+          <section><b>1</b><span>Who knows what?</span></section>
+          <section><b>2</b><span>When do they know it?</span></section>
+          <section><b>3</b><span>What can they do with that advantage?</span></section>
+          <section><b>4</b><span>Can we reveal information or realign incentives?</span></section>
+        </div>
+      </article>
+
+      <article class="screen closing-screen" data-time="1:19–1:20" data-label="At work this week">
+        <p class="eyebrow">At work this week</p>
+        <h2>Information problems are design problems</h2>
+        <div class="exit-prompt"><span>Do not begin by assuming bad motives. Begin by asking: <b>Who knows what?</b> Then design the market, contract, or institution around the answer.</span></div>
+      </article>
+    </main>
+
+    <header class="topbar"><strong>PUBPOL 553</strong><span id="screen-time"></span></header>
+    <footer class="controls" aria-label="Deck controls">
+      <button id="prev" type="button" aria-label="Previous screen">←</button>
+      <div class="screen-meta"><strong id="screen-label"></strong><span id="screen-count"></span></div>
+      <button id="fullscreen" type="button">Full screen</button>
+      <button id="next" type="button" aria-label="Next screen">→</button>
+    </footer>
+    <script src="./class9.js?v=1"></script>
+  </body>
+</html>
