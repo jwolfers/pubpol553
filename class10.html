@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#00274c" />
+    <title>PUBPOL 553 — Sizing Up the Economy and Economic Growth</title>
+    <meta name="description" content="Interactive teaching deck for PUBPOL 553, Chapters 21 and 22." />
+    <link rel="stylesheet" href="./class10.css?v=1" />
+  </head>
+  <body>
+    <main id="deck" aria-live="polite">
+      <article class="screen cover" data-time="0:00–0:02" data-label="Welcome">
+        <p class="eyebrow">PUBPOL 553 · Chapters 21–22</p>
+        <h1>How big is the economy?<br />And why does it grow?</h1>
+        <p class="subtitle">GDP, living standards, growth, and the rules that help economies produce more</p>
+      </article>
+
+      <article class="screen prompt-screen" data-time="0:02–0:05" data-label="Why measure the economy?">
+        <p class="eyebrow">Put one question in chat · Keep chatting all night</p>
+        <h2>What would you want to know before making a big policy decision?</h2>
+        <blockquote>Is the economy healthy? Who is benefiting? Is this a temporary change—or a long-run improvement?</blockquote>
+        <p class="cue">Cold-call two. Tonight we will ask what the headline numbers can answer—and what they cannot.</p>
+      </article>
+
+      <article class="screen bridge-screen" data-time="0:05–0:07" data-label="From micro to macro">
+        <p class="eyebrow">Chapter 21.1 · Same ideas, much bigger canvas</p>
+        <h2>Macroeconomics is microeconomics added up</h2>
+        <div class="bridge-grid">
+          <section><small>Income</small><strong>Your paycheck</strong><span>→ Total income in the country</span></section>
+          <section><small>Output</small><strong>Your organization’s work</strong><span>→ All output produced</span></section>
+          <section><small>Spending</small><strong>Your household’s purchases</strong><span>→ All spending by households, firms, government, and foreigners</span></section>
+        </div>
+        <p class="takeaway">The tools remain familiar: incentives, opportunity cost, markets, equilibrium, and interdependence.</p>
+      </article>
+
+      <article class="screen gdp-three-screen" data-time="0:07–0:10" data-label="GDP is three things">
+        <p class="eyebrow">Chapter 21.1–21.2 · The central identity</p>
+        <h2>GDP is one economy viewed three ways</h2>
+        <div class="three-way-grid">
+          <section><b>1</b><strong>Total output</strong><span>The market value of what is produced</span></section>
+          <section><b>2</b><strong>Total spending</strong><span>What households, firms, government, and foreigners spend on final output</span></section>
+          <section><b>3</b><strong>Total income</strong><span>Wages and profits earned producing that output</span></section>
+        </div>
+        <p class="takeaway">Every dollar spent is income for someone else. Every final product sold is output produced by someone else.</p>
+      </article>
+
+      <article class="screen flow-screen" data-time="0:10–0:13" data-label="The circular flow">
+        <p class="eyebrow">Chapter 21.1 · Think in flows, not isolated transactions</p>
+        <h2>The economy is a circular flow of money and resources</h2>
+        <div class="flow-diagram">
+          <section class="flow-node households"><strong>Households</strong><span>Supply labor and capital</span><span>Buy goods and services</span></section>
+          <div class="flow-arrows"><span>Labor, land, capital →</span><b>↕</b><span>← Wages, profits</span><i>Spending on output ↔ Market value of output</i></div>
+          <section class="flow-node firms"><strong>Businesses</strong><span>Hire inputs</span><span>Produce output</span></section>
+        </div>
+        <p class="cue">Ask: “Where does my income come from?” Then: “What happens to that income when firms sell less output?”</p>
+      </article>
+
+      <article class="screen definition-screen" data-time="0:13–0:16" data-label="Define GDP">
+        <p class="eyebrow">The textbook definition</p>
+        <h2>GDP = the market value of all final goods and services produced within a country in a year</h2>
+        <div class="definition-strip"><span>Market value</span><span>All</span><span>Final</span><span>Produced</span><span>Domestic</span><span>Flow over a year</span></div>
+        <div class="perusall-note"><strong>Questions your Perusall reading raised</strong><span>Does unpaid care count? What happens to a used couch? Can GDP per person hide who benefits? If the dollar total rises, did production actually rise?</span></div>
+        <p class="takeaway">The definition is doing real work: it tells us what gets counted, what gets excluded, and how to compare unlike things.</p>
+      </article>
+
+      <article class="screen classify-screen" data-time="0:16–0:22" data-label="What enters GDP?">
+        <div class="screen-heading"><div><p class="eyebrow">Thumbs first · Then click · Several cases come from your Perusall questions</p><h2>Does this transaction add to GDP?</h2></div><button class="secondary-button" id="reset-count" type="button">Reset</button></div>
+        <div class="classify-layout">
+          <div class="case-buttons">
+            <button data-count-case="newcar" type="button">You buy a newly produced car</button>
+            <button data-count-case="usedcouch" type="button">You buy a used couch on Craigslist</button>
+            <button data-count-case="care" type="button">A parent provides unpaid child care</button>
+            <button data-count-case="cleaner" type="button">You hire someone to clean your home</button>
+            <button data-count-case="school" type="button">Government pays a public-school teacher</button>
+            <button data-count-case="cash" type="button">A contractor is paid cash and never reports it</button>
+            <button data-count-case="pollution" type="button">A factory produces goods while polluting a river</button>
+            <button data-count-case="google" type="button">You use a free search engine</button>
+          </div>
+          <section class="answer-stage" id="count-stage"><small>Ask the diagnostic questions</small><strong>Is it new production? Is it sold in a market? Is it final output produced domestically?</strong><span>Click a case after the class votes. The answer will expose one of GDP’s boundaries.</span></section>
+        </div>
+      </article>
+
+      <article class="screen spending-screen" data-time="0:22–0:25" data-label="The spending approach">
+        <p class="eyebrow">Chapter 21.2 · A useful map of demand</p>
+        <h2>Y = C + I + G + NX</h2>
+        <div class="component-grid">
+          <button data-component="C" type="button"><b>C</b><strong>Consumption</strong><span>Household purchases</span></button>
+          <button data-component="I" type="button"><b>I</b><strong>Investment</strong><span>New capital, structures, and inventories</span></button>
+          <button data-component="G" type="button"><b>G</b><strong>Government purchases</strong><span>Public goods and services—not transfers</span></button>
+          <button data-component="NX" type="button"><b>NX</b><strong>Net exports</strong><span>Exports minus imports</span></button>
+        </div>
+        <p class="cue" id="component-note">Click a component after asking for a workplace or policy example from the class.</p>
+      </article>
+
+      <article class="screen couch-screen" data-time="0:25–0:28" data-label="One couch, three measures">
+        <p class="eyebrow">Chapter 21.2 · Follow one product through the economy</p>
+        <h2>A $1,500 couch creates $1,500 of GDP</h2>
+        <div class="couch-chain"><section><small>Lumber</small><strong>$400</strong><span>Value added: $400</span></section><i>→</i><section><small>Manufacturer</small><strong>$1,000</strong><span>Value added: $600</span></section><i>→</i><section><small>Retailer</small><strong>$1,500</strong><span>Value added: $500</span></section></div>
+        <p class="takeaway">Output: $1,500 final couch. Spending: $1,500 purchase. Income: $1,500 in wages and profits. Do not count the lumber, couch, and retail sale separately.</p>
+      </article>
+
+      <article class="screen limits-screen" data-time="0:28–0:32" data-label="GDP and living standards">
+        <p class="eyebrow">Chapter 21.3 · What GDP captures—and misses</p>
+        <h2>GDP is useful. GDP is not “value.”</h2>
+        <div class="limit-grid">
+          <section><b>Counts</b><span>Market production</span><span>Government services</span><span>Paid care</span></section>
+          <section><b>Misses or mismeasures</b><span>Unpaid household work</span><span>Leisure</span><span>Distribution</span><span>Environmental damage</span></section>
+          <section><b>Still useful</b><span>More resources for health, education, safety, and choice</span><span>Strongly related to life expectancy, schooling, and life satisfaction</span></section>
+        </div>
+        <p class="takeaway">GDP measures the resources available to pursue a good life—not the good life itself.</p>
+      </article>
+
+      <article class="screen policy-choice-screen" data-time="0:32–0:35" data-label="GDP as a policy guide">
+        <p class="eyebrow">Application · Choose with thumbs</p>
+        <h2>Which country has higher living standards?</h2>
+        <div class="country-choice"><section><small>Country A</small><strong>GDP per person: $90,000</strong><span>Average workweek: 48 hours<br />High inequality<br />Severe air pollution</span></section><section><small>Country B</small><strong>GDP per person: $65,000</strong><span>Average workweek: 35 hours<br />Lower inequality<br />Cleaner environment</span></section></div>
+        <p class="cue">There is no correct answer without a value judgment. Ask: what would GDP tell you, and what would it leave you needing to measure separately?</p>
+      </article>
+
+      <article class="screen real-nominal-screen" data-time="0:35–0:40" data-label="Nominal versus real GDP">
+        <div class="screen-heading"><div><p class="eyebrow">Chapter 21.4 · Think like a statistician</p><h2>GDP rose 5%. Did production rise 5%?</h2></div><button class="primary-button" id="reveal-real" type="button">Reveal the answer</button></div>
+        <table class="numbers-table"><thead><tr><th></th><th>Last year</th><th>This year</th></tr></thead><tbody><tr><th>Number of smoothies</th><td>100</td><td>103</td></tr><tr><th>Price per smoothie</th><td>$5.00</td><td>$5.10</td></tr><tr><th>Nominal GDP</th><td>$500</td><td>$525.30</td></tr></tbody></table>
+        <div class="real-answer" id="real-answer" hidden><section><small>Nominal GDP growth</small><strong>5%</strong><span>Prices and quantities together</span></section><section><small>Real GDP growth</small><strong>3%</strong><span>Quantity growth with prices held constant</span></section><section><small>Price growth</small><strong>2%</strong><span>Inflation in this simple example</span></section></div>
+        <p class="cue">Ask before revealing: “What changed—the number of smoothies, their price, or both?”</p>
+      </article>
+
+      <article class="screen scaling-screen" data-time="0:40–0:44" data-label="Scale big numbers">
+        <p class="eyebrow">Chapter 21.5 · Numbers need context</p>
+        <h2>How big is $60 billion?</h2>
+        <div class="scale-grid"><button data-scale="person" type="button"><strong>Per person</strong><span>About $176 per American</span></button><button data-scale="gdp" type="button"><strong>Share of GDP</strong><span>About 0.2% of a $29 trillion economy</span></button><button data-scale="budget" type="button"><strong>Share of federal spending</strong><span>About 0.9% of a $7 trillion budget</span></button><button data-scale="history" type="button"><strong>Compare over time</strong><span>How does it compare with past programs or shocks?</span></button></div>
+        <p class="takeaway">The trick is not to memorize the number. Translate it into a scale your audience can reason about.</p>
+      </article>
+
+      <article class="screen rule70-screen" data-time="0:44–0:47" data-label="The Rule of 70">
+        <p class="eyebrow">A small shortcut with enormous implications</p>
+        <h2>Years to double ≈ 70 ÷ annual growth rate</h2>
+        <div class="doubling-grid"><button data-double="2" type="button"><small>2% growth</small><strong>35 years</strong></button><button data-double="5" type="button"><small>5% growth</small><strong>14 years</strong></button><button data-double="7" type="button"><small>7% growth</small><strong>10 years</strong></button></div>
+        <p class="cue">Ask: “Why can a difference of only a few percentage points become a difference in living standards?”</p>
+      </article>
+
+      <article class="screen history-screen" data-time="0:47–0:51" data-label="The growth miracle">
+        <p class="eyebrow">Chapter 22.1 · Growth is a recent human achievement</p>
+        <h2>For most of history, GDP per person barely moved</h2>
+        <div class="history-line"><section><small>1 million BCE–1200 CE</small><strong>≈ $200</strong><span>Near subsistence</span></section><i>→</i><section><small>1800</small><strong>≈ $400</strong><span>600 years to double</span></section><i>→</i><section><small>1920 U.S.</small><strong>≈ $14,000</strong><span>Industrial growth underway</span></section><i>→</i><section><small>2024 U.S.</small><strong>$85,800</strong><span>More than six times 1920</span></section></div>
+        <p class="takeaway">Growth is not just “more stuff.” It enabled sanitation, medicine, education, food security, mobility, and longer lives.</p>
+      </article>
+
+      <article class="screen growth-path-screen" data-time="0:51–0:55" data-label="Growth is uneven">
+        <p class="eyebrow">Chapter 22.1 · Same planet, different paths</p>
+        <h2>Small growth-rate differences compound into huge gaps</h2>
+        <div class="growth-paths"><section class="west"><strong>United States / Western Europe</strong><span>Industrialization, innovation, and sustained growth</span><b>High GDP per person today</b></section><section class="miracle"><strong>South Korea / China</strong><span>Catch-up growth after long stagnation</span><b>Rapid recent growth</b></section><section class="stalled"><strong>Argentina / some poorer countries</strong><span>Growth stalls amid instability and weak institutions</span><b>Lost decades</b></section></div>
+        <p class="cue">Ask: “What could make a country’s growth rate persistently higher or lower?”</p>
+      </article>
+
+      <article class="screen growth-bridge-screen" data-time="0:55–0:58" data-label="The policy question">
+        <p class="eyebrow">Bridge to Chapter 22.2</p>
+        <h2>What makes an economy able to produce more?</h2>
+        <div class="recipe-quote"><span>Think of the economy as a kitchen.</span><strong>Growth means better ingredients, more ingredients, or a better recipe.</strong></div>
+        <p class="takeaway">The chapter’s production function organizes the answer: output depends on labor, human capital, physical capital, and the methods used to combine them.</p>
+      </article>
+
+      <article class="screen production-screen" data-time="0:58–1:02" data-label="The production function">
+        <p class="eyebrow">Chapter 22.2 · A framework for policy thinking</p>
+        <h2>Y = f(L, H, K)</h2>
+        <div class="production-grid"><section><b>L</b><strong>Labor</strong><span>People and hours worked</span></section><section><b>H</b><strong>Human capital</strong><span>Knowledge, skills, and health</span></section><section><b>K</b><strong>Physical capital</strong><span>Tools, machines, buildings, infrastructure</span></section><section class="recipe-card"><b>⚙</b><strong>Technology</strong><span>The recipes for combining inputs into valuable output</span></section></div>
+        <p class="cue">For a policy organization, what are the L, H, K, and “recipe” behind its output? Put one answer in chat.</p>
+      </article>
+
+      <article class="screen labor-screen" data-time="1:02–1:05" data-label="Ingredient 1: labor">
+        <p class="eyebrow">Chapter 22.2 · More labor can mean more output—but not necessarily more welfare</p>
+        <h2>Labor input is total hours worked</h2>
+        <div class="labor-grid"><section><small>Population</small><strong>More people</strong><span>More potential workers, more total GDP—but not automatically more GDP per person</span></section><section><small>Demographics</small><strong>Dependency ratio</strong><span>Children and retirees affect the share of the population working</span></section><section><small>Participation</small><strong>Who works?</strong><span>Women’s rising employment helped drive past growth</span></section><section><small>Hours</small><strong>How long?</strong><span>Longer workweeks raise GDP but may reduce leisure</span></section></div>
+        <p class="takeaway">A policy can raise measured output while making people worse off if it ignores the opportunity cost of time.</p>
+      </article>
+
+      <article class="screen human-screen" data-time="1:05–1:08" data-label="Ingredient 2: human capital">
+        <p class="eyebrow">Chapter 22.2 · Productivity is output per hour</p>
+        <h2>Skills make workers more productive</h2>
+        <div class="human-flow"><section><strong>Education</strong><span>Literacy, schooling, college</span></section><i>→</i><section><strong>Training and practice</strong><span>Knowledge embedded in people</span></section><i>→</i><section><strong>Higher productivity</strong><span>More valuable output per hour</span></section><i>→</i><section><strong>Higher GDP per person</strong><span>More resources for living standards</span></section></div>
+        <p class="cue">Policy question: Is the constraint more years of schooling, better schooling, better health, or better matching of skills to jobs?</p>
+      </article>
+
+      <article class="screen capital-screen" data-time="1:08–1:11" data-label="Ingredient 3: physical capital">
+        <p class="eyebrow">Chapter 22.2–22.3 · Tools make workers more productive</p>
+        <h2>One more machine helps most when workers have very few</h2>
+        <div class="capital-bars"><section><small>Capital-poor setting</small><div class="bar high"></div><strong>Large output gain</strong><span>Catch-up growth</span></section><section><small>Capital-rich setting</small><div class="bar low"></div><strong>Smaller output gain</strong><span>Diminishing returns</span></section></div>
+        <p class="takeaway">Investment raises output, but capital accumulation alone eventually runs into depreciation and diminishing returns.</p>
+      </article>
+
+      <article class="screen tech-screen" data-time="1:11–1:13" data-label="Ingredient 4: ideas">
+        <p class="eyebrow">Chapter 22.3 · The engine of sustained growth</p>
+        <h2>New ideas let the same ingredients produce more</h2>
+        <div class="idea-grid"><section><b>Shareable</b><span>One idea can be used by millions of producers</span></section><section><b>Non-depreciating</b><span>An idea does not wear out when we use it</span></section><section><b>Generative</b><span>Ideas can create other ideas</span></section></div>
+        <div class="perusall-note"><strong>The policy question students put on the table</strong><span>Technology can raise productivity. Who receives the gains—and who absorbs the disruption?</span></div>
+        <p class="takeaway">Capital accumulation can raise the level of output. Repeated technological progress is what sustains growth in output per person.</p>
+      </article>
+
+      <article class="screen solow-screen" data-time="1:13–1:15" data-label="The Solow insight">
+        <p class="eyebrow">Chapter 22.3 · A simple long-run lesson</p>
+        <h2>Investment helps you catch up. Ideas keep moving the frontier.</h2>
+        <div class="solow-grid"><section><small>Step 1</small><strong>Invest in capital</strong><span>More machines raise output.</span></section><section><small>Step 2</small><strong>Diminishing returns</strong><span>Each additional machine adds less.</span></section><section><small>Step 3</small><strong>Steady state</strong><span>Investment eventually just replaces depreciation.</span></section><section class="tech-step"><small>Step 4</small><strong>Technological progress</strong><span>New recipes shift the production function up.</span></section></div>
+        <p class="cue">This is why “just build more stuff” is not a complete growth strategy.</p>
+      </article>
+
+      <article class="screen institution-screen" data-time="1:15–1:17" data-label="Institutions and growth">
+        <div class="screen-heading"><div><p class="eyebrow">Chapter 22.4 · The rules of the game</p><h2>Will people invest if they cannot trust the rules?</h2></div><button class="secondary-button" id="reset-institutions" type="button">Reset</button></div>
+        <div class="institution-layout"><div class="institution-buttons"><button data-institution="rights" type="button">Property rights</button><button data-institution="stability" type="button">Government stability</button><button data-institution="regulation" type="button">Efficient regulation</button><button data-institution="innovation" type="button">Innovation policy</button></div><section class="answer-stage" id="institution-stage"><small>Choose a rule</small><strong>What incentive does this create for investment, work, or innovation?</strong><span>Click after asking the class for a concrete policy example.</span></section></div>
+      </article>
+
+      <article class="screen policy-lab-screen" data-time="1:17–1:18" data-label="Policy application">
+        <p class="eyebrow">Whole-room application · Use their professional experience</p>
+        <h2>Pick a policy and diagnose its growth channel</h2>
+        <div class="policy-lab"><div class="policy-buttons"><button data-policy="workforce" type="button">Child care / workforce participation</button><button data-policy="education" type="button">School quality / training</button><button data-policy="infrastructure" type="button">Roads, broadband, public capital</button><button data-policy="research" type="button">R&amp;D subsidy or patent</button><button data-policy="regulation" type="button">Business licensing or permitting</button><button data-policy="rights" type="button">Property rights / rule of law</button></div><section class="answer-stage" id="policy-stage"><small>Ask the four questions</small><strong>Which input or recipe changes?</strong><span>Does it raise the level of output, the growth rate, or both? Who bears the cost now, and who gets the benefit later?</span></section></div>
+      </article>
+
+      <article class="screen synthesis-screen" data-time="1:18–1:19" data-label="Put the chapters together">
+        <p class="eyebrow">The combined framework</p>
+        <h2>Measure the economy carefully. Then ask why it changes.</h2>
+        <div class="synthesis-grid"><section><b>1</b><strong>What is happening now?</strong><span>GDP, real GDP, GDP per person, spending, output, income</span></section><section><b>2</b><strong>What does the measure omit?</strong><span>Unpaid work, leisure, distribution, environment, free services</span></section><section><b>3</b><strong>What drives future output?</strong><span>Labor, human capital, physical capital, ideas</span></section><section><b>4</b><strong>Can policy improve the recipe?</strong><span>Institutions and incentives determine investment and innovation</span></section></div>
+      </article>
+
+      <article class="screen closing-screen" data-time="1:19–1:20" data-label="At work this week">
+        <p class="eyebrow">At work this week</p>
+        <h2>Do not let a headline do your thinking</h2>
+        <div class="exit-prompt"><span>When you hear “the economy grew,” ask: <b>Real or nominal?</b> <b>Per person or total?</b> <b>Who benefited?</b> And then: <b>What changed in the ingredients or the recipe?</b></span></div>
+      </article>
+    </main>
+
+    <header class="topbar"><strong>PUBPOL 553</strong><span id="screen-time"></span></header>
+    <footer class="controls" aria-label="Deck controls"><button id="prev" type="button" aria-label="Previous screen">←</button><div class="screen-meta"><strong id="screen-label"></strong><span id="screen-count"></span></div><button id="fullscreen" type="button">Full screen</button><button id="next" type="button" aria-label="Next screen">→</button></footer>
+    <script src="./class10.js?v=1"></script>
+  </body>
+</html>
