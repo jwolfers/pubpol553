@@ -34,6 +34,10 @@ jobs:
         with:
           path: .
 
+      # The Pages artifact API can be briefly eventually consistent.
+      - name: Wait for Pages artifact
+        run: sleep 20
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
